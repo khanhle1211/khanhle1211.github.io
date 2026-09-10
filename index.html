@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lê Đức Nam Khánh | Portfolio</title>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Khánh<span>.</span></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Trang chủ</a></li>
+                    <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+                    <li><a href="#skills" class="nav-link">Kỹ năng</a></li>
+                    <li><a href="#projects" class="nav-link">Dự án</a></li>
+                    <li><a href="#contact" class="nav-link">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="container hero-container">
+                <div class="hero-content reveal">
+                    <span class="greeting">Xin chào, tôi là</span>
+                    <h1 class="title">Lê Đức <span>Nam Khánh</span></h1>
+                    <h2 class="subtitle">Sinh viên ngành Kỹ thuật Phần mềm</h2>
+                    <p class="description">
+                        Đam mê sáng tạo công nghệ và phát triển những giải pháp phần mềm mang tính đột phá. 
+                        Tôi luôn sẵn sàng biến các ý tưởng phức tạp thành những dòng code tinh gọn và hiệu quả.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">Xem Dự Án</a>
+                        <a href="#contact" class="btn btn-outline">Liên Hệ Ngay</a>
+                    </div>
+                </div>
+                <div class="hero-image reveal">
+                    <div class="avatar-card-container">
+                        <div class="avatar-glow"></div>
+                        <div class="image-wrapper glass">
+                            <img id="userAvatar" src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" onerror="this.style.display='none'; document.getElementById('avatarPlaceholder').style.display='flex';">
+                            <div class="placeholder-img" id="avatarPlaceholder" style="display: none;">
+                                <i class="fas fa-user-astronaut"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Giới thiệu về tôi</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="about-content reveal">
+                    <div class="about-text glass">
+                        <h3>Hành trình vươn tới đam mê công nghệ</h3>
+                        <p>
+                            Là một sinh viên Công Nghệ Thông Tin (chuyên ngành Kỹ thuật phần mềm), tôi có niềm đam mê mãnh liệt với lập trình và tư duy logic. Việc giải quyết các bài toán khó và tối ưu hóa hệ thống không chỉ là chuyên môn mà còn là sở thích của tôi.
+                        </p>
+                        <p>
+                            Với nền tảng kiến thức vững chắc đang được trau dồi trên giảng đường và tinh thần chủ động tự học, tôi không ngừng cập nhật những công nghệ mới nhất. Mục tiêu của tôi là trở thành một Kỹ sư phần mềm xuất sắc, tạo ra những sản phẩm thực tế đem lại giá trị cao cho cộng đồng và doanh nghiệp.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">2+</span>
+                                <span class="stat-text">Năm học tập<br>& Nghiên cứu</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-text">Dự án<br>Thực hành</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-text">Nhiệt huyết<br>& Đam mê</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Kỹ năng nổi bật</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="skills-grid reveal">
+                    <div class="skill-card glass">
+                        <i class="fab fa-html5 skill-icon" style="color: #E34F26;"></i>
+                        <h3>Front-end</h3>
+                        <p>Thành thạo HTML5, CSS3, JavaScript. Xây dựng giao diện responsive, hiện đại và thân thiện với người dùng.</p>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fas fa-server skill-icon" style="color: #68A063;"></i>
+                        <h3>Back-end</h3>
+                        <p>Kiến thức nền tảng về cơ sở dữ liệu, API và logic nghiệp vụ. Tư duy thiết kế hệ thống phần mềm.</p>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fas fa-code-branch skill-icon" style="color: #F05032;"></i>
+                        <h3>Công cụ & Quản lý</h3>
+                        <p>Sử dụng Git, GitHub để quản lý mã nguồn. Kỹ năng làm việc nhóm và giải quyết vấn đề hiệu quả.</p>
+                    </div>
+                    <div class="skill-card glass">
+                        <i class="fas fa-project-diagram skill-icon" style="color: #9333EA;"></i>
+                        <h3>Thiết kế Phần mềm</h3>
+                        <p>Hiểu biết về Design Patterns, UML và quy trình phát triển phần mềm (Agile/Scrum).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Dự án của tôi</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="projects-grid">
+                    <!-- Dự án 1: UI/UX App Quản lý Tài chính -->
+                    <div class="project-card glass reveal">
+                        <div class="project-img-placeholder">
+                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop" alt="UI/UX App Quản Lý Tài Chính" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <i class="fas fa-palette" style="display: none;"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>Ứng Dụng Quản Lý Tài Chính (UI/UX)</h3>
+                            <p>Thiết kế trải nghiệm người dùng (UI/UX) cho ứng dụng tài chính cá nhân. Tập trung vào giao diện trực quan, biểu đồ theo dõi thu chi thông minh và tối ưu hóa luồng tương tác người dùng.</p>
+                            <div class="project-tags">
+                                <span>UI/UX Design</span>
+                                <span>Figma</span>
+                                <span>Mobile App</span>
+                                <span>User Experience</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dự án 2: Đồ án Tốt nghiệp - App Quản lý Tài chính & Đầu tư -->
+                    <div class="project-card glass reveal" style="transition-delay: 0.1s">
+                        <span class="project-badge"><i class="fas fa-graduation-cap"></i> Đồ án Tốt nghiệp</span>
+                        <div class="project-img-placeholder">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" alt="App Quản Lý Tài Chính & Đầu Tư Thị Trường" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <i class="fas fa-chart-line" style="display: none;"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>Nền Tảng Quản Lý Tài Chính & Đầu Tư Thông Minh</h3>
+                            <p>Đồ án tốt nghiệp Kỹ thuật Phần mềm: Hệ thống quản lý tài chính toàn diện kết hợp module đầu tư tích hợp, phân tích và phản ứng linh hoạt dựa theo biến động dữ liệu thị trường theo thời gian thực (Real-time Market Data).</p>
+                            <div class="project-tags">
+                                <span>Kỹ thuật Phần mềm</span>
+                                <span>Fintech</span>
+                                <span>Real-time Data</span>
+                                <span>Market Investment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;" class="reveal">
+                    <p><em>* Các dự án thực tế sẽ được cập nhật thêm trong tương lai...</em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Liên hệ với tôi</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="contact-content reveal">
+                    <div class="contact-info glass">
+                        <h3>Kết nối với tôi</h3>
+                        <p>Tôi luôn sẵn sàng để trò chuyện về công nghệ, hợp tác trong các dự án hoặc thảo luận về những cơ hội nghề nghiệp trong tương lai.</p>
+                        
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>namkhanhle56@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <h4>Địa điểm</h4>
+                                    <p>Việt Nam</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form glass" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Tên của bạn" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email của bạn" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="5" placeholder="Tin nhắn của bạn" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Gửi Tin Nhắn</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer glass">
+        <div class="container">
+            <p>&copy; 2026 Lê Đức Nam Khánh. Designed with <i class="fas fa-heart" style="color: #e25555;"></i> and Code.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
