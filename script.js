@@ -106,10 +106,16 @@ if(contactForm) {
                 body: formData
             });
             
-            if (response.ok) {
+            const data = await response.json();
+            
+            if (response.ok && data.success !== "false") {
                 btn.innerText = 'Đã gửi thành công!';
                 btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 contactForm.reset();
+            } else if (data.message && data.message.includes('Activation')) {
+                btn.innerText = 'Kiểm tra Gmail để kích hoạt!';
+                btn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+                alert("Hệ thống vừa gửi thư kích hoạt tới namkhanhle56@gmail.com. Bạn vui lòng mở Gmail (kiểm tra cả mục Spam / Thư rác) và bấm 'Activate Form' để kích hoạt nhận thư nhé!");
             } else {
                 btn.innerText = 'Lỗi gửi tin, vui lòng thử lại';
                 btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
