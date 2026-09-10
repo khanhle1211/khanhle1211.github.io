@@ -81,27 +81,49 @@ revealElements.forEach(el => {
     revealObserver.observe(el);
 });
 
-// 5. Contact Form Submission (Prevent Default for Demo)
+// 5. Contact Form Submission (Gửi trực tiếp vào Gmail qua FormSubmit API)
 const contactForm = document.getElementById('contactForm');
 
 if(contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Change button text to show success
         const btn = contactForm.querySelector('button[type="submit"]');
         const originalText = btn.innerText;
         
-        btn.innerText = 'Đã gửi thành công!';
-        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        btn.disabled = true;
+        btn.innerText = 'Đang gửi tin nhắn...';
+        btn.style.opacity = '0.8';
         
-        // Reset form
-        contactForm.reset();
+        const formData = new FormData(contactForm);
         
-        // Revert button text after 3 seconds
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = '';
-        }, 3000);
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/namkhanhle56@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+            
+            if (response.ok) {
+                btn.innerText = 'Đã gửi thành công!';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                contactForm.reset();
+            } else {
+                btn.innerText = 'Lỗi gửi tin, vui lòng thử lại';
+                btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            }
+        } catch (error) {
+            btn.innerText = 'Lỗi kết nối, vui lòng thử lại';
+            btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        } finally {
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.innerText = originalText;
+                btn.style.background = '';
+            }, 4000);
+        }
     });
 }
