@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#09090b">
-    <title>Nam Khanh — UX/UI Developer</title>
+    <title>Le Duc Nam Khanh — UX/UI Developer Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,31 +12,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
-
-    <!-- 3D WebGL Canvas -->
-    <canvas id="webgl-canvas"></canvas>
-    <!-- Transparent drag overlay — sits over the phone 3D area only -->
-    <div id="phone-drag-zone"></div>
-
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader-inner">
-            <div class="loader-frog">🐸</div>
-            <div class="loader-bar"><div class="loader-fill"></div></div>
-            <p>Loading experience...</p>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="header">
         <div class="container header-container">
-            <a href="#home" class="logo">NK<span>.</span></a>
+            <a href="#home" class="logo">Nam Khanh<span>.</span></a>
             <nav class="nav">
                 <ul class="nav-list">
                     <li><a href="#home"       class="nav-link active">Home</a></li>
+                    <li><a href="#showcase"   class="nav-link">3D App</a></li>
                     <li><a href="#experience" class="nav-link">Work</a></li>
                     <li><a href="#skills"     class="nav-link">Skills</a></li>
                     <li><a href="#education"  class="nav-link">Education</a></li>
@@ -48,219 +31,258 @@
     </header>
 
     <main>
-        <!-- ===== HERO ===== -->
+        <!-- ===== HERO SECTION ===== -->
         <section id="home" class="hero section">
             <div class="container hero-container">
+                <!-- Left: Bio & Intro -->
                 <div class="hero-content">
-                    <span class="badge reveal">
-                        <span class="badge-dot"></span>
-                        Available for internships
-                    </span>
-                    <h1 class="title reveal">
+                    <div class="profile-badge">
+                        <img src="avatar.jpg?v=2" alt="Le Duc Nam Khanh" class="avatar-mini">
+                        <span>Available for UX/UI Internships</span>
+                    </div>
+
+                    <h1 class="title">
                         <span class="line">Designing</span>
                         <span class="line gradient-text">Experiences</span>
                         <span class="line">That Matter.</span>
                     </h1>
-                    <p class="description reveal">
-                        Le Duc Nam Khanh · UX/UI Developer Intern · Da Nang
+
+                    <p class="subtitle">
+                        <strong>Lê Đức Nam Khánh</strong> · UX/UI Developer Intern · Đà Nẵng
                     </p>
-                    <p class="hero-body reveal">
-                        Passionate UX/UI candidate skilled in Figma and user-centered design.
-                        I turn complex problems into intuitive, beautiful interfaces.
+
+                    <p class="hero-body">
+                        Sinh viên Kỹ thuật Phần mềm đam mê nghiên cứu người dùng (UX Research) và thiết kế giao diện (UI Design). 
+                        Tôi tập trung biến các bài toán phức tạp thành những trải nghiệm trực quan, dễ dùng và thẩm mỹ.
                     </p>
-                    <div class="hero-actions reveal">
-                        <a href="#experience" class="btn btn-primary">See My Work <i class="fas fa-arrow-right"></i></a>
-                        <a href="mailto:namkhanhle56@gmail.com" class="btn btn-glass">Hire Me</a>
+
+                    <div class="hero-actions">
+                        <a href="#experience" class="btn btn-primary">Xem Dự Án <i class="fas fa-arrow-down"></i></a>
+                        <a href="#contact" class="btn btn-glass">Liên Hệ Ngay</a>
                     </div>
                 </div>
-                
-                <!-- Phone interaction hints -->
-                <div class="phone-ui reveal">
-                    <div class="phone-hint-box">
-                        <div class="phone-hint">
-                            <i class="fas fa-hand-pointer"></i>
-                            <span>Click screen to browse app screens</span>
-                        </div>
-                        <div class="phone-hint">
-                            <i class="fas fa-arrows-alt"></i>
-                            <span>Drag to rotate the phone</span>
+
+                <!-- Right: Interactive 3D Phone Showcase (Contained, NOT following on scroll!) -->
+                <div class="phone-showcase-container" id="showcase">
+                    <div class="showcase-header">
+                        <span class="app-tag">Live 3D Preview · FROGGY App</span>
+                    </div>
+
+                    <!-- 3D Canvas Box -->
+                    <div class="canvas-3d-wrapper" id="canvasWrapper">
+                        <canvas id="webgl-canvas"></canvas>
+                        <div class="phone-click-hint">
+                            <i class="fas fa-hand-pointer"></i> Bấm vào điện thoại để đổi màn hình
                         </div>
                     </div>
-                    <!-- Screen dot indicators -->
-                    <div class="screen-dots">
-                        <div class="screen-dot active"></div>
-                        <div class="screen-dot"></div>
-                        <div class="screen-dot"></div>
-                        <div class="screen-dot"></div>
-                        <div class="screen-dot"></div>
-                        <div class="screen-dot"></div>
-                        <div class="screen-dot"></div>
+
+                    <!-- Floating Controls below 3D Phone -->
+                    <div class="phone-controls">
+                        <div class="phone-screen-info">
+                            <span class="screen-counter">Screen 1/7</span>
+                            <span class="screen-title" id="screenTitle">Splash Screen · FROGGY Brand</span>
+                        </div>
+
+                        <div class="screen-nav">
+                            <button class="screen-nav-btn" id="prevScreenBtn" title="Previous Screen">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+
+                            <div class="screen-dots" id="screenDots">
+                                <div class="screen-dot active" data-index="0" title="Splash Screen"></div>
+                                <div class="screen-dot" data-index="1" title="Social Login"></div>
+                                <div class="screen-dot" data-index="2" title="Login Form"></div>
+                                <div class="screen-dot" data-index="3" title="Password Recovery"></div>
+                                <div class="screen-dot" data-index="4" title="Onboarding"></div>
+                                <div class="screen-dot" data-index="5" title="Sign Up 1"></div>
+                                <div class="screen-dot" data-index="6" title="Sign Up 2"></div>
+                            </div>
+
+                            <button class="screen-nav-btn" id="nextScreenBtn" title="Next Screen">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <div class="phone-tip">
+                            <i class="fas fa-sync-alt"></i> Kéo chuột để xoay 3D 360° · Bấm màn hình để lật trang
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== EXPERIENCE ===== -->
+        <!-- ===== EXPERIENCE SECTION ===== -->
         <section id="experience" class="experience section">
             <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag">Work</span>
-                    <h2>Selected Projects</h2>
-                    <p>Leading teams from research to high-fidelity prototypes</p>
+                <div class="section-header">
+                    <span class="section-tag">Dự án & Kinh nghiệm</span>
+                    <h2>Kinh Nghiệm Thực Tế</h2>
+                    <p>Dẫn dắt quy trình từ khảo sát người dùng đến sản phẩm tương tác hoàn chỉnh</p>
                 </div>
-                
+
                 <div class="bento-grid">
-                    <div class="bento-card glass-card reveal">
+                    <!-- Project 1: FROGGY -->
+                    <div class="bento-card glass-card">
                         <div class="card-header">
                             <span class="year">2025</span>
                             <span class="role">Team Leader · UX/UI Design</span>
                         </div>
-                        <h3>FROGGY</h3>
-                        <h4 class="project-name">Finance Tracking Mobile App</h4>
-                        <p class="card-desc">An internal project simplifying expense management for young professionals. Developed an intuitive mobile application that streamlines daily expense inputs and provides clear financial reporting.</p>
+                        <h3>FROGGY Mobile App</h3>
+                        <h4 class="project-name">Ứng Dụng Quản Lý Chi Tiêu Cá Nhân</h4>
+                        <p class="card-desc">
+                            Dự án nội bộ tại Horus Academy nhằm đơn giản hóa việc quản lý tài chính cho giới trẻ. 
+                            Xây dựng luồng giao diện thân thiện với linh vật Ếch xanh, giúp người dùng ghi chép chi tiêu mỗi ngày và theo dõi báo cáo tài chính trực quan.
+                        </p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Designed daily expense recording and categorization</li>
-                            <li><i class="fas fa-check-circle"></i> Built financial reporting charts & dashboard</li>
-                            <li><i class="fas fa-check-circle"></i> Integrated local data storage & state management</li>
+                            <li><i class="fas fa-check-circle"></i> Khảo sát hành vi chi tiêu và xây dựng User Persona</li>
+                            <li><i class="fas fa-check-circle"></i> Thiết kế đầy đủ Wireframe, Design System và High-fidelity Prototype trên Figma</li>
+                            <li><i class="fas fa-check-circle"></i> Tích hợp biểu đồ thống kê, quản trị danh mục chi tiêu tự động</li>
                         </ul>
                         <div class="card-footer">
                             <span class="tag">Figma</span>
                             <span class="tag">UX Research</span>
                             <span class="tag">Prototyping</span>
-                            <div class="eval-badge">Evaluated: 8/10</div>
+                            <span class="tag">Design System</span>
+                            <div class="eval-badge">Đánh giá: 8/10</div>
                         </div>
                     </div>
 
-                    <div class="bento-card glass-card reveal">
+                    <!-- Project 2: Agile Scrum -->
+                    <div class="bento-card glass-card">
                         <div class="card-header">
                             <span class="year">2024</span>
                             <span class="role">Team Leader · Agile Scrum</span>
                         </div>
-                        <h3>Greenwich University</h3>
-                        <h4 class="project-name">Finance App — Agile UX Sprint</h4>
-                        <p class="card-desc">Led a multidisciplinary team through the complete UX/UI process from user research, wireframing, to high-fidelity prototyping and usability testing using Agile Scrum methodology.</p>
+                        <h3>Finance Tracking Mobile App</h3>
+                        <h4 class="project-name">Đại Học Greenwich — Agile UX Sprint</h4>
+                        <p class="card-desc">
+                            Dẫn dắt đội ngũ thiết kế trải qua toàn bộ quy trình thiết kế lấy người dùng làm trung tâm (User-Centered Design): 
+                            từ nghiên cứu người dùng, phỏng vấn tìm Pain Points, đến kiểm thử tính khả dụng (Usability Testing) theo mô hình Agile Scrum.
+                        </p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Conducted user research & identified pain points</li>
-                            <li><i class="fas fa-check-circle"></i> Created personas, user flows, and journey maps</li>
-                            <li><i class="fas fa-check-circle"></i> Delivered interactive Figma prototype in 4 sprints</li>
+                            <li><i class="fas fa-check-circle"></i> Quản lý tiến độ nhóm qua các Sprint 2 tuần</li>
+                            <li><i class="fas fa-check-circle"></i> Tạo User Flow, Information Architecture và Interactive Prototype</li>
+                            <li><i class="fas fa-check-circle"></i> Thực hiện Usability Testing và cải tiến giao diện theo phản hồi thực tế</li>
                         </ul>
                         <div class="card-footer">
                             <span class="tag">Scrum</span>
+                            <span class="tag">User Flows</span>
                             <span class="tag">Usability Testing</span>
-                            <span class="tag">Journey Maps</span>
-                            <div class="eval-badge">Evaluated: 7.5/10</div>
+                            <div class="eval-badge">Đánh giá: 7.5/10</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== SKILLS ===== -->
+        <!-- ===== SKILLS SECTION ===== -->
         <section id="skills" class="skills section">
             <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag">Expertise</span>
-                    <h2>Core Competencies</h2>
-                    <p>Where design thinking meets technical execution</p>
+                <div class="section-header">
+                    <span class="section-tag">Năng lực cốt lõi</span>
+                    <h2>Kỹ Năng Chuyên Môn</h2>
+                    <p>Kết hợp tư duy phân tích nghiên cứu với kỹ năng thiết kế trực quan</p>
                 </div>
 
                 <div class="bento-grid three-cols">
-                    <div class="bento-card glass-card skill-card reveal">
+                    <div class="bento-card glass-card skill-card">
                         <div class="skill-icon violet">
                             <i class="fas fa-pen-nib"></i>
                         </div>
-                        <h3>UX Design</h3>
+                        <h3>UX/UI Expertise</h3>
                         <ul class="skill-chips">
-                            <li>User Research</li>
+                            <li>Design User Flows</li>
                             <li>Wireframing</li>
-                            <li>User Flows</li>
-                            <li>Prototyping</li>
-                            <li>Usability Testing</li>
+                            <li>Interactive Prototypes</li>
                             <li>Design Systems</li>
+                            <li>Responsive UI</li>
+                            <li>Figma Mastery</li>
                         </ul>
                     </div>
-                    
-                    <div class="bento-card glass-card skill-card reveal">
+
+                    <div class="bento-card glass-card skill-card">
                         <div class="skill-icon cyan">
                             <i class="fas fa-lightbulb"></i>
                         </div>
-                        <h3>UX Strategy</h3>
+                        <h3>UX Research & Strategy</h3>
                         <ul class="skill-chips">
-                            <li>Personas</li>
-                            <li>Journey Maps</li>
+                            <li>User Surveys</li>
                             <li>Competitor Analysis</li>
+                            <li>User Personas</li>
+                            <li>Journey Mapping</li>
+                            <li>Usability Testing</li>
                             <li>Accessibility Audit</li>
-                            <li>UX Writing</li>
                         </ul>
                     </div>
-                    
-                    <div class="bento-card glass-card skill-card reveal">
+
+                    <div class="bento-card glass-card skill-card">
                         <div class="skill-icon pink">
                             <i class="fas fa-code"></i>
                         </div>
-                        <h3>Dev Skills</h3>
+                        <h3>Kỹ Thuật Phần Mềm</h3>
                         <ul class="skill-chips">
-                            <li>HTML / CSS</li>
-                            <li>JavaScript</li>
-                            <li>Figma</li>
-                            <li>React (basic)</li>
-                            <li>Three.js</li>
+                            <li>HTML5 / CSS3</li>
+                            <li>JavaScript ES6+</li>
+                            <li>Three.js / WebGL</li>
+                            <li>Git / GitHub</li>
+                            <li>Agile / Scrum</li>
+                            <li>Tech UX Reports</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== EDUCATION ===== -->
+        <!-- ===== EDUCATION SECTION ===== -->
         <section id="education" class="education section">
             <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag">Background</span>
-                    <h2>Education & Credentials</h2>
+                <div class="section-header">
+                    <span class="section-tag">Học vấn & Chứng chỉ</span>
+                    <h2>Nền Tảng Đào Tạo</h2>
                 </div>
 
                 <div class="bento-grid three-cols">
-                    <div class="bento-card glass-card reveal">
+                    <div class="bento-card glass-card">
                         <i class="fas fa-graduation-cap edu-icon"></i>
-                        <h3>Software Engineering</h3>
-                        <p class="edu-school">University of Greenwich</p>
-                        <span class="year-badge">2022 – Present</span>
-                        <p class="edu-desc"><strong>Specialism:</strong> UX Research & Report Writing</p>
-                        <p class="edu-desc"><strong>Average:</strong> 62/100 (Expected First Honours)</p>
+                        <h3>Kỹ Thuật Phần Mềm</h3>
+                        <p class="edu-school">Đại học Greenwich (2022 – Hiện tại)</p>
+                        <span class="year-badge">Software Engineering</span>
+                        <p class="edu-desc"><strong>Chuyên sâu:</strong> UX Research, phát triển đồ án và viết báo cáo kỹ thuật.</p>
+                        <p class="edu-desc"><strong>Điểm trung bình:</strong> 62/100 (Expected First Honours)</p>
                     </div>
 
-                    <div class="bento-card glass-card reveal">
+                    <div class="bento-card glass-card">
                         <i class="fas fa-language edu-icon cyan-icon"></i>
-                        <h3>Language Proficiency</h3>
+                        <h3>Ngoại Ngữ</h3>
                         <div class="cert-item">
                             <h4>IELTS 5.5</h4>
-                            <p>IPD Education, 2023</p>
+                            <p>IDP Education · 2023</p>
                         </div>
                         <div class="cert-item">
                             <h4>VSTEP B2</h4>
-                            <p>HUFS, 2024</p>
+                            <p>Đại học Ngoại Ngữ · 2024</p>
                         </div>
                     </div>
 
-                    <div class="bento-card glass-card glow-border reveal">
+                    <div class="bento-card glass-card glow-border">
                         <i class="fas fa-certificate edu-icon pink-icon"></i>
-                        <h3>UI/UX Design Certificate</h3>
-                        <p class="edu-school">Horus Academy</p>
-                        <span class="year-badge pink-badge">2025</span>
-                        <p class="edu-desc">Completed comprehensive UI/UX design programme including Figma mastery and user-centered design principles.</p>
+                        <h3>Chứng Chỉ UI/UX Design</h3>
+                        <p class="edu-school">Horus Academy · 2025</p>
+                        <span class="year-badge pink-badge">Chuyên nghiệp</span>
+                        <p class="edu-desc">Hoàn thành khoá đào tạo chuyên sâu về quy trình thiết kế UI/UX thực chiến, ứng dụng Figma và tư duy lấy người dùng làm trung tâm.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== CONTACT ===== -->
+        <!-- ===== CONTACT SECTION ===== -->
         <section id="contact" class="contact section">
             <div class="container">
-                <div class="bento-card glass-card contact-wrapper reveal">
+                <div class="bento-card glass-card contact-wrapper">
                     <div class="contact-left">
-                        <span class="section-tag">Contact</span>
-                        <h2>Let's Work<br><span class="gradient-text">Together.</span></h2>
-                        <p>Looking for a UX/UI internship where I can grow, create, and deliver meaningful user experiences.</p>
+                        <span class="section-tag">Liên hệ</span>
+                        <h2>Hãy Cùng Tạo Nên <br><span class="gradient-text">Sản Phẩm Đột Phá.</span></h2>
+                        <p>Tôi đang tìm kiếm cơ hội thực tập vị trí UX/UI Designer / Developer. Rất mong được đồng hành cùng dự án của bạn!</p>
 
                         <div class="contact-methods">
                             <a href="mailto:namkhanhle56@gmail.com" class="method">
@@ -273,36 +295,36 @@
                             <div class="method">
                                 <div class="method-icon"><i class="fas fa-phone"></i></div>
                                 <div>
-                                    <h4>Phone</h4>
+                                    <h4>Số điện thoại</h4>
                                     <p>0702-666-921</p>
                                 </div>
                             </div>
                             <div class="method">
                                 <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div>
-                                    <h4>Location</h4>
-                                    <p>Hai Chau, Da Nang City</p>
+                                    <h4>Địa chỉ</h4>
+                                    <p>Hải Châu, TP. Đà Nẵng</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="contact-right">
                         <form id="contactForm">
                             <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" name="Name" placeholder="Your name" required>
+                                <label>Họ và Tên</label>
+                                <input type="text" name="Họ và Tên" placeholder="Nguyễn Văn A" required>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="email" name="Email" placeholder="your@email.com" required>
                             </div>
                             <div class="form-group">
-                                <label>Message</label>
-                                <textarea name="Message" rows="5" placeholder="Let's collaborate..." required></textarea>
+                                <label>Lời nhắn</label>
+                                <textarea name="Lời nhắn" rows="4" placeholder="Nội dung trao đổi công việc..." required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">
-                                Send Message <i class="fas fa-paper-plane"></i>
+                                Gửi Tin Nhắn <i class="fas fa-paper-plane"></i>
                             </button>
                         </form>
                     </div>
@@ -313,32 +335,14 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© 2026 Le Duc Nam Khanh · Built with Three.js & passion for UX.</p>
+            <p>© 2026 Lê Đức Nam Khánh · UX/UI Developer Portfolio · Built with Three.js & Passion.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script src="three-scene.js"></script>
-    <script>
-        // Loading screen fade out after 2s
-        window.addEventListener('load', () => {
-            const ls = document.getElementById('loading-screen');
-            const fill = document.querySelector('.loader-fill');
-            if (!ls || !fill) return;
-            let w = 0;
-            const interval = setInterval(() => {
-                w = Math.min(w + 3, 100);
-                fill.style.width = w + '%';
-                if (w >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => { ls.style.opacity = '0'; setTimeout(() => ls.remove(), 600); }, 300);
-                }
-            }, 20);
-        });
-    </script>
 </body>
 </html>

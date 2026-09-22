@@ -1,505 +1,399 @@
 /**
- * FROGGY Portfolio — Living 3D Interactive Phone Scene
- * Three.js + GSAP ScrollTrigger
- * Fixed: Drag via overlay div, subtle parallax, proper raycasting
+ * FROGGY Showcase — Interactive 3D Phone Scene
+ * Localized in Hero container (never follows or blocks scroll)
+ * Full 360° Drag Rotation, Click to Switch Screens, Crisp Textures
  */
 
 (function () {
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', boot);
+        document.addEventListener('DOMContentLoaded', init3DPhone);
     } else {
-        boot();
+        init3DPhone();
     }
 
-    function boot() {
-        if (typeof THREE === 'undefined') return;
-        initCursor();
-        init3DScene();
-    }
+    function init3DPhone() {
+        if (typeof THREE === 'undefined') {
+            console.warn('Three.js not loaded.');
+            return;
+        }
 
-    /* =====================================================
-       CUSTOM CURSOR
-    ===================================================== */
-    function initCursor() {
-        const cursor = document.getElementById('cursor-dot');
-        const ring   = document.getElementById('cursor-ring');
-        if (!cursor || !ring) return;
-
-        let mx = -200, my = -200;
-        let rx = -200, ry = -200;
-
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX;
-            my = e.clientY;
-            cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
-        });
-
-        (function loopCursor() {
-            rx += (mx - rx) * 0.12;
-            ry += (my - ry) * 0.12;
-            ring.style.transform = `translate(${rx - 20}px, ${ry - 20}px)`;
-            requestAnimationFrame(loopCursor);
-        })();
-
-        document.querySelectorAll('a, button, .btn').forEach(el => {
-            el.addEventListener('mouseenter', () => ring.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => ring.classList.remove('cursor-hover'));
-        });
-    }
-
-    /* =====================================================
-       THREE.JS SCENE
-    ===================================================== */
-    function init3DScene() {
         const canvas = document.getElementById('webgl-canvas');
-        const dragZone = document.getElementById('phone-drag-zone');
-        if (!canvas) return;
+        const container = document.getElementById('canvasWrapper');
+        if (!canvas || !container) return;
 
-        /* ---------- Renderer ---------- */
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        // 1. Dimensions & Renderer
+        let width = container.clientWidth || 440;
+        let height = container.clientHeight || 520;
 
-        /* ---------- Scene & Camera ---------- */
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.set(0, 0, 14);
-
-        /* ---------- Lighting ---------- */
-        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-        const lights = [
-            { color: 0x8b5cf6, intensity: 5, pos: [5, 6, 3] },
-            { color: 0x22d3ee, intensity: 4, pos: [-5, -4, 4] },
-            { color: 0xfb7185, intensity: 3, pos: [0, 4, 5] }
-        ];
-        lights.forEach(l => {
-            const pl = new THREE.PointLight(l.color, l.intensity, 35);
-            pl.position.set(...l.pos);
-            scene.add(pl);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            alpha: true,
+            antialias: true,
+            powerPreference: 'high-performance'
         });
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(width, height);
 
-        /* ---------- Phone Body ---------- */
+        // 2. Scene & Camera
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 50);
+        camera.position.set(0, 0, 8.8);
+
+        // 3. Studio Lighting (Soft and Balanced)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+        scene.add(ambientLight);
+
+        // Soft key light from top-right
+        const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        keyLight.position.set(5, 6, 6);
+        scene.add(keyLight);
+
+        // Cyan rim light on left
+        const cyanRim = new THREE.PointLight(0x22d3ee, 2.5, 20);
+        cyanRim.position.set(-6, -3, 3);
+        scene.add(cyanRim);
+
+        // Violet rim light on right back
+        const violetRim = new THREE.PointLight(0x8b5cf6, 2.5, 20);
+        violetRim.position.set(5, -3, -4);
+        scene.add(violetRim);
+
+        // 4. Main Phone 3D Group
         const phoneGroup = new THREE.Group();
+        // Initial gentle hero presentation angle
+        phoneGroup.rotation.set(0.04, -0.22, 0);
         scene.add(phoneGroup);
 
-        const PW = 2.2, PH = 4.75, PD = 0.22, PR = 0.35;
+        // Helper: Rounded Rectangle 2D Shape
+        function createRoundedRectShape(w, h, r) {
+            const s = new THREE.Shape();
+            const x = -w / 2, y = -h / 2;
+            s.moveTo(x + r, y);
+            s.lineTo(x + w - r, y);
+            s.quadraticCurveTo(x + w, y, x + w, y + r);
+            s.lineTo(x + w, y + h - r);
+            s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+            s.lineTo(x + r, y + h);
+            s.quadraticCurveTo(x, y + h, x, y + h - r);
+            s.lineTo(x, y + r);
+            s.quadraticCurveTo(x, y, x + r, y);
+            return s;
+        }
 
-        const bodyGeo = createRoundedBox(PW, PH, PD, PR, 4);
-        const bodyMat = new THREE.MeshPhysicalMaterial({
-            color: 0x1a1a2e, roughness: 0.15, metalness: 0.9, clearcoat: 1.0, clearcoatRoughness: 0.05
+        // --- A. Titanium Body Frame ---
+        const bodyShape = createRoundedRectShape(2.32, 4.74, 0.32);
+        const bodyGeo = new THREE.ExtrudeGeometry(bodyShape, {
+            depth: 0.16,
+            bevelEnabled: true,
+            bevelSegments: 4,
+            steps: 1,
+            bevelSize: 0.02,
+            bevelThickness: 0.02,
+            curveSegments: 16
         });
-        phoneGroup.add(new THREE.Mesh(bodyGeo, bodyMat));
+        bodyGeo.center(); // Extent along Z: [-0.10, +0.10]
 
-        const bezelW = PW - 0.16, bezelH = PH - 0.22;
-        const bezelMesh = new THREE.Mesh(
-            createRoundedBox(bezelW, bezelH, 0.01, PR - 0.1, 4),
-            new THREE.MeshStandardMaterial({ color: 0x050510, roughness: 0.5 })
-        );
-        bezelMesh.position.z = PD / 2 + 0.005;
+        const bodyMat = new THREE.MeshStandardMaterial({
+            color: 0x181822,
+            metalness: 0.85,
+            roughness: 0.25
+        });
+        const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+        phoneGroup.add(bodyMesh);
+
+        // --- B. Front Screen Bezel (Slim border around screen) ---
+        const bezelShape = createRoundedRectShape(2.18, 4.60, 0.28);
+        const bezelGeo = new THREE.ShapeGeometry(bezelShape, 16);
+        const bezelMat = new THREE.MeshBasicMaterial({ color: 0x050508 });
+        const bezelMesh = new THREE.Mesh(bezelGeo, bezelMat);
+        bezelMesh.position.z = 0.102;
         phoneGroup.add(bezelMesh);
 
-        // Notch
-        const notchMesh = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.1, 0.1, 0.5, 32),
-            new THREE.MeshStandardMaterial({ color: 0x050510 })
-        );
-        notchMesh.rotation.z = Math.PI / 2;
-        notchMesh.position.set(0, PH / 2 - 0.28, PD / 2 + 0.012);
+        // --- C. Screen Mesh (Displays Froggy App Textures) ---
+        // Aspect ratio: 2.10 / 4.52 = 0.464 (matches 390 / 844 = 0.462)
+        const screenGeo = new THREE.PlaneGeometry(2.10, 4.52);
+        const screenMat = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            toneMapped: false // 100% full vibrant Figma colors, exactly like an OLED screen!
+        });
+        const screenMesh = new THREE.Mesh(screenGeo, screenMat);
+        screenMesh.position.z = 0.104; // Clearly in front of body and bezel!
+        screenMesh.name = 'screenMesh';
+        phoneGroup.add(screenMesh);
+
+        // --- D. Dynamic Island Pill Notch ---
+        const notchShape = new THREE.Shape();
+        const nw = 0.55, nh = 0.15, nr = 0.075;
+        const nx = -nw / 2, ny = -nh / 2;
+        notchShape.moveTo(nx + nr, ny);
+        notchShape.lineTo(nx + nw - nr, ny);
+        notchShape.quadraticCurveTo(nx + nw, ny, nx + nw, ny + nr);
+        notchShape.lineTo(nx + nw, ny + nh - nr);
+        notchShape.quadraticCurveTo(nx + nw, ny + nh, nx + nw - nr, ny + nh);
+        notchShape.lineTo(nx + nr, ny + nh);
+        notchShape.quadraticCurveTo(nx, ny + nh, nx, ny + nh - nr);
+        notchShape.lineTo(nx, ny + nr);
+        notchShape.quadraticCurveTo(nx, ny, nx + nr, ny);
+
+        const notchGeo = new THREE.ShapeGeometry(notchShape, 16);
+        const notchMat = new THREE.MeshBasicMaterial({ color: 0x040406 });
+        const notchMesh = new THREE.Mesh(notchGeo, notchMat);
+        notchMesh.position.set(0, 1.98, 0.106);
         phoneGroup.add(notchMesh);
 
-        // Side buttons
-        const btnMat = new THREE.MeshPhysicalMaterial({ color: 0x1a1a2e, roughness: 0.2, metalness: 0.8 });
+        // --- E. Back Camera Module (For 360° Realism) ---
+        const camPlateauShape = createRoundedRectShape(0.85, 0.85, 0.18);
+        const camPlateauGeo = new THREE.ExtrudeGeometry(camPlateauShape, {
+            depth: 0.04,
+            bevelEnabled: true,
+            bevelSize: 0.015,
+            bevelThickness: 0.015,
+            steps: 1
+        });
+        camPlateauGeo.center();
+        const camPlateauMat = new THREE.MeshStandardMaterial({
+            color: 0x1f1f2a,
+            metalness: 0.75,
+            roughness: 0.3
+        });
+        const camPlateau = new THREE.Mesh(camPlateauGeo, camPlateauMat);
+        camPlateau.position.set(-0.55, 1.65, -0.12);
+        phoneGroup.add(camPlateau);
+
+        // 3 Camera Lenses
+        const lensGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.05, 24);
+        lensGeo.rotateX(Math.PI / 2);
+        const lensMat = new THREE.MeshStandardMaterial({
+            color: 0x08080c,
+            metalness: 0.9,
+            roughness: 0.15
+        });
+        const lensCoords = [
+            [-0.70, 1.80, -0.14],
+            [-0.70, 1.50, -0.14],
+            [-0.40, 1.65, -0.14]
+        ];
+        lensCoords.forEach(pos => {
+            const lens = new THREE.Mesh(lensGeo, lensMat);
+            lens.position.set(...pos);
+            phoneGroup.add(lens);
+        });
+
+        // Side Buttons
+        const buttonMat = new THREE.MeshStandardMaterial({ color: 0x181822, metalness: 0.8, roughness: 0.3 });
         [-0.6, -0.2].forEach(y => {
-            const b = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.35, 0.12), btnMat);
-            b.position.set(-PW / 2 - 0.03, y, 0);
+            const b = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.35, 0.08), buttonMat);
+            b.position.set(-1.18, y, 0);
             phoneGroup.add(b);
         });
-        const powerBtn = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.5, 0.12), btnMat);
-        powerBtn.position.set(PW / 2 + 0.03, 0.3, 0);
-        phoneGroup.add(powerBtn);
+        const pwrBtn = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.5, 0.08), buttonMat);
+        pwrBtn.position.set(1.18, 0.3, 0);
+        phoneGroup.add(pwrBtn);
 
-        /* ---------- Screen Texture ---------- */
+        // 5. Preloading the 7 FROGGY Screens
         const SCREENS = [
-            'screens/screen0.png','screens/screen1.png','screens/screen2.png',
-            'screens/screen3.png','screens/screen4.png','screens/screen5.png','screens/screen6.png'
+            { src: 'screens/screen0.png', title: 'Splash Screen · FROGGY Brand' },
+            { src: 'screens/screen1.png', title: "Let's You In · Social Authentication" },
+            { src: 'screens/screen2.png', title: 'Login Screen · Form Validation' },
+            { src: 'screens/screen3.png', title: 'Password Recovery Flow' },
+            { src: 'screens/screen4.png', title: 'Onboarding 4 · Stay On Track' },
+            { src: 'screens/screen5.png', title: 'Sign Up · New Account Setup' },
+            { src: 'screens/screen6.png', title: 'Sign Up Flow · Profile Setup' }
         ];
 
-        const TEX_W = 390, TEX_H = 844;
-        const sc = document.createElement('canvas');
-        sc.width = TEX_W; sc.height = TEX_H;
-        const ctx = sc.getContext('2d');
-        const screenTexture = new THREE.CanvasTexture(sc);
+        const textureLoader = new THREE.TextureLoader();
+        const textures = [];
+        let texturesLoaded = 0;
 
-        let screenImages = new Array(SCREENS.length).fill(null);
-        let currentScreen = 0;
-        let isTransitioning = false;
-        let loadedCount = 0;
-
-        function drawScreen(idx, offsetX) {
-            ctx.clearRect(0, 0, TEX_W, TEX_H);
-            ctx.fillStyle = '#f0faf5';
-            ctx.fillRect(0, 0, TEX_W, TEX_H);
-            if (screenImages[idx]) ctx.drawImage(screenImages[idx], offsetX || 0, 0, TEX_W, TEX_H);
-            screenTexture.needsUpdate = true;
-        }
-
-        SCREENS.forEach((src, i) => {
-            const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.onload = () => {
-                screenImages[i] = img;
-                loadedCount++;
-                if (i === 0) drawScreen(0);
-            };
-            img.onerror = () => { loadedCount++; };
-            img.src = src;
+        SCREENS.forEach((s, idx) => {
+            textureLoader.load(
+                s.src,
+                tex => {
+                    tex.encoding = THREE.sRGBEncoding;
+                    tex.generateMipmaps = true;
+                    tex.minFilter = THREE.LinearMipmapLinearFilter;
+                    textures[idx] = tex;
+                    texturesLoaded++;
+                    if (idx === 0) {
+                        screenMat.map = tex;
+                        screenMat.needsUpdate = true;
+                    }
+                },
+                undefined,
+                err => {
+                    console.error('Failed to load screen image:', s.src, err);
+                }
+            );
         });
 
-        function swipeTo(next) {
-            if (isTransitioning) return;
-            const total = SCREENS.length;
-            const n = ((next % total) + total) % total;
-            if (n === currentScreen) return;
-            isTransitioning = true;
-            const dir = n > currentScreen ? 1 : -1;
-            const dur = 380, start = performance.now();
+        // 6. Screen Switching Logic
+        let currentScreen = 0;
 
-            function frame(now) {
-                const t = Math.min((now - start) / dur, 1);
-                const e = 1 - Math.pow(1 - t, 3);
-                ctx.clearRect(0, 0, TEX_W, TEX_H);
-                ctx.fillStyle = '#f0faf5';
-                ctx.fillRect(0, 0, TEX_W, TEX_H);
-                if (screenImages[currentScreen]) ctx.drawImage(screenImages[currentScreen], -dir * e * TEX_W, 0, TEX_W, TEX_H);
-                if (screenImages[n]) ctx.drawImage(screenImages[n], dir * TEX_W * (1 - e), 0, TEX_W, TEX_H);
-                screenTexture.needsUpdate = true;
-                if (t < 1) requestAnimationFrame(frame);
-                else {
-                    currentScreen = n;
-                    drawScreen(n);
-                    isTransitioning = false;
-                    updateDots();
-                }
+        function setScreen(idx) {
+            if (idx < 0) idx = SCREENS.length - 1;
+            if (idx >= SCREENS.length) idx = 0;
+            currentScreen = idx;
+
+            if (textures[currentScreen]) {
+                screenMat.map = textures[currentScreen];
+                screenMat.needsUpdate = true;
             }
-            requestAnimationFrame(frame);
+
+            // Update UI Counters & Title
+            const counterEl = document.querySelector('.screen-counter');
+            const titleEl = document.getElementById('screenTitle');
+            if (counterEl) counterEl.textContent = `Screen ${currentScreen + 1}/${SCREENS.length}`;
+            if (titleEl) titleEl.textContent = SCREENS[currentScreen].title;
+
+            // Update Active Dot
+            document.querySelectorAll('.screen-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentScreen);
+            });
+
+            // Micro-haptic bounce on phone
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(
+                    phoneGroup.scale,
+                    { x: 1.04, y: 1.04, z: 1.04 },
+                    { x: 1.0, y: 1.0, z: 1.0, duration: 0.35, ease: 'back.out(2.5)' }
+                );
+            }
         }
 
-        // Screen plane (hits raycaster)
-        const screenW = bezelW - 0.06, screenH = bezelH - 0.06;
-        const screenPlane = new THREE.Mesh(
-            new THREE.PlaneGeometry(screenW, screenH),
-            new THREE.MeshBasicMaterial({ map: screenTexture })
-        );
-        screenPlane.position.z = PD / 2 + 0.015;
-        screenPlane.name = 'screen';
-        phoneGroup.add(screenPlane);
+        // UI Event Listeners (Prev / Next buttons and clickable Dots)
+        const prevBtn = document.getElementById('prevScreenBtn');
+        const nextBtn = document.getElementById('nextScreenBtn');
+        if (prevBtn) prevBtn.addEventListener('click', () => setScreen(currentScreen - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => setScreen(currentScreen + 1));
 
-        function updateDots() {
-            document.querySelectorAll('.screen-dot').forEach((d, i) => d.classList.toggle('active', i === currentScreen));
-        }
+        document.querySelectorAll('.screen-dot').forEach(dot => {
+            dot.addEventListener('click', e => {
+                const idx = parseInt(e.target.dataset.index, 10);
+                if (!isNaN(idx)) setScreen(idx);
+            });
+        });
 
-        /* ---------- Raycaster for screen click ---------- */
-        const raycaster = new THREE.Raycaster();
-        const pointer   = new THREE.Vector2();
+        // 7. Interactive 360° Drag & Click on the 3D Phone
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        let targetRotX = 0.04, targetRotY = -0.22;
+        let currentRotX = 0.04, currentRotY = -0.22;
+        let velX = 0, velY = 0;
+        let dragDist = 0;
 
-        /* ---------- Drag-to-Rotate via #phone-drag-zone ---------- */
-        let isDragging   = false;
-        let dragStart    = { x: 0, y: 0 };
-        let lastDrag     = { x: 0, y: 0 };
-        let velocity     = { x: 0, y: 0 };
-        let targetRot    = { x: 0.08, y: 0.4 }; // initial slight tilt
-        let currentRot   = { x: 0.08, y: 0.4 };
-        let totalDragDist = 0;
-
-        const zone = dragZone || document;
-
-        zone.addEventListener('mousedown', e => {
-            isDragging    = true;
-            dragStart     = { x: e.clientX, y: e.clientY };
-            lastDrag      = { x: e.clientX, y: e.clientY };
-            velocity      = { x: 0, y: 0 };
-            totalDragDist = 0;
+        canvas.addEventListener('mousedown', e => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            dragDist = 0;
+            velX = 0;
+            velY = 0;
         });
 
         window.addEventListener('mousemove', e => {
             if (!isDragging) return;
-            const dx = e.clientX - lastDrag.x;
-            const dy = e.clientY - lastDrag.y;
-            velocity.x = dy * 0.007;
-            velocity.y = dx * 0.007;
-            targetRot.x += velocity.x;
-            targetRot.y += velocity.y;
-            totalDragDist += Math.abs(dx) + Math.abs(dy);
-            lastDrag = { x: e.clientX, y: e.clientY };
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            dragDist += Math.abs(dx) + Math.abs(dy);
+
+            velY = dx * 0.007;
+            velX = dy * 0.007;
+            targetRotY += velY;
+            targetRotX += velX;
+
+            startX = e.clientX;
+            startY = e.clientY;
         });
 
-        window.addEventListener('mouseup', e => {
+        window.addEventListener('mouseup', () => {
             if (!isDragging) return;
             isDragging = false;
-            // If barely moved → treat as click
-            if (totalDragDist < 5) {
-                pointer.x = (e.clientX / window.innerWidth)  *  2 - 1;
-                pointer.y = (e.clientY / window.innerHeight) * -2 + 1;
-                raycaster.setFromCamera(pointer, camera);
-                const hits = raycaster.intersectObjects(phoneGroup.children, true);
-                if (hits.length > 0) {
-                    swipeTo(currentScreen + 1);
-                    bouncePulse();
-                }
+
+            // If barely moved, treat as direct click on phone to switch screen!
+            if (dragDist < 6) {
+                setScreen(currentScreen + 1);
             }
         });
 
-        // Touch support
-        let prevTouch = null;
-        let touchDist = 0;
-        zone.addEventListener('touchstart', e => {
-            prevTouch = e.touches[0]; velocity = { x: 0, y: 0 }; touchDist = 0;
+        // Mobile Touch Gestures
+        let touchX = 0, touchY = 0, touchDist = 0;
+        canvas.addEventListener('touchstart', e => {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                touchX = e.touches[0].clientX;
+                touchY = e.touches[0].clientY;
+                touchDist = 0;
+                velX = 0;
+                velY = 0;
+            }
         }, { passive: true });
-        zone.addEventListener('touchmove', e => {
-            if (!prevTouch) return;
-            const dx = e.touches[0].clientX - prevTouch.clientX;
-            const dy = e.touches[0].clientY - prevTouch.clientY;
-            velocity.x = dy * 0.007;
-            velocity.y = dx * 0.007;
-            targetRot.x += velocity.x;
-            targetRot.y += velocity.y;
+
+        canvas.addEventListener('touchmove', e => {
+            if (!isDragging || e.touches.length !== 1) return;
+            const dx = e.touches[0].clientX - touchX;
+            const dy = e.touches[0].clientY - touchY;
             touchDist += Math.abs(dx) + Math.abs(dy);
-            prevTouch = e.touches[0];
+
+            velY = dx * 0.007;
+            velX = dy * 0.007;
+            targetRotY += velY;
+            targetRotX += velX;
+
+            touchX = e.touches[0].clientX;
+            touchY = e.touches[0].clientY;
         }, { passive: true });
-        zone.addEventListener('touchend', e => {
-            if (touchDist < 5) swipeTo(currentScreen + 1);
-            prevTouch = null;
-        }, { passive: true });
 
-        // Micro bounce on screen click
-        function bouncePulse() {
-            let p = 0;
-            const orig = phoneGroup.scale.x;
-            const loop = () => {
-                p += 0.07;
-                const s = orig + Math.sin(p * Math.PI) * 0.05;
-                phoneGroup.scale.set(s, s, s);
-                if (p < 1) requestAnimationFrame(loop);
-                else phoneGroup.scale.set(orig, orig, orig);
-            };
-            requestAnimationFrame(loop);
-        }
-
-        /* ---------- Click burst effect (CSS particles) ---------- */
-        document.addEventListener('click', e => {
-            // Only burst if clicking on drag zone area
-            if (e.target === dragZone) createBurst(e.clientX, e.clientY);
-        });
-
-        function createBurst(cx, cy) {
-            const palette = ['#8b5cf6', '#22d3ee', '#fb7185', '#ffffff'];
-            for (let i = 0; i < 20; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'burst-particle';
-                const angle = Math.random() * Math.PI * 2;
-                const speed = 80 + Math.random() * 120;
-                dot.style.cssText = `
-                    left:${cx}px; top:${cy}px;
-                    background:${palette[Math.floor(Math.random() * palette.length)]};
-                    width:${4 + Math.random() * 5}px;
-                    height:${4 + Math.random() * 5}px;
-                `;
-                document.body.appendChild(dot);
-                let x = cx, y = cy, vy = Math.sin(angle) * speed, vx = Math.cos(angle) * speed, life = 1;
-                const tick = () => {
-                    vy += 4; x += vx * 0.016; y += vy * 0.016; life -= 0.025;
-                    dot.style.left = x + 'px'; dot.style.top = y + 'px';
-                    dot.style.opacity = life; dot.style.transform = `scale(${life})`;
-                    if (life > 0) requestAnimationFrame(tick);
-                    else dot.remove();
-                };
-                requestAnimationFrame(tick);
+        canvas.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            if (touchDist < 8) {
+                setScreen(currentScreen + 1);
             }
-        }
-
-        /* ---------- Ambient Particles ---------- */
-        const COUNT = 350;
-        const pPos = new Float32Array(COUNT * 3);
-        const pOrig = new Float32Array(COUNT * 3);
-        const pCol = new Float32Array(COUNT * 3);
-        const palette3 = [new THREE.Color(0x8b5cf6), new THREE.Color(0x22d3ee), new THREE.Color(0xfb7185), new THREE.Color(0xffffff)];
-
-        for (let i = 0; i < COUNT; i++) {
-            const i3 = i * 3;
-            const x = (Math.random() - 0.5) * 22;
-            const y = (Math.random() - 0.5) * 18;
-            const z = (Math.random() - 0.5) * 10 - 3;
-            pOrig[i3] = pPos[i3] = x;
-            pOrig[i3+1] = pPos[i3+1] = y;
-            pOrig[i3+2] = pPos[i3+2] = z;
-            const c = palette3[i % palette3.length];
-            pCol[i3]=c.r; pCol[i3+1]=c.g; pCol[i3+2]=c.b;
-        }
-
-        const pGeo = new THREE.BufferGeometry();
-        pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-        pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
-        const pMat = new THREE.PointsMaterial({ size: 0.055, vertexColors: true, transparent: true, opacity: 0.65, blending: THREE.AdditiveBlending, depthWrite: false });
-        const particles = new THREE.Points(pGeo, pMat);
-        scene.add(particles);
-
-        // Mouse for repulsion (very subtle)
-        let mouseNDC = new THREE.Vector2(9999, 9999);
-        document.addEventListener('mousemove', e => {
-            mouseNDC.x = (e.clientX / window.innerWidth)  *  2 - 1;
-            mouseNDC.y = (e.clientY / window.innerHeight) * -2 + 1;
         });
 
-        /* ---------- GSAP Scrollytelling ---------- */
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-            const mm = gsap.matchMedia();
-
-            mm.add('(min-width: 769px)', () => {
-                phoneGroup.position.set(3.0, 0.3, 0);
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2,
-                        onUpdate: self => {
-                            const slide = Math.min(Math.floor(self.progress * (SCREENS.length - 0.01)), SCREENS.length - 1);
-                            if (slide !== currentScreen) swipeTo(slide);
-                        }
-                    }
-                });
-
-                tl.to(phoneGroup.position, { x: -3.2, y: 0.2, z: 1.0, ease: 'power2.inOut' }, 'exp');
-                tl.to(targetRot,            { x: 0.05, y: -0.05, ease: 'power2.inOut' }, 'exp');
-
-                tl.to(phoneGroup.position, { x: 3.5, y: -0.5, z: -1, ease: 'power2.inOut' }, 'skills');
-                tl.to(targetRot,            { x: 0.2,  y: 0.5, ease: 'power2.inOut' }, 'skills');
-
-                tl.to(phoneGroup.position, { x: 0.0, y: 0.5, z: 0, ease: 'power2.inOut' }, 'edu');
-                tl.to(targetRot,            { x: 0.0, y: 0.0, ease: 'power2.inOut' }, 'edu');
-
-                tl.to(phoneGroup.position, { x: -2.8, y: -1.0, z: -1, ease: 'power2.inOut' }, 'contact');
-                tl.to(targetRot,            { x: -0.15, y: 0.3, ease: 'power2.inOut' }, 'contact');
-            });
-
-            mm.add('(max-width: 768px)', () => {
-                phoneGroup.position.set(0, -2.8, -1);
-                phoneGroup.scale.set(0.7, 0.7, 0.7);
-                // hide drag zone on mobile (phone is below fold)
-                if (dragZone) { dragZone.style.width = '100vw'; dragZone.style.top = '50vh'; dragZone.style.height = '50vh'; }
-
-                const tl = gsap.timeline({
-                    scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 }
-                });
-                tl.to(phoneGroup.position, { x: 0, y: 2.0, z: -2 }, 'exp');
-                tl.to(phoneGroup.position, { x: 0, y: 0.0, z: -1 }, 'skills');
-                tl.to(phoneGroup.position, { x: 0, y: -2.0, z: -2 }, 'edu');
-                tl.to(phoneGroup.position, { x: 0, y: 0.5,  z: -1 }, 'contact');
-            });
-        }
-
-        /* ---------- Subtle camera parallax ---------- */
-        let camTX = 0, camTY = 0, camCX = 0, camCY = 0;
-        document.addEventListener('mousemove', e => {
-            // Very subtle — max ±0.5 units (previously was 1.5 which caused "phone chasing" effect)
-            camTX = (e.clientX / window.innerWidth  - 0.5) * 0.5;
-            camTY = (e.clientY / window.innerHeight - 0.5) * 0.4;
-        });
-
-        /* ---------- Resize ---------- */
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
+        // 8. Responsive Resize
+        function onResize() {
+            width = container.clientWidth || 440;
+            height = container.clientHeight || 520;
+            camera.aspect = width / height;
             camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-        });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        }
+        window.addEventListener('resize', onResize);
 
-        /* ---------- Render Loop ---------- */
+        // 9. Animation Loop (60 FPS)
         const clock = new THREE.Clock();
 
         function animate() {
             requestAnimationFrame(animate);
             const t = clock.getElapsedTime();
 
-            // Idle bob
             if (!isDragging) {
-                phoneGroup.position.y += Math.sin(t * 0.85) * 0.0007;
+                // Apply rotation inertia
+                velX *= 0.91;
+                velY *= 0.91;
+                targetRotX += velX;
+                targetRotY += velY;
+
+                // Clamp vertical tilt so it doesn't spin uncontrollably
+                targetRotX = Math.max(-0.5, Math.min(0.5, targetRotX));
+
+                // Gentle floating breath
+                phoneGroup.position.y = Math.sin(t * 1.5) * 0.06;
             }
 
-            // Momentum decay
-            if (!isDragging) {
-                velocity.x *= 0.90;
-                velocity.y *= 0.90;
-                targetRot.x += velocity.x;
-                targetRot.y += velocity.y;
-            }
+            // Smooth interpolation (lerp)
+            currentRotX += (targetRotX - currentRotX) * 0.08;
+            currentRotY += (targetRotY - currentRotY) * 0.08;
 
-            // Clamp rotation so phone doesn't flip upside-down
-            targetRot.x = Math.max(-0.9, Math.min(0.9, targetRot.x));
-
-            // Smooth rotation lerp
-            currentRot.x += (targetRot.x - currentRot.x) * 0.08;
-            currentRot.y += (targetRot.y - currentRot.y) * 0.08;
-            phoneGroup.rotation.x = currentRot.x;
-            phoneGroup.rotation.y = currentRot.y;
-
-            // Subtle camera drift
-            camCX += (camTX - camCX) * 0.04;
-            camCY += (camTY - camCY) * 0.04;
-            camera.position.x = camCX;
-            camera.position.y = -camCY;
-            camera.lookAt(0, 0, 0);
-
-            // Particle repulsion (gentle)
-            const pa = pGeo.attributes.position.array;
-            for (let i = 0; i < COUNT; i++) {
-                const i3 = i * 3;
-                const mx = mouseNDC.x * 8;
-                const my = mouseNDC.y * 5.5;
-                const dx = pa[i3] - mx;
-                const dy = pa[i3+1] - my;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                const rep = 2.2;
-                if (dist < rep && dist > 0) {
-                    const f = (rep - dist) / rep;
-                    pa[i3]   += (dx/dist) * f * 0.1;
-                    pa[i3+1] += (dy/dist) * f * 0.1;
-                }
-                // Return to origin
-                pa[i3]   += (pOrig[i3]   - pa[i3])   * 0.04;
-                pa[i3+1] += (pOrig[i3+1] - pa[i3+1]) * 0.04;
-            }
-            pGeo.attributes.position.needsUpdate = true;
-
-            particles.rotation.y = t * 0.01;
+            phoneGroup.rotation.x = currentRotX;
+            phoneGroup.rotation.y = currentRotY;
 
             renderer.render(scene, camera);
         }
 
         animate();
     }
-
-    /* =====================================================
-       Rounded Box Helper
-    ===================================================== */
-    function createRoundedBox(w, h, d, r, seg) {
-        const shape = new THREE.Shape();
-        const x = -w/2, y = -h/2;
-        shape.moveTo(x + r, y);
-        shape.lineTo(x + w - r, y);
-        shape.quadraticCurveTo(x + w, y, x + w, y + r);
-        shape.lineTo(x + w, y + h - r);
-        shape.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-        shape.lineTo(x + r, y + h);
-        shape.quadraticCurveTo(x, y + h, x, y + h - r);
-        shape.lineTo(x, y + r);
-        shape.quadraticCurveTo(x, y, x + r, y);
-
-        const geo = new THREE.ExtrudeGeometry(shape, {
-            depth: d, bevelEnabled: true, bevelSegments: seg,
-            steps: 1, bevelSize: r * 0.4, bevelThickness: r * 0.3, curveSegments: seg * 2
-        });
-        geo.center();
-        return geo;
-    }
-
 })();
