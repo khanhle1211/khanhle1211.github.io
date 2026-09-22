@@ -1,12 +1,7 @@
 // 1. Sticky Header
 const header = document.querySelector('.header');
-
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
+    header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
 // 2. Mobile Menu Toggle
@@ -15,120 +10,77 @@ const navList = document.querySelector('.nav-list');
 const mobileMenuIcon = document.querySelector('.mobile-menu-btn i');
 
 mobileMenuBtn.addEventListener('click', () => {
-    navList.classList.toggle('show');
-    if (navList.classList.contains('show')) {
-        mobileMenuIcon.classList.remove('fa-bars');
-        mobileMenuIcon.classList.add('fa-times');
-    } else {
-        mobileMenuIcon.classList.remove('fa-times');
-        mobileMenuIcon.classList.add('fa-bars');
-    }
+    const isOpen = navList.classList.toggle('show');
+    mobileMenuIcon.classList.toggle('fa-bars', !isOpen);
+    mobileMenuIcon.classList.toggle('fa-times', isOpen);
 });
 
-// Close mobile menu when clicking a link
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navList.classList.remove('show');
-        mobileMenuIcon.classList.remove('fa-times');
-        mobileMenuIcon.classList.add('fa-bars');
+        mobileMenuIcon.classList.replace('fa-times', 'fa-bars');
     });
 });
 
 // 3. Active Link Switching on Scroll
 const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.nav-link');
+const navLinks  = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
     let current = '';
-    
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+        if (pageYOffset >= section.offsetTop - section.clientHeight / 3) {
             current = section.getAttribute('id');
         }
     });
-
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
 });
 
-// 4. Scroll Reveal Animations using Intersection Observer
+// 4. Scroll Reveal Animation
 const revealElements = document.querySelectorAll('.reveal');
-
-const revealCallback = (entries, observer) => {
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            // Optional: stop observing once revealed
-            // observer.unobserve(entry.target); 
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
     });
-};
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 
-const revealOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
-};
+revealElements.forEach(el => revealObserver.observe(el));
 
-const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-
-revealElements.forEach(el => {
-    revealObserver.observe(el);
-});
-
-// 5. Contact Form Submission (Gửi trực tiếp vào Gmail qua FormSubmit API)
+// 5. Contact Form Submission
 const contactForm = document.getElementById('contactForm');
-
-if(contactForm) {
+if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
         const btn = contactForm.querySelector('button[type="submit"]');
-        const originalText = btn.innerText;
-        
+        const originalText = btn.innerHTML;
         btn.disabled = true;
-        btn.innerText = 'Đang gửi tin nhắn...';
-        btn.style.opacity = '0.8';
-        
-        const formData = new FormData(contactForm);
-        
+        btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+
         try {
             const response = await fetch('https://formsubmit.co/ajax/namkhanhle56@gmail.com', {
                 method: 'POST',
-                headers: {
-                    'Accept': 'application/json'
-                },
-                body: formData
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(contactForm)
             });
-            
             const data = await response.json();
-            
-            if (response.ok && data.success !== "false") {
-                btn.innerText = 'Đã gửi thành công!';
+            if (response.ok && data.success !== 'false') {
+                btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
                 btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                btn.style.color = '#fff';
                 contactForm.reset();
-            } else if (data.message && data.message.includes('Activation')) {
-                btn.innerText = 'Kiểm tra Gmail để kích hoạt!';
-                btn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
-                alert("Hệ thống vừa gửi thư kích hoạt tới namkhanhle56@gmail.com. Bạn vui lòng mở Gmail (kiểm tra cả mục Spam / Thư rác) và bấm 'Activate Form' để kích hoạt nhận thư nhé!");
             } else {
-                btn.innerText = 'Lỗi gửi tin, vui lòng thử lại';
-                btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                btn.innerHTML = 'Failed. Try again. <i class="fas fa-exclamation"></i>';
             }
-        } catch (error) {
-            btn.innerText = 'Lỗi kết nối, vui lòng thử lại';
-            btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        } catch {
+            btn.innerHTML = 'Connection error. <i class="fas fa-exclamation"></i>';
         } finally {
             setTimeout(() => {
                 btn.disabled = false;
-                btn.style.opacity = '1';
-                btn.innerText = originalText;
+                btn.innerHTML = originalText;
                 btn.style.background = '';
+                btn.style.color = '';
             }, 4000);
         }
     });

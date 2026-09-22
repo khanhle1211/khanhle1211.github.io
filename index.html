@@ -1,255 +1,344 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Lê Đức Nam Khánh | Portfolio</title>
-    <!-- Google Fonts: Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
+    <meta name="theme-color" content="#09090b">
+    <title>Nam Khanh — UX/UI Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Background Elements -->
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
-    
-    <!-- Header / Navigation -->
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- 3D WebGL Canvas -->
+    <canvas id="webgl-canvas"></canvas>
+    <!-- Transparent drag overlay — sits over the phone 3D area only -->
+    <div id="phone-drag-zone"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-inner">
+            <div class="loader-frog">🐸</div>
+            <div class="loader-bar"><div class="loader-fill"></div></div>
+            <p>Loading experience...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo">Khánh<span>.</span></a>
+            <a href="#home" class="logo">NK<span>.</span></a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#home" class="nav-link active">Trang chủ</a></li>
-                    <li><a href="#about" class="nav-link">Giới thiệu</a></li>
-                    <li><a href="#skills" class="nav-link">Kỹ năng</a></li>
-                    <li><a href="#projects" class="nav-link">Dự án</a></li>
-                    <li><a href="#contact" class="nav-link">Liên hệ</a></li>
+                    <li><a href="#home"       class="nav-link active">Home</a></li>
+                    <li><a href="#experience" class="nav-link">Work</a></li>
+                    <li><a href="#skills"     class="nav-link">Skills</a></li>
+                    <li><a href="#education"  class="nav-link">Education</a></li>
+                    <li><a href="#contact"    class="nav-link">Contact</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- ===== HERO ===== -->
         <section id="home" class="hero section">
             <div class="container hero-container">
-                <div class="hero-content reveal">
-                    <span class="greeting">Xin chào, tôi là</span>
-                    <h1 class="title">Lê Đức <span>Nam Khánh</span></h1>
-                    <h2 class="subtitle">Sinh viên ngành Kỹ thuật Phần mềm</h2>
-                    <p class="description">
-                        Đam mê sáng tạo công nghệ và phát triển những giải pháp phần mềm mang tính đột phá. 
-                        Tôi luôn sẵn sàng biến các ý tưởng phức tạp thành những dòng code tinh gọn và hiệu quả.
+                <div class="hero-content">
+                    <span class="badge reveal">
+                        <span class="badge-dot"></span>
+                        Available for internships
+                    </span>
+                    <h1 class="title reveal">
+                        <span class="line">Designing</span>
+                        <span class="line gradient-text">Experiences</span>
+                        <span class="line">That Matter.</span>
+                    </h1>
+                    <p class="description reveal">
+                        Le Duc Nam Khanh · UX/UI Developer Intern · Da Nang
                     </p>
-                    <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">Xem Dự Án</a>
-                        <a href="#contact" class="btn btn-outline">Liên Hệ Ngay</a>
+                    <p class="hero-body reveal">
+                        Passionate UX/UI candidate skilled in Figma and user-centered design.
+                        I turn complex problems into intuitive, beautiful interfaces.
+                    </p>
+                    <div class="hero-actions reveal">
+                        <a href="#experience" class="btn btn-primary">See My Work <i class="fas fa-arrow-right"></i></a>
+                        <a href="mailto:namkhanhle56@gmail.com" class="btn btn-glass">Hire Me</a>
                     </div>
                 </div>
-                <div class="hero-image reveal">
-                    <div class="avatar-card-container">
-                        <div class="avatar-glow"></div>
-                        <div class="image-wrapper glass">
-                            <img id="userAvatar" src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" onerror="this.style.display='none'; document.getElementById('avatarPlaceholder').style.display='flex';">
-                            <div class="placeholder-img" id="avatarPlaceholder" style="display: none;">
-                                <i class="fas fa-user-astronaut"></i>
-                            </div>
+                
+                <!-- Phone interaction hints -->
+                <div class="phone-ui reveal">
+                    <div class="phone-hint-box">
+                        <div class="phone-hint">
+                            <i class="fas fa-hand-pointer"></i>
+                            <span>Click screen to browse app screens</span>
                         </div>
+                        <div class="phone-hint">
+                            <i class="fas fa-arrows-alt"></i>
+                            <span>Drag to rotate the phone</span>
+                        </div>
+                    </div>
+                    <!-- Screen dot indicators -->
+                    <div class="screen-dots">
+                        <div class="screen-dot active"></div>
+                        <div class="screen-dot"></div>
+                        <div class="screen-dot"></div>
+                        <div class="screen-dot"></div>
+                        <div class="screen-dot"></div>
+                        <div class="screen-dot"></div>
+                        <div class="screen-dot"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about section">
+        <!-- ===== EXPERIENCE ===== -->
+        <section id="experience" class="experience section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Giới thiệu về tôi</h2>
-                    <div class="underline"></div>
+                    <span class="section-tag">Work</span>
+                    <h2>Selected Projects</h2>
+                    <p>Leading teams from research to high-fidelity prototypes</p>
                 </div>
-                <div class="about-content reveal">
-                    <div class="about-text glass">
-                        <h3>Hành trình vươn tới đam mê công nghệ</h3>
-                        <p>
-                            Là một sinh viên Công Nghệ Thông Tin (chuyên ngành Kỹ thuật phần mềm), tôi có niềm đam mê mãnh liệt với lập trình và tư duy logic. Việc giải quyết các bài toán khó và tối ưu hóa hệ thống không chỉ là chuyên môn mà còn là sở thích của tôi.
-                        </p>
-                        <p>
-                            Với nền tảng kiến thức vững chắc đang được trau dồi trên giảng đường và tinh thần chủ động tự học, tôi không ngừng cập nhật những công nghệ mới nhất. Mục tiêu của tôi là trở thành một Kỹ sư phần mềm xuất sắc, tạo ra những sản phẩm thực tế đem lại giá trị cao cho cộng đồng và doanh nghiệp.
-                        </p>
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">2+</span>
-                                <span class="stat-text">Năm học tập<br>& Nghiên cứu</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">5+</span>
-                                <span class="stat-text">Dự án<br>Thực hành</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">100%</span>
-                                <span class="stat-text">Nhiệt huyết<br>& Đam mê</span>
-                            </div>
+                
+                <div class="bento-grid">
+                    <div class="bento-card glass-card reveal">
+                        <div class="card-header">
+                            <span class="year">2025</span>
+                            <span class="role">Team Leader · UX/UI Design</span>
+                        </div>
+                        <h3>FROGGY</h3>
+                        <h4 class="project-name">Finance Tracking Mobile App</h4>
+                        <p class="card-desc">An internal project simplifying expense management for young professionals. Developed an intuitive mobile application that streamlines daily expense inputs and provides clear financial reporting.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Designed daily expense recording and categorization</li>
+                            <li><i class="fas fa-check-circle"></i> Built financial reporting charts & dashboard</li>
+                            <li><i class="fas fa-check-circle"></i> Integrated local data storage & state management</li>
+                        </ul>
+                        <div class="card-footer">
+                            <span class="tag">Figma</span>
+                            <span class="tag">UX Research</span>
+                            <span class="tag">Prototyping</span>
+                            <div class="eval-badge">Evaluated: 8/10</div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card glass-card reveal">
+                        <div class="card-header">
+                            <span class="year">2024</span>
+                            <span class="role">Team Leader · Agile Scrum</span>
+                        </div>
+                        <h3>Greenwich University</h3>
+                        <h4 class="project-name">Finance App — Agile UX Sprint</h4>
+                        <p class="card-desc">Led a multidisciplinary team through the complete UX/UI process from user research, wireframing, to high-fidelity prototyping and usability testing using Agile Scrum methodology.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Conducted user research & identified pain points</li>
+                            <li><i class="fas fa-check-circle"></i> Created personas, user flows, and journey maps</li>
+                            <li><i class="fas fa-check-circle"></i> Delivered interactive Figma prototype in 4 sprints</li>
+                        </ul>
+                        <div class="card-footer">
+                            <span class="tag">Scrum</span>
+                            <span class="tag">Usability Testing</span>
+                            <span class="tag">Journey Maps</span>
+                            <div class="eval-badge">Evaluated: 7.5/10</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- ===== SKILLS ===== -->
         <section id="skills" class="skills section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Kỹ năng nổi bật</h2>
-                    <div class="underline"></div>
+                    <span class="section-tag">Expertise</span>
+                    <h2>Core Competencies</h2>
+                    <p>Where design thinking meets technical execution</p>
                 </div>
-                <div class="skills-grid reveal">
-                    <div class="skill-card glass">
-                        <i class="fab fa-html5 skill-icon" style="color: #E34F26;"></i>
-                        <h3>Front-end</h3>
-                        <p>Thành thạo HTML5, CSS3, JavaScript. Xây dựng giao diện responsive, hiện đại và thân thiện với người dùng.</p>
+
+                <div class="bento-grid three-cols">
+                    <div class="bento-card glass-card skill-card reveal">
+                        <div class="skill-icon violet">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <h3>UX Design</h3>
+                        <ul class="skill-chips">
+                            <li>User Research</li>
+                            <li>Wireframing</li>
+                            <li>User Flows</li>
+                            <li>Prototyping</li>
+                            <li>Usability Testing</li>
+                            <li>Design Systems</li>
+                        </ul>
                     </div>
-                    <div class="skill-card glass">
-                        <i class="fas fa-server skill-icon" style="color: #68A063;"></i>
-                        <h3>Back-end</h3>
-                        <p>Kiến thức nền tảng về cơ sở dữ liệu, API và logic nghiệp vụ. Tư duy thiết kế hệ thống phần mềm.</p>
+                    
+                    <div class="bento-card glass-card skill-card reveal">
+                        <div class="skill-icon cyan">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>UX Strategy</h3>
+                        <ul class="skill-chips">
+                            <li>Personas</li>
+                            <li>Journey Maps</li>
+                            <li>Competitor Analysis</li>
+                            <li>Accessibility Audit</li>
+                            <li>UX Writing</li>
+                        </ul>
                     </div>
-                    <div class="skill-card glass">
-                        <i class="fas fa-code-branch skill-icon" style="color: #F05032;"></i>
-                        <h3>Công cụ & Quản lý</h3>
-                        <p>Sử dụng Git, GitHub để quản lý mã nguồn. Kỹ năng làm việc nhóm và giải quyết vấn đề hiệu quả.</p>
-                    </div>
-                    <div class="skill-card glass">
-                        <i class="fas fa-project-diagram skill-icon" style="color: #9333EA;"></i>
-                        <h3>Thiết kế Phần mềm</h3>
-                        <p>Hiểu biết về Design Patterns, UML và quy trình phát triển phần mềm (Agile/Scrum).</p>
+                    
+                    <div class="bento-card glass-card skill-card reveal">
+                        <div class="skill-icon pink">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Dev Skills</h3>
+                        <ul class="skill-chips">
+                            <li>HTML / CSS</li>
+                            <li>JavaScript</li>
+                            <li>Figma</li>
+                            <li>React (basic)</li>
+                            <li>Three.js</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects section">
+        <!-- ===== EDUCATION ===== -->
+        <section id="education" class="education section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Dự án của tôi</h2>
-                    <div class="underline"></div>
+                    <span class="section-tag">Background</span>
+                    <h2>Education & Credentials</h2>
                 </div>
-                <div class="projects-grid">
-                    <!-- Dự án 1: UI/UX App Quản lý Tài chính -->
-                    <div class="project-card glass reveal">
-                        <div class="project-img-placeholder">
-                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop" alt="UI/UX App Quản Lý Tài Chính" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <i class="fas fa-palette" style="display: none;"></i>
+
+                <div class="bento-grid three-cols">
+                    <div class="bento-card glass-card reveal">
+                        <i class="fas fa-graduation-cap edu-icon"></i>
+                        <h3>Software Engineering</h3>
+                        <p class="edu-school">University of Greenwich</p>
+                        <span class="year-badge">2022 – Present</span>
+                        <p class="edu-desc"><strong>Specialism:</strong> UX Research & Report Writing</p>
+                        <p class="edu-desc"><strong>Average:</strong> 62/100 (Expected First Honours)</p>
+                    </div>
+
+                    <div class="bento-card glass-card reveal">
+                        <i class="fas fa-language edu-icon cyan-icon"></i>
+                        <h3>Language Proficiency</h3>
+                        <div class="cert-item">
+                            <h4>IELTS 5.5</h4>
+                            <p>IPD Education, 2023</p>
                         </div>
-                        <div class="project-info">
-                            <h3>Ứng Dụng Quản Lý Tài Chính (UI/UX)</h3>
-                            <p>Thiết kế trải nghiệm người dùng (UI/UX) cho ứng dụng tài chính cá nhân. Tập trung vào giao diện trực quan, biểu đồ theo dõi thu chi thông minh và tối ưu hóa luồng tương tác người dùng.</p>
-                            <div class="project-tags">
-                                <span>UI/UX Design</span>
-                                <span>Figma</span>
-                                <span>Mobile App</span>
-                                <span>User Experience</span>
-                            </div>
+                        <div class="cert-item">
+                            <h4>VSTEP B2</h4>
+                            <p>HUFS, 2024</p>
                         </div>
                     </div>
 
-                    <!-- Dự án 2: Đồ án Tốt nghiệp - App Quản lý Tài chính & Đầu tư -->
-                    <div class="project-card glass reveal" style="transition-delay: 0.1s">
-                        <span class="project-badge"><i class="fas fa-graduation-cap"></i> Đồ án Tốt nghiệp</span>
-                        <div class="project-img-placeholder">
-                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" alt="App Quản Lý Tài Chính & Đầu Tư Thị Trường" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <i class="fas fa-chart-line" style="display: none;"></i>
-                        </div>
-                        <div class="project-info">
-                            <h3>Nền Tảng Quản Lý Tài Chính & Đầu Tư Thông Minh</h3>
-                            <p>Đồ án tốt nghiệp Kỹ thuật Phần mềm: Hệ thống quản lý tài chính toàn diện kết hợp module đầu tư tích hợp, phân tích và phản ứng linh hoạt dựa theo biến động dữ liệu thị trường theo thời gian thực (Real-time Market Data).</p>
-                            <div class="project-tags">
-                                <span>Kỹ thuật Phần mềm</span>
-                                <span>Fintech</span>
-                                <span>Real-time Data</span>
-                                <span>Market Investment</span>
-                            </div>
-                        </div>
+                    <div class="bento-card glass-card glow-border reveal">
+                        <i class="fas fa-certificate edu-icon pink-icon"></i>
+                        <h3>UI/UX Design Certificate</h3>
+                        <p class="edu-school">Horus Academy</p>
+                        <span class="year-badge pink-badge">2025</span>
+                        <p class="edu-desc">Completed comprehensive UI/UX design programme including Figma mastery and user-centered design principles.</p>
                     </div>
-                </div>
-                <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                    <p><em>* Các dự án thực tế sẽ được cập nhật thêm trong tương lai...</em></p>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- ===== CONTACT ===== -->
         <section id="contact" class="contact section">
             <div class="container">
-                <div class="section-header reveal">
-                    <h2>Liên hệ với tôi</h2>
-                    <div class="underline"></div>
-                </div>
-                <div class="contact-content reveal">
-                    <div class="contact-info glass">
-                        <h3>Kết nối với tôi</h3>
-                        <p>Tôi luôn sẵn sàng để trò chuyện về công nghệ, hợp tác trong các dự án hoặc thảo luận về những cơ hội nghề nghiệp trong tương lai.</p>
-                        
-                        <div class="info-items">
-                            <div class="info-item">
-                                <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                <div class="bento-card glass-card contact-wrapper reveal">
+                    <div class="contact-left">
+                        <span class="section-tag">Contact</span>
+                        <h2>Let's Work<br><span class="gradient-text">Together.</span></h2>
+                        <p>Looking for a UX/UI internship where I can grow, create, and deliver meaningful user experiences.</p>
+
+                        <div class="contact-methods">
+                            <a href="mailto:namkhanhle56@gmail.com" class="method">
+                                <div class="method-icon"><i class="fas fa-envelope"></i></div>
                                 <div>
                                     <h4>Email</h4>
                                     <p>namkhanhle56@gmail.com</p>
                                 </div>
-                            </div>
-                            <div class="info-item">
-                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            </a>
+                            <div class="method">
+                                <div class="method-icon"><i class="fas fa-phone"></i></div>
                                 <div>
-                                    <h4>Địa điểm</h4>
-                                    <p>Việt Nam</p>
+                                    <h4>Phone</h4>
+                                    <p>0702-666-921</p>
+                                </div>
+                            </div>
+                            <div class="method">
+                                <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <h4>Location</h4>
+                                    <p>Hai Chau, Da Nang City</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/namkhanh.leduc" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.linkedin.com/in/nam-khanh-le-duc-526100193/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-                        </div>
                     </div>
-
-                    <form class="contact-form glass" id="contactForm" action="https://formsubmit.co/namkhanhle56@gmail.com" method="POST">
-                        <input type="hidden" name="_next" value="https://khanhle1211.github.io/">
-                        <input type="hidden" name="_subject" value="Tin nhắn liên hệ mới từ Portfolio Lê Đức Nam Khánh!">
-                        <input type="hidden" name="_template" value="box">
-                        <input type="hidden" name="_captcha" value="false">
-                        <div class="form-group">
-                            <input type="text" name="Họ và Tên" id="name" placeholder="Tên của bạn" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="Email người gửi" id="email" placeholder="Email của bạn" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="Lời nhắn" id="message" rows="5" placeholder="Tin nhắn của bạn" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Gửi Tin Nhắn</button>
-                    </form>
+                    
+                    <div class="contact-right">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" name="Name" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="Email" placeholder="your@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea name="Message" rows="5" placeholder="Let's collaborate..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Send Message <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer glass">
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Lê Đức Nam Khánh. Designed with <i class="fas fa-heart" style="color: #e25555;"></i> and Code.</p>
+            <p>© 2026 Le Duc Nam Khanh · Built with Three.js & passion for UX.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script src="three-scene.js"></script>
+    <script>
+        // Loading screen fade out after 2s
+        window.addEventListener('load', () => {
+            const ls = document.getElementById('loading-screen');
+            const fill = document.querySelector('.loader-fill');
+            if (!ls || !fill) return;
+            let w = 0;
+            const interval = setInterval(() => {
+                w = Math.min(w + 3, 100);
+                fill.style.width = w + '%';
+                if (w >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => { ls.style.opacity = '0'; setTimeout(() => ls.remove(), 600); }, 300);
+                }
+            }, 20);
+        });
+    </script>
 </body>
 </html>
