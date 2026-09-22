@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#09090b">
-    <title>Le Duc Nam Khanh — UX/UI Developer Portfolio</title>
+    <title>Lê Đức Nam Khánh — UX/UI Developer Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,12 +18,12 @@
             <a href="#home" class="logo">Nam Khanh<span>.</span></a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#home"       class="nav-link active">Home</a></li>
-                    <li><a href="#showcase"   class="nav-link">3D App</a></li>
-                    <li><a href="#experience" class="nav-link">Work</a></li>
-                    <li><a href="#skills"     class="nav-link">Skills</a></li>
-                    <li><a href="#education"  class="nav-link">Education</a></li>
-                    <li><a href="#contact"    class="nav-link">Contact</a></li>
+                    <li><a href="#home"       class="nav-link active">Trang chủ</a></li>
+                    <li><a href="#showcase"   class="nav-link">App 3D</a></li>
+                    <li><a href="#experience" class="nav-link">Dự án</a></li>
+                    <li><a href="#skills"     class="nav-link">Kỹ năng</a></li>
+                    <li><a href="#education"  class="nav-link">Học vấn</a></li>
+                    <li><a href="#contact"    class="nav-link">Liên hệ</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
@@ -34,11 +34,11 @@
         <!-- ===== HERO SECTION ===== -->
         <section id="home" class="hero section">
             <div class="container hero-container">
-                <!-- Left: Bio & Intro -->
-                <div class="hero-content">
+                <!-- Left: Intro & Title -->
+                <div class="hero-content reveal">
                     <div class="profile-badge">
-                        <img src="avatar.jpg?v=2" alt="Le Duc Nam Khanh" class="avatar-mini">
-                        <span>Available for UX/UI Internships</span>
+                        <img src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" class="avatar-mini">
+                        <span>Sẵn sàng nhận vị trí UX/UI Intern</span>
                     </div>
 
                     <h1 class="title">
@@ -53,7 +53,7 @@
 
                     <p class="hero-body">
                         Sinh viên Kỹ thuật Phần mềm đam mê nghiên cứu người dùng (UX Research) và thiết kế giao diện (UI Design). 
-                        Tôi tập trung biến các bài toán phức tạp thành những trải nghiệm trực quan, dễ dùng và thẩm mỹ.
+                        Tôi tập trung biến các bài toán phức tạp thành những trải nghiệm tương tác trực quan, dễ dùng và thẩm mỹ.
                     </p>
 
                     <div class="hero-actions">
@@ -62,49 +62,241 @@
                     </div>
                 </div>
 
-                <!-- Right: Interactive 3D Phone Showcase (Contained, NOT following on scroll!) -->
-                <div class="phone-showcase-container" id="showcase">
+                <!-- Right: Real Interactive 3D Phone Mockup (Living App, Not Flat Image!) -->
+                <div class="phone-showcase-container reveal" id="showcase">
                     <div class="showcase-header">
-                        <span class="app-tag">Live 3D Preview · FROGGY App</span>
+                        <span class="app-tag"><span class="pulse-dot"></span> Live Interactive App · FROGGY</span>
                     </div>
 
-                    <!-- 3D Canvas Box -->
-                    <div class="canvas-3d-wrapper" id="canvasWrapper">
-                        <canvas id="webgl-canvas"></canvas>
-                        <div class="phone-click-hint">
-                            <i class="fas fa-hand-pointer"></i> Bấm vào điện thoại để đổi màn hình
-                        </div>
-                    </div>
+                    <!-- 3D Phone Chassis Stage -->
+                    <div class="phone-3d-stage" id="phoneStage">
+                        <div class="phone-device" id="phoneDevice">
+                            <!-- Side Hardware Buttons -->
+                            <div class="phone-btn phone-btn-vol-up"></div>
+                            <div class="phone-btn phone-btn-vol-down"></div>
+                            <div class="phone-btn phone-btn-power"></div>
+                            
+                            <!-- Dynamic Glass Glare Reflection -->
+                            <div class="phone-glare"></div>
 
-                    <!-- Floating Controls below 3D Phone -->
-                    <div class="phone-controls">
-                        <div class="phone-screen-info">
-                            <span class="screen-counter">Screen 1/7</span>
-                            <span class="screen-title" id="screenTitle">Splash Screen · FROGGY Brand</span>
-                        </div>
+                            <!-- Screen Viewport -->
+                            <div class="phone-screen" id="phoneScreen">
+                                <!-- Status Bar -->
+                                <div class="screen-status-bar">
+                                    <span class="status-time" id="statusClock">9:41</span>
+                                    <div class="dynamic-island">
+                                        <div class="island-camera"></div>
+                                        <div class="island-sensor"></div>
+                                    </div>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-full"></i>
+                                    </div>
+                                </div>
 
-                        <div class="screen-nav">
-                            <button class="screen-nav-btn" id="prevScreenBtn" title="Previous Screen">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
+                                <!-- SCREEN 1: Splash Screen -->
+                                <div class="app-screen active" id="screenSplash">
+                                    <div class="screen-content-center">
+                                        <div class="splash-hero-art">
+                                            <img src="screens/screen0.png" alt="Froggy Brand" class="frog-art-img">
+                                        </div>
+                                        <div class="splash-details">
+                                            <h2 class="app-brand-name">FROGGY</h2>
+                                            <p class="app-brand-sub">Quản lý chi tiêu thông minh & thú vị</p>
+                                            <button class="app-btn-primary" onclick="goToAppScreen('screenWelcome')">
+                                                Bắt đầu trải nghiệm <i class="fas fa-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div class="screen-dots" id="screenDots">
-                                <div class="screen-dot active" data-index="0" title="Splash Screen"></div>
-                                <div class="screen-dot" data-index="1" title="Social Login"></div>
-                                <div class="screen-dot" data-index="2" title="Login Form"></div>
-                                <div class="screen-dot" data-index="3" title="Password Recovery"></div>
-                                <div class="screen-dot" data-index="4" title="Onboarding"></div>
-                                <div class="screen-dot" data-index="5" title="Sign Up 1"></div>
-                                <div class="screen-dot" data-index="6" title="Sign Up 2"></div>
+                                <!-- SCREEN 2: Social Login ("Let's you in") -->
+                                <div class="app-screen" id="screenWelcome">
+                                    <div class="app-top-nav">
+                                        <button class="app-back-btn" onclick="goToAppScreen('screenSplash')">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                    </div>
+                                    <div class="screen-body">
+                                        <div class="welcome-badge-art">
+                                            <img src="screens/screen0.png" alt="Froggy Icon">
+                                        </div>
+                                        <h3 class="app-title-h3">Let's you in</h3>
+                                        <div class="social-btns-group">
+                                            <button class="social-auth-btn">
+                                                <i class="fab fa-facebook" style="color: #1877f2;"></i>
+                                                <span>Login with Facebook</span>
+                                            </button>
+                                            <button class="social-auth-btn">
+                                                <i class="fab fa-apple" style="color: #000000;"></i>
+                                                <span>Login with Apple</span>
+                                            </button>
+                                            <button class="social-auth-btn">
+                                                <i class="fab fa-google" style="color: #ea4335;"></i>
+                                                <span>Login with Google</span>
+                                            </button>
+                                        </div>
+                                        <div class="app-divider-line">
+                                            <span>Or</span>
+                                        </div>
+                                        <button class="app-btn-teal" onclick="goToAppScreen('screenLogin')">
+                                            Sign in with password
+                                        </button>
+                                        <p class="app-bottom-caption">
+                                            Don't have an account? <a href="#" onclick="goToAppScreen('screenLogin'); return false;">Sign up</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- SCREEN 3: Interactive Login Form -->
+                                <div class="app-screen" id="screenLogin">
+                                    <div class="app-top-nav">
+                                        <button class="app-back-btn" onclick="goToAppScreen('screenWelcome')">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                    </div>
+                                    <div class="screen-body">
+                                        <h3 class="app-title-h3 text-left">Login</h3>
+                                        <form class="real-app-form" onsubmit="handleAppLogin(event)">
+                                            <div class="form-field">
+                                                <label>Email <span class="required">*</span></label>
+                                                <input type="email" id="liveAppEmail" value="sadoan2501@gmail.com" placeholder="Enter your email" required>
+                                            </div>
+                                            <div class="form-field">
+                                                <label>Password <span class="required">*</span></label>
+                                                <div class="pass-wrapper">
+                                                    <input type="password" id="liveAppPassword" value="copengoknghech" placeholder="Enter password" required>
+                                                    <button type="button" class="eye-toggle-btn" onclick="toggleAppPassword()">
+                                                        <i class="fas fa-eye" id="eyeToggleIcon"></i>
+                                                    </button>
+                                                </div>
+                                                <span class="field-hint" id="loginHint">Mật khẩu hợp lệ! Bấm 'Sign in' để vào Dashboard.</span>
+                                            </div>
+                                            <div class="form-options">
+                                                <label class="remember-check">
+                                                    <input type="checkbox" checked> Remember Me
+                                                </label>
+                                                <a href="#" class="forgot-link">Forgot your password?</a>
+                                            </div>
+                                            <button type="submit" class="app-btn-teal mt-3">
+                                                Sign in
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <!-- SCREEN 4: Interactive Finance Dashboard -->
+                                <div class="app-screen" id="screenDashboard">
+                                    <div class="dash-top-bar">
+                                        <div class="user-greeting-box">
+                                            <span class="dash-hello">Xin chào 👋</span>
+                                            <span class="dash-username">Nam Khánh</span>
+                                        </div>
+                                        <div class="dash-avatar-circle">
+                                            <img src="avatar.jpg" alt="Nam Khánh">
+                                        </div>
+                                    </div>
+
+                                    <!-- Main Balance Card -->
+                                    <div class="app-balance-card">
+                                        <div class="bal-sub">Tổng số dư tài khoản</div>
+                                        <div class="bal-num">$14,250<span class="bal-decimal">.80</span></div>
+                                        <div class="bal-pills">
+                                            <div class="pill-stat in">
+                                                <i class="fas fa-arrow-down"></i> Thu: <strong>+$4,500</strong>
+                                            </div>
+                                            <div class="pill-stat out">
+                                                <i class="fas fa-arrow-up"></i> Chi: <strong>-$1,280</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Spending Category Progress -->
+                                    <div class="dash-sec-head">Phân bổ chi tiêu tháng này</div>
+                                    <div class="cat-list">
+                                        <div class="cat-row">
+                                            <div class="cat-info-line">
+                                                <span>🍜 Ăn uống sinh hoạt</span>
+                                                <span class="cat-percent">45% ($576)</span>
+                                            </div>
+                                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-food"></div></div>
+                                        </div>
+                                        <div class="cat-row">
+                                            <div class="cat-info-line">
+                                                <span>🛍️ Mua sắm cá nhân</span>
+                                                <span class="cat-percent">25% ($320)</span>
+                                            </div>
+                                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-shop"></div></div>
+                                        </div>
+                                        <div class="cat-row">
+                                            <div class="cat-info-line">
+                                                <span>💻 Công nghệ & Học tập</span>
+                                                <span class="cat-percent">20% ($256)</span>
+                                            </div>
+                                            <div class="progress-bar-bg"><div class="progress-bar-fill fill-tech"></div></div>
+                                        </div>
+                                    </div>
+
+                                    <button class="app-btn-outline mt-3" onclick="goToAppScreen('screenOnboarding')">
+                                        Xem mẹo tiết kiệm của Froggy 🐸
+                                    </button>
+                                </div>
+
+                                <!-- SCREEN 5: Onboarding ("Stay On Track") -->
+                                <div class="app-screen" id="screenOnboarding">
+                                    <div class="app-top-nav">
+                                        <button class="app-back-btn" onclick="goToAppScreen('screenDashboard')">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                    </div>
+                                    <div class="screen-body text-center">
+                                        <div class="onboard-art-wrapper">
+                                            <img src="screens/screen4.png" alt="Stay On Track" class="onboard-img">
+                                        </div>
+                                        <h3 class="app-title-h3">Stay On Track</h3>
+                                        <p class="onboard-caption">
+                                            Get tips, insights, and the occasional "Hey... you okay?" from your frog buddy.
+                                        </p>
+                                        <div class="onboard-carousel-dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span class="active"></span>
+                                        </div>
+                                        <button class="app-btn-teal mt-3" onclick="goToAppScreen('screenDashboard')">
+                                            Quay lại Bảng điều khiển
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Home Indicator Bar -->
+                                <div class="ios-home-indicator"></div>
                             </div>
+                        </div>
+                    </div>
 
-                            <button class="screen-nav-btn" id="nextScreenBtn" title="Next Screen">
-                                <i class="fas fa-chevron-right"></i>
+                    <!-- Screen Switcher Dock below Phone -->
+                    <div class="phone-dock">
+                        <div class="dock-buttons">
+                            <button class="dock-tab-btn active" data-screen="screenSplash" onclick="goToAppScreen('screenSplash')">
+                                🐸 Splash
+                            </button>
+                            <button class="dock-tab-btn" data-screen="screenWelcome" onclick="goToAppScreen('screenWelcome')">
+                                🔐 Social
+                            </button>
+                            <button class="dock-tab-btn" data-screen="screenLogin" onclick="goToAppScreen('screenLogin')">
+                                📝 Login
+                            </button>
+                            <button class="dock-tab-btn" data-screen="screenDashboard" onclick="goToAppScreen('screenDashboard')">
+                                📊 Dashboard
+                            </button>
+                            <button class="dock-tab-btn" data-screen="screenOnboarding" onclick="goToAppScreen('screenOnboarding')">
+                                💡 Tips
                             </button>
                         </div>
-
-                        <div class="phone-tip">
-                            <i class="fas fa-sync-alt"></i> Kéo chuột để xoay 3D 360° · Bấm màn hình để lật trang
+                        <div class="dock-instruction">
+                            <i class="fas fa-hand-pointer"></i> Bấm & gõ trực tiếp vào màn hình app · Rê chuột để xoay 3D
                         </div>
                     </div>
                 </div>
@@ -114,7 +306,7 @@
         <!-- ===== EXPERIENCE SECTION ===== -->
         <section id="experience" class="experience section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <span class="section-tag">Dự án & Kinh nghiệm</span>
                     <h2>Kinh Nghiệm Thực Tế</h2>
                     <p>Dẫn dắt quy trình từ khảo sát người dùng đến sản phẩm tương tác hoàn chỉnh</p>
@@ -122,7 +314,7 @@
 
                 <div class="bento-grid">
                     <!-- Project 1: FROGGY -->
-                    <div class="bento-card glass-card">
+                    <div class="bento-card glass-card reveal">
                         <div class="card-header">
                             <span class="year">2025</span>
                             <span class="role">Team Leader · UX/UI Design</span>
@@ -148,7 +340,7 @@
                     </div>
 
                     <!-- Project 2: Agile Scrum -->
-                    <div class="bento-card glass-card">
+                    <div class="bento-card glass-card reveal">
                         <div class="card-header">
                             <span class="year">2024</span>
                             <span class="role">Team Leader · Agile Scrum</span>
@@ -178,14 +370,14 @@
         <!-- ===== SKILLS SECTION ===== -->
         <section id="skills" class="skills section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <span class="section-tag">Năng lực cốt lõi</span>
                     <h2>Kỹ Năng Chuyên Môn</h2>
                     <p>Kết hợp tư duy phân tích nghiên cứu với kỹ năng thiết kế trực quan</p>
                 </div>
 
                 <div class="bento-grid three-cols">
-                    <div class="bento-card glass-card skill-card">
+                    <div class="bento-card glass-card skill-card reveal">
                         <div class="skill-icon violet">
                             <i class="fas fa-pen-nib"></i>
                         </div>
@@ -200,7 +392,7 @@
                         </ul>
                     </div>
 
-                    <div class="bento-card glass-card skill-card">
+                    <div class="bento-card glass-card skill-card reveal">
                         <div class="skill-icon cyan">
                             <i class="fas fa-lightbulb"></i>
                         </div>
@@ -215,7 +407,7 @@
                         </ul>
                     </div>
 
-                    <div class="bento-card glass-card skill-card">
+                    <div class="bento-card glass-card skill-card reveal">
                         <div class="skill-icon pink">
                             <i class="fas fa-code"></i>
                         </div>
@@ -236,13 +428,13 @@
         <!-- ===== EDUCATION SECTION ===== -->
         <section id="education" class="education section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <span class="section-tag">Học vấn & Chứng chỉ</span>
                     <h2>Nền Tảng Đào Tạo</h2>
                 </div>
 
                 <div class="bento-grid three-cols">
-                    <div class="bento-card glass-card">
+                    <div class="bento-card glass-card reveal">
                         <i class="fas fa-graduation-cap edu-icon"></i>
                         <h3>Kỹ Thuật Phần Mềm</h3>
                         <p class="edu-school">Đại học Greenwich (2022 – Hiện tại)</p>
@@ -251,7 +443,7 @@
                         <p class="edu-desc"><strong>Điểm trung bình:</strong> 62/100 (Expected First Honours)</p>
                     </div>
 
-                    <div class="bento-card glass-card">
+                    <div class="bento-card glass-card reveal">
                         <i class="fas fa-language edu-icon cyan-icon"></i>
                         <h3>Ngoại Ngữ</h3>
                         <div class="cert-item">
@@ -264,7 +456,7 @@
                         </div>
                     </div>
 
-                    <div class="bento-card glass-card glow-border">
+                    <div class="bento-card glass-card glow-border reveal">
                         <i class="fas fa-certificate edu-icon pink-icon"></i>
                         <h3>Chứng Chỉ UI/UX Design</h3>
                         <p class="edu-school">Horus Academy · 2025</p>
@@ -278,7 +470,7 @@
         <!-- ===== CONTACT SECTION ===== -->
         <section id="contact" class="contact section">
             <div class="container">
-                <div class="bento-card glass-card contact-wrapper">
+                <div class="bento-card glass-card contact-wrapper reveal">
                     <div class="contact-left">
                         <span class="section-tag">Liên hệ</span>
                         <h2>Hãy Cùng Tạo Nên <br><span class="gradient-text">Sản Phẩm Đột Phá.</span></h2>
@@ -335,14 +527,11 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© 2026 Lê Đức Nam Khánh · UX/UI Developer Portfolio · Built with Three.js & Passion.</p>
+            <p>© 2026 Lê Đức Nam Khánh · UX/UI Developer Portfolio · Built with Passion.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="script.js"></script>
-    <script src="three-scene.js"></script>
 </body>
 </html>
