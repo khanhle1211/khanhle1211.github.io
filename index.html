@@ -127,49 +127,302 @@
                             <!-- Dynamic Glass Glare Reflection -->
                             <div class="phone-glare"></div>
 
-                            <!-- Screen Viewport (Full Bleed 100% Edge-to-Edge) -->
+                            <!-- Screen Viewport: Real Interactive Digital Prototype -->
                             <div class="phone-screen" id="phoneScreen">
-                                <!-- Dynamic Island Pill -->
-                                <div class="dynamic-island-pill">
-                                    <div class="island-camera"></div>
-                                    <div class="island-sensor"></div>
+                                <!-- Real iOS Top Status Bar -->
+                                <div class="real-ios-status-bar" id="realStatusBar">
+                                    <span class="ios-clock" id="liveIosClock">9:41</span>
+                                    <div class="dynamic-island-pill">
+                                        <div class="island-camera"></div>
+                                        <div class="island-sensor"></div>
+                                    </div>
+                                    <div class="ios-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-full"></i>
+                                    </div>
                                 </div>
 
-                                <!-- SCREEN 1: Splash Screen -->
-                                <div class="app-screen active" id="screenSplash" onclick="goToAppScreen('screenWelcome')" title="Chạm để tiếp tục">
-                                    <img src="assets/froggy/splash.png" alt="FROGGY Splash Screen" class="app-screen-img">
-                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để tiếp tục</div>
+                                <!-- SCREEN 1: Real Splash Screen -->
+                                <div class="app-screen active" id="screenSplash">
+                                    <span class="splash-badge"><i class="fas fa-sparkles"></i> FROGGY 2026</span>
+                                    
+                                    <div class="splash-mascot-wrap">
+                                        <img src="assets/froggy/frog_money.png" alt="FROGGY Mascot" class="splash-frog-mascot">
+                                    </div>
+
+                                    <div class="splash-bottom-wrap">
+                                        <h2 class="splash-brand-title">FROGGY</h2>
+                                        <p class="splash-brand-desc">Quản lý chi tiêu thông minh & gắn kết cảm xúc</p>
+                                        <button class="splash-start-btn" onclick="goToAppScreen('screenWelcome')">
+                                            <span>Bắt đầu trải nghiệm</span>
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <!-- SCREEN 2: Welcome / Social Login -->
-                                <div class="app-screen" id="screenWelcome" onclick="goToAppScreen('screenLogin')" title="Chạm để mở Đăng nhập">
-                                    <img src="assets/froggy/welcome.png" alt="FROGGY Welcome Screen" class="app-screen-img">
-                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để Đăng nhập</div>
+                                <!-- SCREEN 2: Welcome / Social Auth -->
+                                <div class="app-screen" id="screenWelcome">
+                                    <div class="welcome-top-box">
+                                        <div class="welcome-frog-badge">
+                                            <img src="assets/froggy/frog_money.png" alt="Frog" class="mini-frog-icon">
+                                            <span>Xin chào bạn mới!</span>
+                                        </div>
+                                        <h3 class="welcome-heading">Let's you in</h3>
+                                    </div>
+
+                                    <div class="real-social-group">
+                                        <button class="real-social-btn" onclick="goToAppScreen('screenDashboard')">
+                                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                                            </svg>
+                                            <span>Tiếp tục với Google</span>
+                                        </button>
+                                        <button class="real-social-btn" onclick="goToAppScreen('screenDashboard')">
+                                            <i class="fab fa-apple" style="font-size: 1.15rem; color: #000;"></i>
+                                            <span>Tiếp tục với Apple</span>
+                                        </button>
+                                        <button class="real-social-btn" onclick="goToAppScreen('screenDashboard')">
+                                            <i class="fab fa-facebook" style="font-size: 1.15rem; color: #1877f2;"></i>
+                                            <span>Tiếp tục với Facebook</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="real-divider"><span>hoặc tài khoản cá nhân</span></div>
+
+                                    <button class="real-primary-btn" onclick="goToAppScreen('screenLogin')">
+                                        Đăng nhập bằng Mật khẩu
+                                    </button>
+
+                                    <div class="real-switch-auth">
+                                        Chưa có tài khoản? <a href="javascript:void(0)" onclick="goToAppScreen('screenSignup')">Đăng ký ngay</a>
+                                    </div>
                                 </div>
 
-                                <!-- SCREEN 3: Login Form -->
-                                <div class="app-screen" id="screenLogin" onclick="goToAppScreen('screenLoginError')" title="Chạm để xem kiểm thử lỗi mật khẩu">
-                                    <img src="assets/froggy/login.png" alt="FROGGY Login Screen" class="app-screen-img">
-                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để kiểm tra validation</div>
+                                <!-- SCREEN 3: Real Interactive Login -->
+                                <div class="app-screen" id="screenLogin">
+                                    <div class="real-screen-top">
+                                        <button class="real-back-arrow" onclick="goToAppScreen('screenWelcome')">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <span class="real-top-title">Đăng Nhập</span>
+                                    </div>
+
+                                    <div class="real-form-header">
+                                        <h3>Mừng bạn trở lại! 👋</h3>
+                                        <p>Đăng nhập để xem ví tiền hôm nay</p>
+                                    </div>
+
+                                    <div class="real-input-box">
+                                        <i class="fas fa-envelope input-icon"></i>
+                                        <input type="email" id="liveAppEmail" value="namkhanh@greenwich.edu.vn" placeholder="user@gmail.com">
+                                    </div>
+
+                                    <div class="real-input-box">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input type="password" id="liveAppPassword" value="Froggy2026@" placeholder="Mật khẩu">
+                                        <button type="button" class="real-eye-btn" onclick="toggleAppPassword()">
+                                            <i class="fas fa-eye" id="eyeToggleIcon"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="real-validation-hint" id="loginValidationMsg">
+                                        <i class="fas fa-check-circle"></i> Sẵn sàng đăng nhập
+                                    </div>
+
+                                    <div class="real-form-options">
+                                        <label>
+                                            <input type="checkbox" checked> <span>Ghi nhớ</span>
+                                        </label>
+                                        <a href="javascript:void(0)">Quên mật khẩu?</a>
+                                    </div>
+
+                                    <button type="button" class="real-primary-btn" onclick="submitLiveLogin()">
+                                        <span>Đăng Nhập Ngay</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+
+                                    <button type="button" class="real-text-btn" onclick="triggerLoginError()">
+                                        ⚡ Thử test trạng thái lỗi (Validation Error)
+                                    </button>
                                 </div>
 
-                                <!-- SCREEN 4: Login Error State (Validation + iOS Keyboard) -->
-                                <div class="app-screen" id="screenLoginError" onclick="goToAppScreen('screenOnboarding')" title="Chạm để xem Mẹo chi tiêu">
-                                    <img src="assets/froggy/login_error.png" alt="FROGGY Login Error Validation" class="app-screen-img">
-                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để xem Onboarding</div>
+                                <!-- SCREEN 4: Real Working Dashboard -->
+                                <div class="app-screen" id="screenDashboard">
+                                    <div class="dash-header-row">
+                                        <div class="dash-user-badge">
+                                            <img src="avatar.jpg?v=2" alt="Nam Khánh" class="dash-user-avatar">
+                                            <div class="dash-user-text">
+                                                <h4>Nam Khánh</h4>
+                                                <p>Hôm nay chi tiêu hợp lý nhé 🐸</p>
+                                            </div>
+                                        </div>
+                                        <button class="dash-notif-btn" title="Thông báo">
+                                            <i class="fas fa-bell"></i>
+                                            <span class="dash-notif-dot"></span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Wallet Balance Card -->
+                                    <div class="dash-wallet-card">
+                                        <div class="wallet-card-tag">Số dư khả dụng</div>
+                                        <div class="dash-balance-num" id="dashBalanceDisplay">15.850.000 ₫</div>
+                                        <div class="wallet-sub-stats">
+                                            <div class="sub-stat-item">
+                                                <span>Thu:</span> <strong class="green">+24.000.000 ₫</strong>
+                                            </div>
+                                            <div class="sub-stat-item">
+                                                <span>Chi:</span> <strong class="coral" id="dashSpentDisplay">-8.150.000 ₫</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Interactive 3-Tap Quick Log -->
+                                    <div class="dash-quick-log-section">
+                                        <div class="quick-log-title">
+                                            <span><i class="fas fa-bolt"></i> Ghi chép 1 chạm (Thử bấm!)</span>
+                                            <span style="font-size: 0.65rem; color: #10b981;">3-Tap Log</span>
+                                        </div>
+                                        <div class="quick-chips-row">
+                                            <button class="quick-chip" onclick="logSampleExpense('☕ Cà phê Highland', 35000)">
+                                                <i class="fas fa-coffee"></i>
+                                                <span>+35k Cafe</span>
+                                            </button>
+                                            <button class="quick-chip" onclick="logSampleExpense('🍜 Cơm trưa', 45000)">
+                                                <i class="fas fa-utensils"></i>
+                                                <span>+45k Ăn trưa</span>
+                                            </button>
+                                            <button class="quick-chip" onclick="logSampleExpense('🛒 Sách UX Design', 120000)">
+                                                <i class="fas fa-book"></i>
+                                                <span>+120k Sách</span>
+                                            </button>
+                                        </div>
+                                        <div class="dash-toast" id="dashToastMsg"></div>
+                                    </div>
+
+                                    <!-- Transactions List -->
+                                    <div class="dash-tx-section">
+                                        <div class="tx-header-row">
+                                            <span>Giao dịch gần đây</span>
+                                            <a href="javascript:void(0)" onclick="resetSampleTx()" style="color: #73c2b4; text-decoration: none;">Đặt lại</a>
+                                        </div>
+                                        <div class="tx-items-list" id="dashTxList">
+                                            <div class="tx-single-item">
+                                                <div class="tx-left">
+                                                    <div class="tx-icon-circle"><i class="fas fa-coffee"></i></div>
+                                                    <div class="tx-meta">
+                                                        <strong>The Coffee House</strong>
+                                                        <span>Hôm nay · 08:30</span>
+                                                    </div>
+                                                </div>
+                                                <div class="tx-val neg">-45.000 ₫</div>
+                                            </div>
+                                            <div class="tx-single-item">
+                                                <div class="tx-left">
+                                                    <div class="tx-icon-circle"><i class="fas fa-wallet"></i></div>
+                                                    <div class="tx-meta">
+                                                        <strong>Lương thực tập UX/UI</strong>
+                                                        <span>20/09 · 10:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="tx-val pos">+6.000.000 ₫</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- App Bottom Navigation Bar inside iPhone -->
+                                    <div class="dash-bottom-nav">
+                                        <button class="dash-nav-tab active" onclick="goToAppScreen('screenDashboard')">
+                                            <i class="fas fa-wallet"></i>
+                                            <span>Ví tiền</span>
+                                        </button>
+                                        <button class="dash-nav-tab" onclick="goToAppScreen('screenOnboarding')">
+                                            <i class="fas fa-lightbulb"></i>
+                                            <span>Mẹo hay</span>
+                                        </button>
+                                        <button class="dash-nav-tab" onclick="goToAppScreen('screenWelcome')">
+                                            <i class="fas fa-user-circle"></i>
+                                            <span>Đổi user</span>
+                                        </button>
+                                        <button class="dash-nav-tab" onclick="goToAppScreen('screenSplash')">
+                                            <i class="fas fa-frog"></i>
+                                            <span>Splash</span>
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <!-- SCREEN 5: Onboarding / Tips Screen -->
-                                <div class="app-screen" id="screenOnboarding" onclick="goToAppScreen('screenSignup')" title="Chạm để xem Đăng ký">
-                                    <img src="assets/froggy/onboarding.png" alt="FROGGY Onboarding Screen" class="app-screen-img">
-                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để xem Đăng ký</div>
+                                <!-- SCREEN 5: Mascot Advice / Tips Screen -->
+                                <div class="app-screen" id="screenOnboarding">
+                                    <div class="real-screen-top">
+                                        <button class="real-back-arrow" onclick="goToAppScreen('screenDashboard')">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <span class="real-top-title">Mẹo Tài Chính</span>
+                                    </div>
+
+                                    <div class="tips-mascot-box">
+                                        <img src="assets/froggy/frog_thinking.png" alt="Thinking Frog" class="tips-frog-mascot">
+                                    </div>
+
+                                    <div class="advice-card-box">
+                                        <span class="advice-tag-pill">⭐ Lời khuyên của chú Ếch</span>
+                                        <h4>Quy tắc phân bổ 50/30/20</h4>
+                                        <p>
+                                            <strong>50%</strong> chi cho nhu cầu thiết yếu<br>
+                                            <strong>30%</strong> chi cho sở thích cá nhân<br>
+                                            <strong>20%</strong> tích lũy vào quỹ dự phòng
+                                        </p>
+                                    </div>
+
+                                    <button class="real-primary-btn" onclick="goToAppScreen('screenDashboard')">
+                                        <i class="fas fa-check"></i> Quay lại Ví Chi Tiêu
+                                    </button>
                                 </div>
 
                                 <!-- SCREEN 6: Sign Up Screen -->
-                                <div class="app-screen" id="screenSignup" onclick="goToAppScreen('screenSplash')" title="Chạm để quay lại Splash">
-                                    <img src="assets/froggy/signup.png" alt="FROGGY Sign Up Screen" class="app-screen-img">
-                                    <div class="screen-touch-hint"><i class="fas fa-undo"></i> Chạm để về Splash</div>
+                                <div class="app-screen" id="screenSignup">
+                                    <div class="real-screen-top">
+                                        <button class="real-back-arrow" onclick="goToAppScreen('screenWelcome')">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <span class="real-top-title">Đăng Ký</span>
+                                    </div>
+
+                                    <div class="real-form-header">
+                                        <h3>Tạo tài khoản mới 🚀</h3>
+                                        <p>Bắt đầu hành trình chi tiêu thông minh</p>
+                                    </div>
+
+                                    <div class="real-input-box">
+                                        <i class="fas fa-user input-icon"></i>
+                                        <input type="text" value="Lê Đức Nam Khánh" placeholder="Họ và tên">
+                                    </div>
+
+                                    <div class="real-input-box">
+                                        <i class="fas fa-envelope input-icon"></i>
+                                        <input type="email" value="namkhanh@greenwich.edu.vn" placeholder="Email">
+                                    </div>
+
+                                    <div class="real-input-box">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input type="password" value="Froggy2026@" placeholder="Mật khẩu">
+                                    </div>
+
+                                    <button type="button" class="real-primary-btn" onclick="goToAppScreen('screenDashboard')">
+                                        <span>Đăng Ký & Vào App</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+
+                                    <div class="real-switch-auth">
+                                        Đã có tài khoản? <a href="javascript:void(0)" onclick="goToAppScreen('screenLogin')">Đăng nhập</a>
+                                    </div>
                                 </div>
+
+                                <!-- Real iOS Home Indicator Bar -->
+                                <div class="real-home-indicator" id="realHomeIndicator"></div>
                             </div>
                         </div>
                     </div>
@@ -186,8 +439,8 @@
                             <button class="dock-tab-btn" data-screen="screenLogin" onclick="goToAppScreen('screenLogin')">
                                 📝 Login
                             </button>
-                            <button class="dock-tab-btn" data-screen="screenLoginError" onclick="goToAppScreen('screenLoginError')">
-                                ⚠️ Validation
+                            <button class="dock-tab-btn" data-screen="screenDashboard" onclick="goToAppScreen('screenDashboard')">
+                                📊 Dashboard (Live)
                             </button>
                             <button class="dock-tab-btn" data-screen="screenOnboarding" onclick="goToAppScreen('screenOnboarding')">
                                 💡 Tips
@@ -197,7 +450,7 @@
                             </button>
                         </div>
                         <div class="dock-instruction">
-                            <i class="fas fa-hand-pointer"></i> Chạm trực tiếp vào màn hình điện thoại hoặc chọn tab bên trên · Rê chuột để xoay 3D
+                            <i class="fas fa-hand-pointer"></i> Bấm & gõ tương tác trực tiếp như điện thoại thật · Thử bấm "+35k Cafe" để cập nhật số dư!
                         </div>
                     </div>
                 </div>

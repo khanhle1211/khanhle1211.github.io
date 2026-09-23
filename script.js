@@ -167,19 +167,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// ==========================================================================
+// REAL INTERACTIVE 3D PHONE APP PROTOTYPE LOGIC
+// ==========================================================================
+
 // Global Function: Switch App Screens inside 3D Phone
 window.goToAppScreen = function (screenId) {
     document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
     const target = document.getElementById(screenId);
     if (target) {
         target.classList.add('active');
-        // Scroll to top of app screen
         target.scrollTop = 0;
     }
 
-    // Update active state on dock tab buttons
+    // Toggle iOS Status Bar & Home Indicator color themes
+    const statusBar = document.getElementById('realStatusBar');
+    const homeIndicator = document.getElementById('realHomeIndicator');
+    const isDarkBg = (screenId === 'screenSplash');
+    
+    if (statusBar) statusBar.classList.toggle('dark-mode', isDarkBg);
+    if (homeIndicator) homeIndicator.classList.toggle('dark-mode', isDarkBg);
+
+    // Update active state on dock tab buttons below phone
     document.querySelectorAll('.dock-tab-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.screen === screenId);
+    });
+
+    // Update app internal bottom nav tab active state
+    document.querySelectorAll('.dash-nav-tab').forEach(tab => {
+        tab.classList.toggle('active', screenId === 'screenDashboard');
     });
 };
 
@@ -198,12 +214,101 @@ window.toggleAppPassword = function () {
     }
 };
 
-// Global Function: Handle App Login inside Phone Form
-window.handleAppLogin = function (e) {
-    e.preventDefault();
-    // Simulate instant login transition to Dashboard
-    goToAppScreen('screenDashboard');
+// Global Function: Handle App Login
+window.submitLiveLogin = function () {
+    const hint = document.getElementById('loginValidationMsg');
+    if (hint) {
+        hint.className = 'real-validation-hint';
+        hint.innerHTML = '<i class="fas fa-check-circle" style="color:#10b981;"></i> Đăng nhập thành công! Đang vào Dashboard...';
+    }
+    setTimeout(() => {
+        goToAppScreen('screenDashboard');
+    }, 600);
 };
+
+// Global Function: Trigger Login Error State Demonstration
+window.triggerLoginError = function () {
+    const hint = document.getElementById('loginValidationMsg');
+    if (hint) {
+        hint.className = 'real-validation-hint error';
+        hint.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Mật khẩu không chính xác! Vui lòng thử lại';
+        const pass = document.getElementById('liveAppPassword');
+        if (pass) {
+            pass.focus();
+            pass.select();
+        }
+    }
+};
+
+// Financial Ledger Interactive State
+let liveBalance = 15850000;
+let liveSpent = 8150000;
+
+function formatVNCurrency(num) {
+    return new Intl.NumberFormat('vi-VN').format(num) + ' ₫';
+}
+
+window.logSampleExpense = function (itemName, amount) {
+    liveBalance = Math.max(0, liveBalance - amount);
+    liveSpent += amount;
+
+    const balEl = document.getElementById('dashBalanceDisplay');
+    const spentEl = document.getElementById('dashSpentDisplay');
+    const toastEl = document.getElementById('dashToastMsg');
+    const txList = document.getElementById('dashTxList');
+
+    if (balEl) balEl.textContent = formatVNCurrency(liveBalance);
+    if (spentEl) spentEl.textContent = '-' + formatVNCurrency(liveSpent) + ' (Chi)';
+
+    if (toastEl) {
+        toastEl.style.display = 'block';
+        toastEl.innerHTML = `<i class="fas fa-check"></i> Đã ghi nhận ${itemName} (-${new Intl.NumberFormat('vi-VN').format(amount)}đ)`;
+        setTimeout(() => {
+            toastEl.style.display = 'none';
+        }, 2500);
+    }
+
+    if (txList) {
+        const now = new Date();
+        const timeStr = `Vừa xong · ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+        const newRow = document.createElement('div');
+        newRow.className = 'tx-single-item';
+        newRow.style.animation = 'fadeIn 0.3s ease';
+        newRow.innerHTML = `
+            <div class="tx-left">
+                <div class="tx-icon-circle"><i class="fas fa-receipt" style="color: #10b981;"></i></div>
+                <div class="tx-meta">
+                    <strong>${itemName}</strong>
+                    <span>${timeStr}</span>
+                </div>
+            </div>
+            <div class="tx-val neg">-${formatVNCurrency(amount)}</div>
+        `;
+        txList.insertBefore(newRow, txList.firstChild);
+    }
+};
+
+window.resetSampleTx = function () {
+    liveBalance = 15850000;
+    liveSpent = 8150000;
+    const balEl = document.getElementById('dashBalanceDisplay');
+    const spentEl = document.getElementById('dashSpentDisplay');
+    if (balEl) balEl.textContent = formatVNCurrency(liveBalance);
+    if (spentEl) spentEl.textContent = '-8.150.000 ₫ (Chi)';
+};
+
+// Live Phone Status Clock
+function updateLiveIosClock() {
+    const clockEl = document.getElementById('liveIosClock');
+    if (clockEl) {
+        const now = new Date();
+        const h = now.getHours().toString().padStart(2, '0');
+        const m = now.getMinutes().toString().padStart(2, '0');
+        clockEl.textContent = `${h}:${m}`;
+    }
+}
+updateLiveIosClock();
+setInterval(updateLiveIosClock, 30000);
 
 // ==========================================================================
 // Case Study Reader Modal Logic

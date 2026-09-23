@@ -648,14 +648,43 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-/* Dynamic Island pill centered at top */
+/* ==========================================================================
+   REAL INTERACTIVE APP SCREENS INSIDE 3D PHONE
+   ========================================================================== */
+.real-ios-status-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 100;
+    pointer-events: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.ios-clock {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0f172a;
+    transition: color 0.3s ease;
+}
+
+.real-ios-status-bar.dark-mode .ios-clock,
+.real-ios-status-bar.dark-mode .ios-icons {
+    color: #ffffff;
+}
+
 .dynamic-island-pill {
     position: absolute;
     top: 11px;
     left: 50%;
     transform: translateX(-50%);
-    width: 78px;
-    height: 20px;
+    width: 76px;
+    height: 19px;
     background: #000000;
     border-radius: 20px;
     display: flex;
@@ -683,21 +712,59 @@ h1, h2, h3, h4, h5, h6 {
     background: #181818;
 }
 
-/* App Screen Containers */
+.ios-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #0f172a;
+    transition: color 0.3s ease;
+}
+
+.real-home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: #0f172a;
+    border-radius: 4px;
+    opacity: 0.35;
+    z-index: 100;
+    pointer-events: none;
+    transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.real-home-indicator.dark-mode {
+    background: #ffffff;
+    opacity: 0.55;
+}
+
+/* Base App Screen Container */
 .app-screen {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: none;
-    cursor: pointer;
-    overflow: hidden;
-    background: #09090b;
+    flex-direction: column;
+    padding: 44px 1.2rem 24px;
+    background: #ffffff;
+    color: #0f172a;
     box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    scrollbar-width: none;
+}
+
+.app-screen::-webkit-scrollbar {
+    display: none;
 }
 
 .app-screen.active {
-    display: block;
+    display: flex;
     animation: screenEnter 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -706,48 +773,698 @@ h1, h2, h3, h4, h5, h6 {
     to { opacity: 1; transform: scale(1); }
 }
 
-.app-screen-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
+/* SCREEN 1: Splash Screen */
+#screenSplash {
+    background: #73c2b4;
+    color: #ffffff;
+    text-align: center;
+    justify-content: space-between;
+    padding: 55px 1.4rem 32px;
 }
 
-/* Touch hint floating pill */
-.screen-touch-hint {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.88);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: #e2e8f0;
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 0.35rem 0.85rem;
-    border-radius: 20px;
+.splash-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin: 0 auto;
+}
+
+.splash-mascot-wrap {
+    width: 160px;
+    height: 150px;
+    margin: 1.5rem auto 1rem;
     display: flex;
     align-items: center;
-    gap: 0.45rem;
-    pointer-events: none;
-    z-index: 25;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
-    white-space: nowrap;
-    animation: touchPulse 2.2s infinite ease-in-out;
+    justify-content: center;
 }
 
-@keyframes touchPulse {
-    0%, 100% { opacity: 0.85; transform: translateX(-50%) translateY(0); }
-    50% { opacity: 1; transform: translateX(-50%) translateY(-3px); }
+.splash-frog-mascot {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18));
+    animation: frogHover 3s infinite ease-in-out;
 }
 
-/* ==========================================================================
-   Navigation Dock below Phone
-   ========================================================================== */
+@keyframes frogHover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+.splash-brand-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+    color: #ffffff;
+}
+
+.splash-brand-desc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.45;
+    margin-bottom: 1.5rem;
+}
+
+.splash-start-btn {
+    background: #ffffff;
+    color: #1b6858;
+    border: none;
+    border-radius: 30px;
+    padding: 0.85rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.splash-start-btn:hover {
+    transform: translateY(-2px);
+    background: #f0fdf9;
+}
+
+/* SCREEN 2: Welcome / Social Auth */
+#screenWelcome {
+    background: #fafafa;
+    justify-content: space-between;
+    padding: 55px 1.4rem 28px;
+}
+
+.welcome-frog-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-full);
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.mini-frog-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.welcome-heading {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+}
+
+.real-social-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+}
+
+.real-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.72rem 1rem;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    color: #1e293b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: var(--transition);
+}
+
+.real-social-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.real-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.78rem;
+    margin: 0.9rem 0;
+}
+
+.real-divider::before, .real-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.real-divider span {
+    padding: 0 0.8rem;
+}
+
+.real-primary-btn {
+    background: linear-gradient(135deg, #73c2b4, #2e7d67);
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(46, 125, 103, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.real-primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(46, 125, 103, 0.45);
+}
+
+.real-switch-auth {
+    font-size: 0.8rem;
+    color: #64748b;
+    text-align: center;
+    margin-top: 0.6rem;
+}
+
+.real-switch-auth a {
+    color: #2e7d67;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* SCREEN 3: Real Interactive Login */
+#screenLogin, #screenSignup {
+    background: #ffffff;
+    padding: 55px 1.4rem 25px;
+    justify-content: flex-start;
+    gap: 0.8rem;
+}
+
+.real-screen-top {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.real-back-arrow {
+    background: #f1f5f9;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #334155;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.real-back-arrow:hover {
+    background: #e2e8f0;
+}
+
+.real-top-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.real-form-header h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0.2rem 0;
+}
+
+.real-form-header p {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.real-input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 0 0.9rem;
+    transition: var(--transition);
+}
+
+.real-input-box:focus-within {
+    background: #ffffff;
+    border-color: #73c2b4;
+    box-shadow: 0 0 0 3px rgba(115, 194, 180, 0.2);
+}
+
+.real-input-box i.input-icon {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-right: 0.6rem;
+}
+
+.real-input-box input {
+    width: 100%;
+    padding: 0.72rem 0;
+    border: none;
+    background: transparent;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #0f172a;
+    outline: none;
+}
+
+.real-eye-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.real-eye-btn:hover {
+    color: #475569;
+}
+
+.real-validation-hint {
+    font-size: 0.75rem;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0;
+    transition: color 0.3s ease;
+}
+
+.real-validation-hint.error {
+    color: #ef4444;
+}
+
+.real-form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+.real-form-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+}
+
+.real-form-options a {
+    color: #2e7d67;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.real-text-btn {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 0.4rem;
+    padding: 0.3rem;
+}
+
+.real-text-btn:hover {
+    color: #0f172a;
+    text-decoration: underline;
+}
+
+/* SCREEN 4: Real Interactive Dashboard */
+#screenDashboard {
+    background: #f8fafc;
+    padding: 52px 1.1rem 55px;
+    gap: 0.85rem;
+}
+
+.dash-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dash-user-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.dash-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #73c2b4;
+    flex-shrink: 0;
+}
+
+.dash-user-text h4 {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.dash-user-text p {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.dash-notif-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    font-size: 0.85rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.dash-notif-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ef4444;
+}
+
+.dash-wallet-card {
+    background: linear-gradient(135deg, #73c2b4 0%, #2e7d67 100%);
+    border-radius: 18px;
+    padding: 1.1rem;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(46, 125, 103, 0.28);
+}
+
+.wallet-card-tag {
+    font-size: 0.72rem;
+    opacity: 0.88;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dash-balance-num {
+    font-size: 1.65rem;
+    font-weight: 800;
+    margin: 0.2rem 0 0.8rem;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    transition: all 0.3s ease;
+}
+
+.wallet-sub-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 0.6rem;
+}
+
+.sub-stat-item span {
+    opacity: 0.85;
+}
+
+.sub-stat-item strong.green { color: #a7f3d0; }
+.sub-stat-item strong.coral { color: #fecaca; }
+
+/* 3-Tap Quick Log Container */
+.dash-quick-log-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 0.8rem;
+}
+
+.quick-log-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quick-chips-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.4rem;
+}
+
+.quick-chip {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0.5rem 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #1e293b;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    transition: var(--transition);
+}
+
+.quick-chip i {
+    font-size: 0.85rem;
+    color: #2e7d67;
+}
+
+.quick-chip:hover {
+    background: #f0fdf9;
+    border-color: #73c2b4;
+    transform: translateY(-2px);
+}
+
+.quick-chip:active {
+    transform: scale(0.95);
+}
+
+.dash-toast {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #10b981;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    display: none;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Recent Transactions */
+.dash-tx-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 0.8rem;
+    flex: 1;
+}
+
+.tx-header-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.tx-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tx-single-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.tx-single-item:last-child {
+    border-bottom: none;
+}
+
+.tx-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tx-icon-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+}
+
+.tx-meta strong {
+    display: block;
+    font-size: 0.76rem;
+    color: #0f172a;
+}
+
+.tx-meta span {
+    font-size: 0.65rem;
+    color: #94a3b8;
+}
+
+.tx-val {
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.tx-val.neg { color: #ef4444; }
+.tx-val.pos { color: #10b981; }
+
+/* Bottom Tab Bar inside iPhone */
+.dash-bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 0.8rem 6px;
+    z-index: 80;
+}
+
+.dash-nav-tab {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dash-nav-tab.active, .dash-nav-tab:hover {
+    color: #2e7d67;
+}
+
+.dash-nav-tab i {
+    font-size: 0.95rem;
+}
+
+/* SCREEN 5: Tips / Mascot */
+#screenOnboarding {
+    background: #ffffff;
+    padding: 55px 1.4rem 30px;
+    justify-content: space-between;
+}
+
+.tips-mascot-box {
+    width: 150px;
+    height: 130px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tips-frog-mascot {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.12));
+}
+
+.advice-card-box {
+    background: #f0fdf9;
+    border: 1.5px solid #a7f3d0;
+    border-radius: 18px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.advice-card-box h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1b6858;
+    margin: 0.3rem 0;
+}
+
+.advice-card-box p {
+    font-size: 0.8rem;
+    color: #334155;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.advice-tag-pill {
+    display: inline-block;
+    background: #d1fae5;
+    color: #065f46;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+}
+
 .phone-dock {
     width: 100%;
     margin-top: 1.5rem;
