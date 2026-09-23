@@ -251,6 +251,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    
+    // Mini subnav internal smooth scrolling inside Case Study Modal
+    document.querySelectorAll('.cs-subnav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const hash = link.getAttribute('href');
+            if (!hash || !hash.startsWith('#')) return;
+            const targetEl = document.querySelector(hash);
+            const scrollBody = document.getElementById('modalScrollBody');
+            if (targetEl && scrollBody) {
+                const subnavHeight = 50;
+                const targetOffset = targetEl.offsetTop - subnavHeight;
+                scrollBody.scrollTo({
+                    top: Math.max(0, targetOffset),
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
     // Auto open if URL has hash #casestudy-froggy or #casestudy-safemap
     if (window.location.hash === '#case-study-froggy' || window.location.hash === '#casestudy-froggy') {
         openCaseStudy('froggy');

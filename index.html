@@ -128,241 +128,49 @@
                             <!-- Dynamic Glass Glare Reflection -->
                             <div class="phone-glare"></div>
 
-                            <!-- Screen Viewport (Full Bleed 100%) -->
+                            <!-- Screen Viewport (Full Bleed 100% Edge-to-Edge) -->
                             <div class="phone-screen" id="phoneScreen">
-                                <!-- Status Bar -->
-                                <div class="screen-status-bar">
-                                    <span class="status-time" id="statusClock">9:41</span>
-                                    <div class="dynamic-island">
-                                        <div class="island-camera"></div>
-                                        <div class="island-sensor"></div>
-                                    </div>
-                                    <div class="status-icons">
-                                        <i class="fas fa-signal"></i>
-                                        <i class="fas fa-wifi"></i>
-                                        <i class="fas fa-battery-full"></i>
-                                    </div>
+                                <!-- Dynamic Island Pill -->
+                                <div class="dynamic-island-pill">
+                                    <div class="island-camera"></div>
+                                    <div class="island-sensor"></div>
                                 </div>
 
-                                <!-- SCREEN 1: Splash Screen (Full Bleed Green) -->
-                                <div class="app-screen active" id="screenSplash">
-                                    <div class="screen-content-center">
-                                        <div class="splash-hero-art">
-                                            <img src="screens/frog_money.png" alt="Froggy Brand" class="frog-art-img">
-                                        </div>
-                                        <div class="splash-details">
-                                            <h2 class="app-brand-name">FROGGY</h2>
-                                            <p class="app-brand-sub">Quản lý chi tiêu thông minh & thú vị</p>
-                                            <button class="app-btn-primary" onclick="goToAppScreen('screenWelcome')">
-                                                Bắt đầu trải nghiệm <i class="fas fa-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                                <!-- SCREEN 1: Splash Screen -->
+                                <div class="app-screen active" id="screenSplash" onclick="goToAppScreen('screenWelcome')" title="Chạm để tiếp tục">
+                                    <img src="assets/froggy/splash.png" alt="FROGGY Splash Screen" class="app-screen-img">
+                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để tiếp tục</div>
                                 </div>
 
                                 <!-- SCREEN 2: Welcome / Social Login -->
-                                <div class="app-screen" id="screenWelcome">
-                                    <div class="welcome-header">
-                                        <div class="welcome-badge">
-                                            <img src="screens/frog_money.png" alt="Frog" class="welcome-frog-mini">
-                                            <span>Chào mừng bạn!</span>
-                                        </div>
-                                        <h3 class="welcome-title">Đăng nhập để <br>tiếp tục cùng Ếch</h3>
-                                    </div>
-                                    
-                                    <div class="social-login-group">
-                                        <button class="social-btn social-google" onclick="goToAppScreen('screenDashboard')">
-                                            <svg viewBox="0 0 24 24" width="20" height="20">
-                                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                                            </svg>
-                                            <span>Tiếp tục với Google</span>
-                                        </button>
-                                        <button class="social-btn social-facebook" onclick="goToAppScreen('screenDashboard')">
-                                            <i class="fab fa-facebook" style="color: #1877F2; font-size: 20px;"></i>
-                                            <span>Tiếp tục với Facebook</span>
-                                        </button>
-                                        <button class="social-btn social-apple" onclick="goToAppScreen('screenDashboard')">
-                                            <i class="fab fa-apple" style="color: #000; font-size: 20px;"></i>
-                                            <span>Tiếp tục với Apple</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="divider-text"><span>hoặc tài khoản cá nhân</span></div>
-
-                                    <div class="welcome-actions">
-                                        <button class="app-btn-outline" onclick="goToAppScreen('screenLogin')">
-                                            Đăng nhập Email
-                                        </button>
-                                        <button class="app-btn-link" onclick="goToAppScreen('screenOnboarding')">
-                                            Khám phá mẹo chi tiêu <i class="fas fa-chevron-right"></i>
-                                        </button>
-                                    </div>
+                                <div class="app-screen" id="screenWelcome" onclick="goToAppScreen('screenLogin')" title="Chạm để mở Đăng nhập">
+                                    <img src="assets/froggy/welcome.png" alt="FROGGY Welcome Screen" class="app-screen-img">
+                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để Đăng nhập</div>
                                 </div>
 
-                                <!-- SCREEN 3: Interactive Login Form -->
-                                <div class="app-screen" id="screenLogin">
-                                    <div class="screen-back-nav">
-                                        <button class="app-back-btn" onclick="goToAppScreen('screenWelcome')">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </button>
-                                        <span class="screen-title">Đăng Nhập</span>
-                                    </div>
-
-                                    <div class="login-greeting">
-                                        <h3>Mừng bạn trở lại! 👋</h3>
-                                        <p>Đăng nhập để xem ví tiền hôm nay</p>
-                                    </div>
-
-                                    <form class="app-form" onsubmit="handleAppLogin(event)">
-                                        <div class="app-input-group">
-                                            <label>Email</label>
-                                            <div class="input-with-icon">
-                                                <i class="fas fa-envelope"></i>
-                                                <input type="email" value="namkhanh@greenwich.edu.vn" placeholder="user@gmail.com" required>
-                                            </div>
-                                        </div>
-                                        <div class="app-input-group">
-                                            <label>Mật khẩu</label>
-                                            <div class="input-with-icon">
-                                                <i class="fas fa-lock"></i>
-                                                <input type="password" value="Froggy2026@" id="liveAppPassword" required>
-                                                <button type="button" class="eye-toggle" onclick="toggleAppPassword()">
-                                                    <i class="fas fa-eye" id="eyeToggleIcon"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="form-helper-row">
-                                            <label class="remember-check">
-                                                <input type="checkbox" checked> <span>Ghi nhớ</span>
-                                            </label>
-                                            <a href="#" class="forgot-link" onclick="event.preventDefault()">Quên mật khẩu?</a>
-                                        </div>
-                                        <button type="submit" class="app-btn-primary">
-                                            Đăng Nhập Ngay
-                                        </button>
-                                    </form>
-
-                                    <div class="quick-hint">
-                                        <i class="fas fa-info-circle"></i> Bấm "Đăng Nhập Ngay" để vào Dashboard
-                                    </div>
+                                <!-- SCREEN 3: Login Form -->
+                                <div class="app-screen" id="screenLogin" onclick="goToAppScreen('screenLoginError')" title="Chạm để xem kiểm thử lỗi mật khẩu">
+                                    <img src="assets/froggy/login.png" alt="FROGGY Login Screen" class="app-screen-img">
+                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để kiểm tra validation</div>
                                 </div>
 
-                                <!-- SCREEN 4: Live Dashboard -->
-                                <div class="app-screen" id="screenDashboard">
-                                    <div class="dash-top-bar">
-                                        <div class="user-greeting">
-                                            <img src="avatar.jpg?v=2" alt="Nam Khanh" class="dash-avatar">
-                                            <div>
-                                                <span class="dash-hello">Xin chào,</span>
-                                                <h4 class="dash-name">Nam Khánh</h4>
-                                            </div>
-                                        </div>
-                                        <button class="notif-btn" title="Thông báo">
-                                            <i class="fas fa-bell"></i>
-                                            <span class="notif-dot"></span>
-                                        </button>
-                                    </div>
-
-                                    <!-- Wallet Balance Card -->
-                                    <div class="wallet-card">
-                                        <div class="wallet-badge">Số dư khả dụng</div>
-                                        <div class="wallet-amount">15.850.000 ₫</div>
-                                        <div class="wallet-meta">
-                                            <div class="meta-item">
-                                                <span class="meta-label">Thu nhập:</span>
-                                                <span class="meta-val green">+24.000.000 ₫</span>
-                                            </div>
-                                            <div class="meta-item">
-                                                <span class="meta-label">Đã tiêu:</span>
-                                                <span class="meta-val red">-8.150.000 ₫</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Quick Actions -->
-                                    <div class="quick-actions-bar">
-                                        <button class="action-chip active" onclick="goToAppScreen('screenOnboarding')">
-                                            <i class="fas fa-lightbulb"></i> Mẹo chi tiêu
-                                        </button>
-                                        <button class="action-chip" onclick="alert('Đã thêm giao dịch mẫu +50.000đ!')">
-                                            <i class="fas fa-plus"></i> Thêm khoản chi
-                                        </button>
-                                        <button class="action-chip" onclick="goToAppScreen('screenWelcome')">
-                                            <i class="fas fa-sign-out-alt"></i> Đổi user
-                                        </button>
-                                    </div>
-
-                                    <!-- Recent Transactions List -->
-                                    <div class="tx-section">
-                                        <div class="tx-section-header">
-                                            <h5>Giao dịch gần đây</h5>
-                                            <a href="#" onclick="event.preventDefault()">Tất cả</a>
-                                        </div>
-                                        <div class="tx-list">
-                                            <div class="tx-item">
-                                                <div class="tx-icon coffee"><i class="fas fa-coffee"></i></div>
-                                                <div class="tx-info">
-                                                    <span class="tx-title">The Coffee House</span>
-                                                    <span class="tx-time">Hôm nay · 08:30</span>
-                                                </div>
-                                                <div class="tx-amount negative">-45.000 ₫</div>
-                                            </div>
-                                            <div class="tx-item">
-                                                <div class="tx-icon book"><i class="fas fa-book"></i></div>
-                                                <div class="tx-info">
-                                                    <span class="tx-title">Sách UX Research</span>
-                                                    <span class="tx-time">Hôm qua · 15:20</span>
-                                                </div>
-                                                <div class="tx-amount negative">-180.000 ₫</div>
-                                            </div>
-                                            <div class="tx-item">
-                                                <div class="tx-icon salary"><i class="fas fa-wallet"></i></div>
-                                                <div class="tx-info">
-                                                    <span class="tx-title">Lương thực tập</span>
-                                                    <span class="tx-time">20/09 · 10:00</span>
-                                                </div>
-                                                <div class="tx-amount positive">+6.000.000 ₫</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <!-- SCREEN 4: Login Error State (Validation + iOS Keyboard) -->
+                                <div class="app-screen" id="screenLoginError" onclick="goToAppScreen('screenOnboarding')" title="Chạm để xem Mẹo chi tiêu">
+                                    <img src="assets/froggy/login_error.png" alt="FROGGY Login Error Validation" class="app-screen-img">
+                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để xem Onboarding</div>
                                 </div>
 
-                                <!-- SCREEN 5: Onboarding / Mascot Advice -->
-                                <div class="app-screen" id="screenOnboarding">
-                                    <div class="screen-back-nav">
-                                        <button class="app-back-btn" onclick="goToAppScreen('screenDashboard')">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </button>
-                                        <span class="screen-title">Gợi Ý Từ Chú Ếch</span>
-                                    </div>
-
-                                    <div class="onboarding-art-wrapper">
-                                        <img src="screens/frog_thinking.png" alt="Frog Thinking" class="frog-thinking-img">
-                                    </div>
-
-                                    <div class="advice-card">
-                                        <span class="advice-tag"><i class="fas fa-star"></i> Mẹo Tài Chính Hôm Nay</span>
-                                        <h4 class="advice-title">Quy tắc 50/30/20</h4>
-                                        <p class="advice-text">
-                                            Hãy dành <strong>50%</strong> cho nhu cầu thiết yếu, <strong>30%</strong> cho sở thích cá nhân và <strong>20%</strong> cho quỹ tiết kiệm của bạn nhé!
-                                        </p>
-                                    </div>
-
-                                    <div class="screen-footer-actions">
-                                        <button class="app-btn-primary" onclick="goToAppScreen('screenDashboard')">
-                                            Quay lại Dashboard <i class="fas fa-home"></i>
-                                        </button>
-                                        <button class="app-btn-outline" onclick="goToAppScreen('screenSplash')">
-                                            Về màn hình Splash 🐸
-                                        </button>
-                                    </div>
+                                <!-- SCREEN 5: Onboarding / Tips Screen -->
+                                <div class="app-screen" id="screenOnboarding" onclick="goToAppScreen('screenSignup')" title="Chạm để xem Đăng ký">
+                                    <img src="assets/froggy/onboarding.png" alt="FROGGY Onboarding Screen" class="app-screen-img">
+                                    <div class="screen-touch-hint"><i class="fas fa-hand-pointer"></i> Chạm để xem Đăng ký</div>
                                 </div>
 
-                                <!-- Home Indicator Bar -->
-                                <div class="ios-home-indicator"></div>
+                                <!-- SCREEN 6: Sign Up Screen -->
+                                <div class="app-screen" id="screenSignup" onclick="goToAppScreen('screenSplash')" title="Chạm để quay lại Splash">
+                                    <img src="assets/froggy/signup.png" alt="FROGGY Sign Up Screen" class="app-screen-img">
+                                    <div class="screen-touch-hint"><i class="fas fa-undo"></i> Chạm để về Splash</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -374,20 +182,23 @@
                                 🐸 Splash
                             </button>
                             <button class="dock-tab-btn" data-screen="screenWelcome" onclick="goToAppScreen('screenWelcome')">
-                                🔐 Social
+                                👋 Welcome
                             </button>
                             <button class="dock-tab-btn" data-screen="screenLogin" onclick="goToAppScreen('screenLogin')">
                                 📝 Login
                             </button>
-                            <button class="dock-tab-btn" data-screen="screenDashboard" onclick="goToAppScreen('screenDashboard')">
-                                📊 Dashboard
+                            <button class="dock-tab-btn" data-screen="screenLoginError" onclick="goToAppScreen('screenLoginError')">
+                                ⚠️ Validation
                             </button>
                             <button class="dock-tab-btn" data-screen="screenOnboarding" onclick="goToAppScreen('screenOnboarding')">
                                 💡 Tips
                             </button>
+                            <button class="dock-tab-btn" data-screen="screenSignup" onclick="goToAppScreen('screenSignup')">
+                                ✨ Sign Up
+                            </button>
                         </div>
                         <div class="dock-instruction">
-                            <i class="fas fa-hand-pointer"></i> Bấm & gõ trực tiếp vào màn hình app · Rê chuột để xoay 3D
+                            <i class="fas fa-hand-pointer"></i> Chạm trực tiếp vào màn hình điện thoại hoặc chọn tab bên trên · Rê chuột để xoay 3D
                         </div>
                     </div>
                 </div>
@@ -1159,26 +970,91 @@
                             <span class="cs-num">07</span>
                             <h3>Thư Viện Giao Diện Hoàn Thiện (High-Fidelity UI Gallery)</h3>
                         </div>
+                        <p class="cs-gallery-intro" style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem;">
+                            Trọn bộ 7 màn hình hoàn thiện được thiết kế trực tiếp trên Figma với tỷ lệ chuẩn iPhone 390x844px, áp dụng Design System Mint Sage và hệ thống component Auto-layout:
+                        </p>
                         <div class="screens-gallery-grid">
                             <div class="gallery-screen-item">
-                                <img src="screens/screen0.png" alt="FROGGY Splash Screen" class="gallery-img">
-                                <span>01. Splash Screen</span>
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/splash.png" alt="01. Splash Screen" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>01. Splash Screen</h5>
+                                    <p>Nhận diện thương hiệu Mint Sage (#73C2B4) kết hợp linh vật Ếch ôm túi vàng tạo cảm giác hứng khởi.</p>
+                                </div>
                             </div>
                             <div class="gallery-screen-item">
-                                <img src="screens/screen1.png" alt="Social Welcome" class="gallery-img">
-                                <span>02. Social Welcome</span>
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/welcome.png" alt="02. Social Welcome" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>02. Social Welcome</h5>
+                                    <p>Tối ưu hóa phễu onboarding với Social Login Google, Apple, Facebook và tùy chọn mật khẩu riêng.</p>
+                                </div>
                             </div>
                             <div class="gallery-screen-item">
-                                <img src="screens/screen3.png" alt="Email Login" class="gallery-img">
-                                <span>03. Email Login</span>
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/login.png" alt="03. Login Account" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>03. Login Experience</h5>
+                                    <p>Giao diện nhập liệu tối giản, ghi nhớ mật khẩu và bố cục phím số tương tác dễ chịu trên di động.</p>
+                                </div>
                             </div>
                             <div class="gallery-screen-item">
-                                <img src="screens/screen4.png" alt="Onboarding Tips" class="gallery-img">
-                                <span>04. Onboarding Tips</span>
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/login_error.png" alt="04. Error Validation" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>04. Inline Validation</h5>
+                                    <p>Xử lý trạng thái lỗi tinh tế với thông báo 'Password is incorrect' màu đỏ mềm, bàn phím iOS tích hợp chân thực.</p>
+                                </div>
                             </div>
                             <div class="gallery-screen-item">
-                                <img src="screens/screen6.png" alt="Quick Register" class="gallery-img">
-                                <span>05. Quick Register</span>
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/signup.png" alt="05. Quick Registration" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>05. Quick Registration</h5>
+                                    <p>Form đăng ký tài khoản nhanh chóng, cắt giảm các bước phụ để giữ chân người dùng trong 30 giây đầu.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/signup_error.png" alt="06. Password Mismatch" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>06. Password Mismatch</h5>
+                                    <p>Cảnh báo lỗi nhập lại mật khẩu ngay tức thì, tránh tình trạng submit form mới biết có lỗi.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/onboarding.png" alt="07. Stay On Track" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>07. Stay On Track (Mascot Advice)</h5>
+                                    <p>Màn hình tư vấn chi tiêu với chú Ếch thông thái, giới thiệu quy tắc 50/30/20 và hệ thống carousel.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Interactive Figma Embed Container -->
+                        <div class="figma-embed-container">
+                            <div class="figma-embed-header">
+                                <div class="figma-embed-title">
+                                    <i class="fab fa-figma" style="color: #f24e1e; font-size: 1.4rem;"></i>
+                                    <div>
+                                        <h4>Trực Tiếp File Thiết Kế Figma Gốc (Interactive Figma Canvas)</h4>
+                                        <p>Bạn có thể phóng to, thu nhỏ, cuộn và kiểm tra toàn bộ artboards, flow tương tác và Design System của FROGGY ngay bên dưới:</p>
+                                    </div>
+                                </div>
+                                <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=1-5&t=uviyFJx88BMHhfFp-1" target="_blank" rel="noopener noreferrer" class="btn btn-figma-sm">
+                                    <i class="fas fa-external-link-alt"></i> Mở Trong Figma
+                                </a>
+                            </div>
+                            <div class="figma-iframe-wrapper">
+                                <iframe class="figma-live-embed" width="100%" height="560" src="https://embed.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?embed-host=share&node-id=1-5&theme=dark" allowfullscreen loading="lazy"></iframe>
                             </div>
                         </div>
                     </section>
@@ -1287,11 +1163,94 @@
                             </div>
                         </div>
 
-                        <!-- Hero Banner Graphic -->
+                        <!-- Hero Banner Graphic: Realistic Dark Mode Smart Navigation Map -->
                         <div class="safemap-hero-banner">
-                            <div class="banner-inner-radar">
-                                <div class="radar-scan"></div>
-                                <div class="radar-tag"><i class="fas fa-shield-alt"></i> Safe Route Active · Đà Nẵng City</div>
+                            <!-- Map Background Grid & City Graphic -->
+                            <div class="sm-map-canvas">
+                                <div class="sm-map-grid-lines"></div>
+                                <div class="sm-river-han">
+                                    <span class="sm-water-label">Sông Hàn · Đà Nẵng</span>
+                                    <div class="sm-bridge dragon-bridge"><span>Cầu Rồng</span></div>
+                                    <div class="sm-bridge tran-thi-ly"><span>Cầu Trần Thị Lý</span></div>
+                                </div>
+
+                                <!-- Street Labels -->
+                                <span class="sm-street-label st-nguyen-van-linh">Đường Nguyễn Văn Linh (Khô ráo · Đèn sáng)</span>
+                                <span class="sm-street-label st-ham-nghi">Đường Hàm Nghi (Khu vực trũng ngập)</span>
+                                <span class="sm-street-label st-bach-dang">Đường Bạch Đằng</span>
+                                <span class="sm-street-label st-le-duan">Đường Lê Duẩn</span>
+
+                                <!-- Routes SVG -->
+                                <svg class="sm-routes-svg" viewBox="0 0 800 360" preserveAspectRatio="none">
+                                    <!-- Blocked Flooded Route (Red dashed) -->
+                                    <path class="route-svg-blocked" d="M 80 180 Q 220 180 340 100 T 640 100" />
+                                    <!-- Active Safe Route (Glowing Emerald) -->
+                                    <path class="route-svg-safe" d="M 80 180 Q 200 240 400 260 T 720 220" />
+                                </svg>
+
+                                <!-- Hazard Pin on Flooded Route -->
+                                <div class="sm-hazard-marker" style="left: 45%; top: 22%;">
+                                    <div class="hazard-ping"></div>
+                                    <div class="hazard-badge">
+                                        <i class="fas fa-water"></i>
+                                        <div>
+                                            <strong>Hàm Nghi ngập 40cm</strong>
+                                            <span>Tránh đi vào · 3 xe chết máy</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Safe Waypoint -->
+                                <div class="sm-safe-marker" style="left: 55%; top: 70%;">
+                                    <div class="safe-ping"></div>
+                                    <div class="safe-badge">
+                                        <i class="fas fa-shield-check"></i>
+                                        <div>
+                                            <strong>Nguyễn Văn Linh (Khô ráo)</strong>
+                                            <span>Đèn đường 100% · Lưu thông tốt</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- User Origin Pin -->
+                                <div class="sm-user-pin" style="left: 8%; top: 48%;">
+                                    <div class="user-pulse"></div>
+                                    <div class="user-pill"><i class="fas fa-map-marker-alt"></i> ĐH Greenwich</div>
+                                </div>
+
+                                <!-- Destination Pin -->
+                                <div class="sm-dest-pin" style="left: 90%; top: 60%;">
+                                    <div class="dest-pill"><i class="fas fa-flag-checkered"></i> Về Nhà An Toàn</div>
+                                </div>
+                            </div>
+
+                            <!-- Live HUD Overlays on Map -->
+                            <div class="sm-map-hud top-hud">
+                                <div class="sm-hud-pill weather-alert">
+                                    <i class="fas fa-cloud-showers-heavy"></i>
+                                    <span>Mưa bão cấp 2 · Mực nước dâng nhanh</span>
+                                </div>
+                                <div class="sm-hud-pill status-engine">
+                                    <span class="hud-dot live"></span>
+                                    <span>Safe Route Engine: Tối ưu 100%</span>
+                                </div>
+                            </div>
+
+                            <div class="sm-map-hud bottom-hud">
+                                <div class="sm-route-card">
+                                    <div class="route-card-main">
+                                        <div class="route-icon-box"><i class="fas fa-route"></i></div>
+                                        <div>
+                                            <div class="route-title">Lộ trình an toàn đề xuất: <strong>14 phút (4.2 km)</strong></div>
+                                            <div class="route-desc">Đã tự động né tránh điểm ngập Hàm Nghi & đoạn đường tối Khe Cạn</div>
+                                        </div>
+                                    </div>
+                                    <div class="route-tag-safe"><i class="fas fa-check"></i> Đạt chuẩn an toàn</div>
+                                </div>
+                                <button class="sm-sos-floating-btn" type="button" title="Kích hoạt cứu hộ 1 chạm">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>SOS 1 Chạm</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -1486,10 +1445,94 @@
                         </div>
                     </section>
 
-                    <!-- 06. Usability & Contribution -->
-                    <section class="cs-section" id="sm-testing">
+                    <!-- 06. High-Fidelity UI Features Showcase -->
+                    <section class="cs-section" id="sm-screens">
                         <div class="cs-section-header">
                             <span class="cs-num">06</span>
+                            <h3>Các Tính Năng Giao Diện Cốt Lõi (Core UI Features)</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>3 màn hình tính năng trực quan được thiết kế để thao tác nhanh và an toàn trong điều kiện trời mưa hoặc lái xe ban đêm:</p>
+                            
+                            <div class="sm-screens-showcase-grid">
+                                <div class="sm-feature-card">
+                                    <div class="feature-mockup-frame">
+                                        <div class="mockup-header-bar">
+                                            <span class="mock-badge green"><i class="fas fa-shield-alt"></i> Safe Route Mode</span>
+                                            <span class="mock-badge red"><i class="fas fa-times-circle"></i> Tránh ngập</span>
+                                        </div>
+                                        <div class="mockup-screen-view mode-nav">
+                                            <div class="mock-route-choice active">
+                                                <div class="mock-route-top">
+                                                    <span class="route-name">Tuyến An Toàn (Đề xuất)</span>
+                                                    <span class="route-time">14 min</span>
+                                                </div>
+                                                <div class="mock-route-sub">Qua Nguyễn Văn Linh · Đèn sáng 100% · Không ngập</div>
+                                            </div>
+                                            <div class="mock-route-choice danger">
+                                                <div class="mock-route-top">
+                                                    <span class="route-name">Tuyến Ngắn Nhất (Cảnh báo)</span>
+                                                    <span class="route-time">10 min</span>
+                                                </div>
+                                                <div class="mock-route-sub">Qua Hàm Nghi · ⚠️ Ngập 40cm lúc 21:15</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feature-card-info">
+                                        <h5>01. So Sánh Tuyến Đường An Toàn (Dual-Route Engine)</h5>
+                                        <p>Cho phép người dùng thấy rõ lý do hệ thống chọn đường vòng (xa hơn 1.2km) thay vì để họ vô tình lao vào vùng ngập.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sm-feature-card">
+                                    <div class="feature-mockup-frame">
+                                        <div class="mockup-header-bar">
+                                            <span class="mock-badge amber"><i class="fas fa-bullhorn"></i> Báo Cáo Sự Cố 2 Chạm</span>
+                                        </div>
+                                        <div class="mockup-screen-view mode-report">
+                                            <div class="report-quick-grid">
+                                                <div class="report-chip active"><i class="fas fa-water"></i> Ngập nước sâu</div>
+                                                <div class="report-chip"><i class="fas fa-lightbulb-slash"></i> Mất đèn đường</div>
+                                                <div class="report-chip"><i class="fas fa-tree"></i> Cây đổ / Vật cản</div>
+                                                <div class="report-chip"><i class="fas fa-car-crash"></i> Tai nạn / Kẹt xe</div>
+                                            </div>
+                                            <div class="report-confirm-btn"><i class="fas fa-check"></i> Xác nhận gửi báo cáo (4s)</div>
+                                        </div>
+                                    </div>
+                                    <div class="feature-card-info">
+                                        <h5>02. Ghim Cảnh Báo Cộng Đồng (Crowdsourced Hazard Pin)</h5>
+                                        <p>Tối ưu thao tác 2 chạm trên icon lớn, giúp tài xế xe máy gửi cảnh báo an toàn mà không cần gõ bàn phím.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sm-feature-card">
+                                    <div class="feature-mockup-frame">
+                                        <div class="mockup-header-bar">
+                                            <span class="mock-badge red"><i class="fas fa-life-ring"></i> Trung Tâm Khẩn Cấp SOS</span>
+                                        </div>
+                                        <div class="mockup-screen-view mode-sos">
+                                            <div class="sos-circle-trigger">
+                                                <div class="sos-pulse-ring"></div>
+                                                <span>GIỮ 2S</span>
+                                            </div>
+                                            <div class="sos-helper-text">
+                                                Tự động gửi định vị GPS & gọi 3 số khẩn cấp
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feature-card-info">
+                                        <h5>03. Nút Cứu Hộ Khẩn Cấp 1 Chạm (Emergency SOS)</h5>
+                                        <p>Cơ chế nhấn giữ 2 giây chống bấm nhầm, tự động truyền phát tọa độ GPS đến người thân khi gặp sự cố ban đêm.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 07. Usability & Contribution -->
+                    <section class="cs-section" id="sm-testing">
+                        <div class="cs-section-header">
+                            <span class="cs-num">07</span>
                             <h3>Kiểm Thử Khả Dụng & Đóng Góp Cá Nhân (Testing & My Contribution)</h3>
                         </div>
                         <div class="cs-text-block">
