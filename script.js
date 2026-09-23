@@ -185,3 +185,76 @@ window.handleAppLogin = function (e) {
     // Simulate instant login transition to Dashboard
     goToAppScreen('screenDashboard');
 };
+
+// ==========================================================================
+// Case Study Reader Modal Logic
+// ==========================================================================
+window.openCaseStudy = function (projectId) {
+    const modal = document.getElementById('caseStudyModal');
+    if (!modal) return;
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    switchCaseStudyTab(projectId || 'froggy');
+
+    const scrollBody = document.getElementById('modalScrollBody');
+    if (scrollBody) scrollBody.scrollTop = 0;
+};
+
+window.closeCaseStudy = function () {
+    const modal = document.getElementById('caseStudyModal');
+    if (!modal) return;
+
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+};
+
+window.switchCaseStudyTab = function (projectId) {
+    const isFroggy = projectId === 'froggy';
+
+    const btnFroggy = document.getElementById('tabBtnFroggy');
+    const btnSafemap = document.getElementById('tabBtnSafemap');
+    const contentFroggy = document.getElementById('tabContentFroggy');
+    const contentSafemap = document.getElementById('tabContentSafemap');
+
+    if (btnFroggy && btnSafemap) {
+        btnFroggy.classList.toggle('active', isFroggy);
+        btnSafemap.classList.toggle('active', !isFroggy);
+    }
+
+    if (contentFroggy && contentSafemap) {
+        contentFroggy.classList.toggle('active', isFroggy);
+        contentSafemap.classList.toggle('active', !isFroggy);
+    }
+
+    const scrollBody = document.getElementById('modalScrollBody');
+    if (scrollBody) scrollBody.scrollTop = 0;
+};
+
+// Modal Backdrop Click & ESC Key Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeCaseStudy();
+        }
+    });
+
+    const modalOverlay = document.getElementById('caseStudyModal');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeCaseStudy();
+            }
+        });
+    }
+
+    // Auto open if URL has hash #casestudy-froggy or #casestudy-safemap
+    if (window.location.hash === '#case-study-froggy' || window.location.hash === '#casestudy-froggy') {
+        openCaseStudy('froggy');
+    } else if (window.location.hash === '#case-study-safemap' || window.location.hash === '#casestudy-safemap') {
+        openCaseStudy('safemap');
+    }
+});
