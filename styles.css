@@ -4975,3 +4975,20 @@ button.logo-pill {
         gap: 0.8rem;
     }
 }
+
+/* ==========================================================================
+   BILINGUAL CASE STUDY CONTENT DISPLAY (VI / EN)
+   ========================================================================== */
+html[lang="en"] .lang-vi {
+    display: none !important;
+}
+html[lang="vi"] .lang-en {
+    display: none !important;
+}
+html[lang="en"] .lang-en {
+    display: block !important;
+}
+html[lang="vi"] .lang-vi {
+    display: block !important;
+}
+

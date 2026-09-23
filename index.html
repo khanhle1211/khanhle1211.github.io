@@ -954,7 +954,7 @@
                     </button>
                 </div>
                 <div class="modal-header-actions">
-                    <span class="esc-badge"><kbd>ESC</kbd> đóng</span>
+                    <span class="esc-badge"><kbd>ESC</kbd> <span data-i18n="modalEscClose">đóng</span></span>
                     <button class="modal-close-btn" onclick="closeCaseStudy()" aria-label="Đóng Case Study" title="Đóng (ESC)">
                         <i class="fas fa-times"></i>
                     </button>
@@ -966,7 +966,8 @@
 
                 <!-- ==================== TAB 1: FROGGY CASE STUDY ==================== -->
                 <article class="case-study-content active" id="tabContentFroggy">
-                    <!-- Project Hero -->
+                    <div class="lang-vi">
+<!-- Project Hero -->
                     <div class="cs-hero">
                         <div class="cs-badge-row">
                             <span class="cs-tag">UX/UI Case Study</span>
@@ -1442,11 +1443,490 @@
                             </div>
                         </div>
                     </section>
-                </article>
+                    </div>
+                    <div class="lang-en">
+<!-- Project Hero -->
+                    <div class="cs-hero">
+                        <div class="cs-badge-row">
+                            <span class="cs-tag">UX/UI Case Study</span>
+                            <span class="cs-tag highlight">Mobile App</span>
+                            <span class="cs-tag">Fintech &amp; Gamification</span>
+                        </div>
+                        <h1 class="cs-title">FROGGY Mobile App</h1>
+                        <p class="cs-subtitle">Redefining personal expense tracking for Gen Z through emotional design, gamification, and a frictionless 3-tap log.</p>
+                        
+                        <!-- Project Metadata Strip -->
+                        <div class="cs-meta-grid">
+                            <div class="meta-box">
+                                <span class="lbl">Role</span>
+                                <span class="val">Lead UX/UI Designer &amp; Front-end</span>
+                            </div>
+                            <div class="meta-box">
+                                <span class="lbl">Timeline</span>
+                                <span class="val">6 Weeks (Horus Academy 2025)</span>
+                            </div>
+                            <div class="meta-box">
+                                <span class="lbl">Tools</span>
+                                <span class="val">Figma, FigJam, Three.js, CSS3</span>
+                            </div>
+                            <div class="meta-box">
+                                <span class="lbl">Team</span>
+                                <span class="val">3 Members (1 UX/UI, 1 Dev, 1 Mentor)</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Links -->
+                        <div class="cs-hero-actions">
+                            <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&amp;t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="btn btn-figma">
+                                <i class="fab fa-figma"></i> Open Original Figma Canvas
+                            </a>
+                        </div>
+
+                        <!-- Hero Banner Image from Figma -->
+                        <div class="cs-banner-img-wrap">
+                            <img src="figma_thumbnail.png" alt="FROGGY - How's your wallet doing?" class="cs-banner-img">
+                        </div>
+                    </div>
+
+                    <!-- Table of Contents Section (Design Process Navigation) -->
+                    <div class="cs-toc-section">
+                        <div class="cs-toc-label">
+                            <i class="fas fa-compass"></i> Design Process &amp; Deliverables
+                        </div>
+                        <div class="cs-toc-grid">
+                            <a href="#fg-problem" class="cs-toc-item"><span class="toc-idx">01</span> Problem Statement</a>
+                            <a href="#fg-research" class="cs-toc-item"><span class="toc-idx">02</span> User Research</a>
+                            <a href="#fg-persona" class="cs-toc-item"><span class="toc-idx">03</span> User Persona</a>
+                            <a href="#fg-flow" class="cs-toc-item"><span class="toc-idx">04</span> 3-Tap User Flow</a>
+                            <a href="#fg-wireframe" class="cs-toc-item"><span class="toc-idx">05</span> Wireframe vs Hi-Fi</a>
+                            <a href="#fg-designsystem" class="cs-toc-item"><span class="toc-idx">06</span> Design System</a>
+                            <a href="#fg-screens" class="cs-toc-item"><span class="toc-idx">07</span> Hi-Fi UI Gallery</a>
+                            <a href="#fg-testing" class="cs-toc-item"><span class="toc-idx">08</span> Usability Testing</a>
+                            <a href="#fg-contribution" class="cs-toc-item"><span class="toc-idx">09</span> My Contribution</a>
+                        </div>
+                    </div>
+
+                    <!-- 01. Problem -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">01</span>
+                            <h3>The Problem Statement</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p class="lead-text">
+                                <strong>78% of Gen Z users</strong> start logging personal expenses but abandon the habit within their first 7 days.
+                            </p>
+                            <p>
+                                Through user interviews, we discovered that conventional personal finance applications (such as Excel, Money Lover, and traditional ledger tools) suffer from severe <strong>Cognitive Overload</strong>:
+                            </p>
+                            <div class="cs-cards-row">
+                                <div class="cs-card danger">
+                                    <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                                    <h4>Excessive Data-Entry Steps</h4>
+                                    <p>To log a simple $1.50 coffee, users are forced through 5–6 fields: Category, Sub-category, Account/Wallet, Date &amp; Time, Note, and Tax.</p>
+                                </div>
+                                <div class="cs-card danger">
+                                    <div class="card-icon"><i class="fas fa-heart-broken"></i></div>
+                                    <h4>Financial Anxiety &amp; Guilt</h4>
+                                    <p>Glaring red negative numbers and rigid accounting ledgers induce guilt, causing young adults to avoid opening the app.</p>
+                                </div>
+                                <div class="cs-card danger">
+                                    <div class="card-icon"><i class="fas fa-battery-empty"></i></div>
+                                    <h4>Lack of Habit Formation Loops</h4>
+                                    <p>Zero micro-delight or positive reinforcement to incentivize returning to the app on a daily basis.</p>
+                                </div>
+                            </div>
+                            <div class="hmw-quote">
+                                <strong>How Might We Question:</strong>
+                                <p><em>"How might we transform personal expense logging from an exhausting bookkeeping chore into an effortless, joyful habit completed in under 5 seconds?"</em></p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 02. Research & Insights -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">02</span>
+                            <h3>User Research &amp; Actionable Insights</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>
+                                We conducted quantitative surveys across <strong>64 young adults (ages 18–25)</strong> in Da Nang combined with 8 in-depth generative interviews.
+                            </p>
+                            <div class="research-stats-grid">
+                                <div class="stat-box">
+                                    <span class="big-num">85%</span>
+                                    <span class="stat-desc">Only want 2 core figures on glance: <em>"How much did I spend today?"</em> and <em>"How much budget is left?"</em></span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="big-num">91%</span>
+                                    <span class="stat-desc">Admit friction typing manual notes for micro-expenses (under $2).</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="big-num">72%</span>
+                                    <span class="stat-desc">Strong affinity toward apps with an expressive mascot that gamifies habits like Duolingo.</span>
+                                </div>
+                            </div>
+                            <div class="key-insight-box">
+                                <h4>💡 3 Key Design-Driving Insights:</h4>
+                                <ul>
+                                    <li><strong>Speed beats granularity:</strong> Users prioritize a 3-second logging experience over 30-second accounting categorization.</li>
+                                    <li><strong>Visual cash flow over negative spreadsheets:</strong> Intuitive color gauges reduce psychological anxiety by 65% compared to glaring red deficits.</li>
+                                    <li><strong>Emotional Design reinforces habits:</strong> A responsive mascot celebrating budget goals builds positive reinforcement loops.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 03. User Persona -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">03</span>
+                            <h3>User Persona &amp; Pain Points</h3>
+                        </div>
+                        <div class="persona-card-wrapper">
+                            <div class="persona-profile-col">
+                                <div class="persona-avatar-box">
+                                    <img src="avatar.jpg?v=2" alt="Persona Minh Anh" class="persona-avatar-img">
+                                </div>
+                                <h4>Nguyen Minh Anh, 20</h4>
+                                <span class="persona-role">2nd-Year University Student · Da Nang</span>
+                                <div class="persona-tags">
+                                    <span>Gen Z</span>
+                                    <span>Part-time Job</span>
+                                    <span>Travel &amp; Coffee</span>
+                                </div>
+                            </div>
+                            <div class="persona-details-col">
+                                <blockquote class="persona-quote">
+                                    “Every time I buy a 35k coffee with friends, having to open an accounting app with 4 tiers of categories makes me give up entirely.”
+                                </blockquote>
+                                <div class="persona-grid-info">
+                                    <div>
+                                        <h5><i class="fas fa-bullseye"></i> Goals</h5>
+                                        <ul>
+                                            <li>Save 1,500,000 VND / month for a new study laptop.</li>
+                                            <li>Instantly know remaining daily balance without mental math.</li>
+                                            <li>Build a stress-free personal financial routine.</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5><i class="fas fa-fire-alt"></i> Pain Points</h5>
+                                        <ul>
+                                            <li>Forgets to log right after paying because legacy flows take too long.</li>
+                                            <li>Feels anxious and discouraged whenever seeing negative balance alerts.</li>
+                                            <li>Existing accounting apps are over-engineered for corporate bookkeeping.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 04. User Flow -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">04</span>
+                            <h3>User Flow &amp; Information Architecture (The 3-Tap Quick Log)</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>
+                                To eliminate input friction, we completely re-engineered the core transaction flow into a frictionless <strong>"3-Tap Quick Log"</strong>:
+                            </p>
+                            <div class="user-flow-diagram">
+                                <div class="flow-step">
+                                    <div class="step-circle">1</div>
+                                    <h5>Open App</h5>
+                                    <p>Smart numpad ready immediately on home launch</p>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="flow-step">
+                                    <div class="step-circle">2</div>
+                                    <h5>Tap Amount</h5>
+                                    <p>Input amount with oversized touch-friendly numpad</p>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="flow-step">
+                                    <div class="step-circle">3</div>
+                                    <h5>Tap Category</h5>
+                                    <p>1-tap on auto-suggested Coffee / Food icon</p>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="flow-step finish">
+                                    <div class="step-circle success"><i class="fas fa-check"></i></div>
+                                    <h5>Done in 4.2s!</h5>
+                                    <p>Mascot celebrates, wallet balance updates in under 4.2 seconds</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 05. Wireframe vs Hi-Fi -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">05</span>
+                            <h3>Wireframing &amp; Design Iterations</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <div class="comparison-grid">
+                                <div class="comparison-card">
+                                    <span class="comp-badge draft">Initial Wireframe (Lo-Fi)</span>
+                                    <h4>The Failure of Traditional Forms</h4>
+                                    <ul>
+                                        <li>Overlaid modals obscuring context.</li>
+                                        <li>Average task time: <strong>18.4 seconds</strong>.</li>
+                                        <li>User drop-off rate during testing: <strong>38%</strong>.</li>
+                                    </ul>
+                                </div>
+                                <div class="comparison-card highlight">
+                                    <span class="comp-badge final">Production Design (Hi-Fi)</span>
+                                    <h4>The 1-Tap Gestural Breakthrough</h4>
+                                    <ul>
+                                        <li>Integrated numpad with habit-learning smart categories.</li>
+                                        <li>Average task time dropped to: <strong>4.2 seconds</strong> (77% faster).</li>
+                                        <li>Task completion rate soared to: <strong>94%</strong>.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 06. Design System & Mascot -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">06</span>
+                            <h3>Design System &amp; Emotional Mascot</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <h4>Standardized Color Token Architecture</h4>
+                            <div class="swatches-grid">
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #73c2b4;"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">Mint Sage</span>
+                                        <span class="swatch-hex">#73C2B4</span>
+                                        <span class="swatch-role">Primary / Brand Refresh</span>
+                                    </div>
+                                </div>
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #2e7d67;"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">Forest Emerald</span>
+                                        <span class="swatch-hex">#2E7D67</span>
+                                        <span class="swatch-role">Deep Accent / Contrast</span>
+                                    </div>
+                                </div>
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #09090b; border: 1px solid rgba(255,255,255,0.2);"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">OLED Dark Zinc</span>
+                                        <span class="swatch-hex">#09090B</span>
+                                        <span class="swatch-role">Background / Surface</span>
+                                    </div>
+                                </div>
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #ff6b6b;"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">Soft Coral</span>
+                                        <span class="swatch-hex">#FF6B6B</span>
+                                        <span class="swatch-role">Friendly Expense Alert</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 style="margin-top: 2rem;">Emotional Design via 3 Interactive Mascot States:</h4>
+                            <div class="mascot-states-grid">
+                                <div class="mascot-card">
+                                    <img src="screens/frog_money.png" alt="Happy Frog" class="mascot-state-img">
+                                    <h5>🟢 Saver Mood</h5>
+                                    <p>Appears when savings goals are reached or spending is under 70% budget.</p>
+                                </div>
+                                <div class="mascot-card">
+                                    <img src="screens/frog_thinking.png" alt="Thinking Frog" class="mascot-state-img">
+                                    <h5>🟡 Analytic Mood</h5>
+                                    <p>Guides user with the 50/30/20 rule on monthly review screens.</p>
+                                </div>
+                                <div class="mascot-card">
+                                    <div class="mascot-alert-placeholder">🐸⚠️</div>
+                                    <h5>🔴 Gentle Alert</h5>
+                                    <p>Friendly reminder when approaching weekly budget cap without shaming.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 07. High-Fidelity UI Screens -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">07</span>
+                            <h3>High-Fidelity UI Gallery</h3>
+                        </div>
+                        <p class="cs-gallery-intro" style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem;">
+                            Complete set of 7 production screens crafted in Figma for iPhone 390x844px, leveraging the Mint Sage Design System and Auto-layout components:
+                        </p>
+                        <div class="screens-gallery-grid">
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/splash.png" alt="01. Splash Screen" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>01. Splash Screen</h5>
+                                    <p>Mint Sage (#73C2B4) brand identity with cheerful mascot holding money bag.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/welcome.png" alt="02. Social Welcome" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>02. Social Welcome</h5>
+                                    <p>Frictionless onboarding with Google, Apple, Facebook Social Login and password option.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/login.png" alt="03. Login Account" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>03. Login Experience</h5>
+                                    <p>Minimalist authentication with touch-friendly layout.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/login_error.png" alt="04. Error Validation" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>04. Inline Validation</h5>
+                                    <p>Real-time feedback with soft coral warning and authentic iOS keyboard integration.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/signup.png" alt="05. Quick Registration" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>05. Quick Registration</h5>
+                                    <p>Streamlined sign-up form keeping friction under 30 seconds.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/signup_error.png" alt="06. Password Mismatch" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>06. Password Mismatch</h5>
+                                    <p>Real-time password confirmation validation preventing submission disappointment.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-screen-item">
+                                <div class="gallery-img-wrap">
+                                    <img src="assets/froggy/onboarding.png" alt="07. Stay On Track" class="gallery-img" loading="lazy">
+                                </div>
+                                <div class="gallery-screen-meta">
+                                    <h5>07. Stay On Track (Mascot Advice)</h5>
+                                    <p>Financial wellbeing tips with wise mascot, 50/30/20 budget carousel.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Interactive Figma Embed Container -->
+                        <div class="figma-embed-container">
+                            <div class="figma-embed-header">
+                                <div class="figma-embed-title">
+                                    <i class="fab fa-figma" style="color: #f24e1e; font-size: 1.4rem;"></i>
+                                    <div>
+                                        <h4>Interactive Figma Canvas</h4>
+                                        <p>You can zoom, pan, and inspect all artboards, interactive flows, and Design System components directly below:</p>
+                                    </div>
+                                </div>
+                                <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=1-5&amp;t=uviyFJx88BMHhfFp-1" target="_blank" rel="noopener noreferrer" class="btn btn-figma-sm">
+                                    <i class="fas fa-external-link-alt"></i> Open in Figma
+                                </a>
+                            </div>
+                            <div class="figma-iframe-wrapper">
+                                <iframe class="figma-live-embed" width="100%" height="560" src="https://embed.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?embed-host=share&amp;node-id=1-5&amp;theme=dark" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 08. Usability Testing & Metrics -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">08</span>
+                            <h3>Usability Testing &amp; Quantitative Results</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>
+                                Conducted usability tests with <strong>8 real users</strong> with the scenario: <em>"Log a 35,000 VND milk tea purchase after class."</em>
+                            </p>
+                            <div class="test-metrics-dashboard">
+                                <div class="metric-score-card">
+                                    <span class="metric-title">Task Completion Rate</span>
+                                    <div class="metric-gauge-bar">
+                                        <div class="gauge-fill" style="width: 94%;">94%</div>
+                                    </div>
+                                    <span class="metric-footnote">Up from 62% in initial wireframe</span>
+                                </div>
+                                <div class="metric-score-card">
+                                    <span class="metric-title">Average Time on Task</span>
+                                    <div class="metric-gauge-bar">
+                                        <div class="gauge-fill success" style="width: 25%;">4.2s</div>
+                                    </div>
+                                    <span class="metric-footnote">77% faster than 18.4s industry average</span>
+                                </div>
+                                <div class="metric-score-card">
+                                    <span class="metric-title">System Usability Scale (SUS)</span>
+                                    <div class="sus-score-display">
+                                        <span class="sus-number">85/100</span>
+                                        <span class="sus-grade">Grade A · Top 10% Industry</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user-feedback-quotes">
+                                <div class="quote-chip">
+                                    <i class="fas fa-quote-left"></i> "Tapping the amount and choosing a category takes seconds. The cute frog genuinely reduces stress." — <em>Hai Nam, 21</em>
+                                </div>
+                                <div class="quote-chip">
+                                    <i class="fas fa-quote-left"></i> "No guilt when checking my balance. The mint progress bar feels calming." — <em>Thuy Duong, 20</em>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 09. My Contribution -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">09</span>
+                            <h3>My Contribution &amp; Key Takeaways</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <div class="contribution-boxes">
+                                <div class="contrib-box">
+                                    <h4><i class="fas fa-check-circle"></i> Specific Contributions by Nam Khanh:</h4>
+                                    <ul>
+                                        <li><strong>UX Research Lead:</strong> Executed 64-person survey, 8 user interviews, affinity mapping, and persona synthesis.</li>
+                                        <li><strong>Design System in Figma:</strong> Built 100% component sets, auto-layout, token palettes, and typography scale.</li>
+                                        <li><strong>Interactive 3D Web Prototype:</strong> Engineered real-time WebGL interactive 3D phone model with Three.js on portfolio.</li>
+                                    </ul>
+                                </div>
+                                <div class="contrib-box">
+                                    <h4><i class="fas fa-lightbulb"></i> Key Takeaways:</h4>
+                                    <ul>
+                                        <li><strong>Simple is harder than complex:</strong> Stripping 4 redundant steps required deeper behavioral empathy than piling on features.</li>
+                                        <li><strong>Power of Emotional Design:</strong> A simple expressive mascot smile transformed a boring chore into an engaging daily routine.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    </div>
+</article>
 
                 <!-- ==================== TAB 2: SAFEMAP CASE STUDY ==================== -->
                 <article class="case-study-content" id="tabContentSafemap">
-                    <!-- Project Hero -->
+                    <div class="lang-vi">
+<!-- Project Hero -->
                     <div class="cs-hero">
                         <div class="cs-badge-row">
                             <span class="cs-tag">UX/UI Case Study</span>
@@ -1889,13 +2369,459 @@
                             </div>
                         </div>
                     </section>
-                </article>
+                    </div>
+                    <div class="lang-en">
+<!-- Project Hero -->
+                    <div class="cs-hero">
+                        <div class="cs-badge-row">
+                            <span class="cs-tag">UX/UI Case Study</span>
+                            <span class="cs-tag highlight">Smart City Navigation</span>
+                            <span class="cs-tag">Agile Scrum Project</span>
+                        </div>
+                        <h1 class="cs-title">SafeMap Mobile App</h1>
+                        <p class="cs-subtitle">Real-time urban flood alert and well-lit safe route navigation designed for residents and students in Da Nang.</p>
+                        
+                        <!-- Project Metadata Strip -->
+                        <div class="cs-meta-grid">
+                            <div class="meta-box">
+                                <span class="lbl">Role</span>
+                                <span class="val">Team Leader · Agile Scrum &amp; UX Architecture</span>
+                            </div>
+                            <div class="meta-box">
+                                <span class="lbl">Timeline</span>
+                                <span class="val">8 Weeks (4 Agile Sprints · Greenwich 2024)</span>
+                            </div>
+                            <div class="meta-box">
+                                <span class="lbl">Tools</span>
+                                <span class="val">Figma, FigJam, Jira, Mapbox UI Kit</span>
+                            </div>
+                            <div class="meta-box">
+                                <span class="lbl">Team</span>
+                                <span class="val">4 Members (1 UX/UI Lead, 2 Mobile Devs, 1 QA)</span>
+                            </div>
+                        </div>
+
+                        <!-- Hero Banner Graphic: Realistic Dark Mode Smart Navigation Map -->
+                        <div class="safemap-hero-banner">
+                            <!-- Map Background Grid & City Graphic -->
+                            <div class="sm-map-canvas">
+                                <div class="sm-map-grid-lines"></div>
+                                <div class="sm-river-han">
+                                    <span class="sm-water-label">Han River · Da Nang</span>
+                                    <div class="sm-bridge dragon-bridge"><span>Dragon Bridge</span></div>
+                                    <div class="sm-bridge tran-thi-ly"><span>Tran Thi Ly Bridge</span></div>
+                                </div>
+
+                                <!-- Street Labels -->
+                                <span class="sm-street-label st-nguyen-van-linh">Nguyen Van Linh St. (Dry · Well-lit)</span>
+                                <span class="sm-street-label st-ham-nghi">Ham Nghi St. (Flood Hazard Area)</span>
+                                <span class="sm-street-label st-bach-dang">Bach Dang St.</span>
+                                <span class="sm-street-label st-le-duan">Le Duan St.</span>
+
+                                <!-- Routes SVG -->
+                                <svg class="sm-routes-svg" viewBox="0 0 800 360" preserveAspectRatio="none">
+                                    <!-- Blocked Flooded Route (Red dashed) -->
+                                    <path class="route-svg-blocked" d="M 80 180 Q 220 180 340 100 T 640 100" />
+                                    <!-- Active Safe Route (Glowing Emerald) -->
+                                    <path class="route-svg-safe" d="M 80 180 Q 200 240 400 260 T 720 220" />
+                                </svg>
+
+                                <!-- Hazard Pin on Flooded Route -->
+                                <div class="sm-hazard-marker" style="left: 45%; top: 22%;">
+                                    <div class="hazard-ping"></div>
+                                    <div class="hazard-badge">
+                                        <i class="fas fa-water"></i>
+                                        <div>
+                                            <strong>Ham Nghi flooded 40cm</strong>
+                                            <span>Avoid area · 3 stalled vehicles</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Safe Waypoint -->
+                                <div class="sm-safe-marker" style="left: 55%; top: 70%;">
+                                    <div class="safe-ping"></div>
+                                    <div class="safe-badge">
+                                        <i class="fas fa-shield-check"></i>
+                                        <div>
+                                            <strong>Nguyen Van Linh (Dry &amp; Safe)</strong>
+                                            <span>100% Street lights · Smooth traffic</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- User Origin Pin -->
+                                <div class="sm-user-pin" style="left: 8%; top: 48%;">
+                                    <div class="user-pulse"></div>
+                                    <div class="user-pill"><i class="fas fa-map-marker-alt"></i> Greenwich University</div>
+                                </div>
+
+                                <!-- Destination Pin -->
+                                <div class="sm-dest-pin" style="left: 90%; top: 60%;">
+                                    <div class="dest-pill"><i class="fas fa-flag-checkered"></i> Arrive Home Safely</div>
+                                </div>
+                            </div>
+
+                            <!-- Live HUD Overlays on Map -->
+                            <div class="sm-map-hud top-hud">
+                                <div class="sm-hud-pill weather-alert">
+                                    <i class="fas fa-cloud-showers-heavy"></i>
+                                    <span>Category 2 Storm · Flash Flooding Reported</span>
+                                </div>
+                                <div class="sm-hud-pill status-engine">
+                                    <span class="hud-dot live"></span>
+                                    <span>Safe Route Engine: 100% Optimized</span>
+                                </div>
+                            </div>
+
+                            <div class="sm-map-hud bottom-hud">
+                                <div class="sm-route-card">
+                                    <div class="route-card-main">
+                                        <div class="route-icon-box"><i class="fas fa-route"></i></div>
+                                        <div>
+                                            <div class="route-title">Suggested Safe Route: <strong>14 mins (4.2 km)</strong></div>
+                                            <div class="route-desc">Auto-rerouted around Ham Nghi flood depth &amp; unlit alleys</div>
+                                        </div>
+                                    </div>
+                                    <div class="route-tag-safe"><i class="fas fa-check"></i> Safe Route Verified</div>
+                                </div>
+                                <button class="sm-sos-floating-btn" type="button" title="1-Tap Emergency SOS">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>1-Tap SOS</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table of Contents Section (Design Process Navigation) -->
+                    <div class="cs-toc-section">
+                        <div class="cs-toc-label">
+                            <i class="fas fa-compass"></i> Design Process &amp; Deliverables
+                        </div>
+                        <div class="cs-toc-grid">
+                            <a href="#sm-problem" class="cs-toc-item"><span class="toc-idx">01</span> Problem Statement</a>
+                            <a href="#sm-research" class="cs-toc-item"><span class="toc-idx">02</span> Field Research</a>
+                            <a href="#sm-persona" class="cs-toc-item"><span class="toc-idx">03</span> User Persona</a>
+                            <a href="#sm-flow" class="cs-toc-item"><span class="toc-idx">04</span> Safe Route Flow</a>
+                            <a href="#sm-designsystem" class="cs-toc-item"><span class="toc-idx">05</span> Design System</a>
+                            <a href="#sm-screens" class="cs-toc-item"><span class="toc-idx">06</span> Core UI Features</a>
+                            <a href="#sm-testing" class="cs-toc-item"><span class="toc-idx">07</span> Usability &amp; Contribution</a>
+                        </div>
+                    </div>
+
+                    <!-- 01. Problem -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">01</span>
+                            <h3>Context &amp; Problem Statement</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p class="lead-text">
+                                Da Nang frequently faces severe tropical storm seasons, causing low-lying avenues (Ham Nghi, Khe Can, Trung Nu Vuong) to flash flood 0.3m to 0.8m within 30 minutes.
+                            </p>
+                            <p>
+                                Concurrently, night-shift workers and students must navigate streets with broken lighting or questionable security. Mainstream navigation tools (Google Maps, Apple Maps) <strong>provide zero real-time flood depth alerts or localized street safety intelligence</strong>.
+                            </p>
+                            <div class="cs-cards-row">
+                                <div class="cs-card danger">
+                                    <div class="card-icon"><i class="fas fa-water"></i></div>
+                                    <h4>Unaware Flooded Commutes</h4>
+                                    <p>Motorcyclists enter flooded zones unaware until engines submerge, leading to breakdown hazards and safety risks.</p>
+                                </div>
+                                <div class="cs-card danger">
+                                    <div class="card-icon"><i class="fas fa-moon"></i></div>
+                                    <h4>Nighttime Alley Fear</h4>
+                                    <p>Standard navigation only suggests the "shortest" route through dark unpopulated alleys, causing high anxiety.</p>
+                                </div>
+                                <div class="cs-card danger">
+                                    <div class="card-icon"><i class="fas fa-broadcast-tower"></i></div>
+                                    <h4>Fragmented Social Warnings</h4>
+                                    <p>Citizens rely on random Facebook posts without real-time geospatial pin verification.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 02. Research -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">02</span>
+                            <h3>Field Research &amp; User Interviews</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>
+                                The team interviewed <strong>45 Greenwich students and daily commuters</strong> across Hai Chau &amp; Thanh Khe districts, Da Nang:
+                            </p>
+                            <div class="research-stats-grid">
+                                <div class="stat-box">
+                                    <span class="big-num">89%</span>
+                                    <span class="stat-desc">Willing to commute 5–10 minutes longer if the route is well-lit and guaranteed flood-free.</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="big-num">82%</span>
+                                    <span class="stat-desc">Demand a 1-tap instantaneous emergency location broadcast to family.</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="big-num">76%</span>
+                                    <span class="stat-desc">Eager to submit rapid hazard pins to alert fellow citizens upon spotting deep water.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 03. Persona -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">03</span>
+                            <h3>User Persona</h3>
+                        </div>
+                        <div class="persona-card-wrapper">
+                            <div class="persona-profile-col">
+                                <div class="persona-avatar-box">
+                                    <div class="persona-avatar-placeholder"><i class="fas fa-user-shield"></i></div>
+                                </div>
+                                <h4>Tran Linh Trang, 21</h4>
+                                <span class="persona-role">Greenwich Student · Night Shift Worker</span>
+                                <div class="persona-tags">
+                                    <span>Leaves work at 22:30</span>
+                                    <span>Rides scooter</span>
+                                    <span>Frequently encounters flood areas</span>
+                                </div>
+                            </div>
+                            <div class="persona-details-col">
+                                <blockquote class="persona-quote">
+                                    “During rainy season in Da Nang, driving home late makes me terrified of stalling my scooter in sudden water depths on Ham Nghi.”
+                                </blockquote>
+                                <div class="persona-grid-info">
+                                    <div>
+                                        <h5><i class="fas fa-bullseye"></i> Goals</h5>
+                                        <ul>
+                                            <li>Find the safest, well-lit, dry route home at night.</li>
+                                            <li>Share live journey with roommates for peace of mind.</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5><i class="fas fa-fire-alt"></i> Pain Points</h5>
+                                        <ul>
+                                            <li>Google Maps always directs through dark narrow alleys.</li>
+                                            <li>No real-time flood depth alerts during heavy downpours.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 04. Safe Route Flow -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">04</span>
+                            <h3>Navigation Architecture (Safe Route vs Shortest Route Engine)</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>
+                                We engineered 3 core UX safety features for SafeMap:
+                            </p>
+                            <div class="safemap-features-list">
+                                <div class="feature-box">
+                                    <span class="feat-badge green"><i class="fas fa-route"></i> Safe Route Algorithm</span>
+                                    <h4>Safe Route Navigation</h4>
+                                    <p>Rather than offering a single shortest route, the app compares: <strong>Fast Route</strong> vs <strong>Safe Route</strong> — prioritizing wide avenues with 100% functional street lighting and 0 flood alerts within 500m.</p>
+                                </div>
+                                <div class="feature-box">
+                                    <span class="feat-badge amber"><i class="fas fa-map-pin"></i> 2-Tap Hazard Reporting</span>
+                                    <h4>Crowdsourced Hazard Pin</h4>
+                                    <p>2 taps in under 4 seconds: Tap hazard icon → Choose incident (Flood / Dark / Accident) → GPS pins broadcast automatically to commuters nearby.</p>
+                                </div>
+                                <div class="feature-box">
+                                    <span class="feat-badge red"><i class="fas fa-life-ring"></i> 1-Tap Emergency SOS</span>
+                                    <h4>One-Touch Emergency SOS</h4>
+                                    <p>Hold for 2 seconds to trigger audible siren while auto-transmitting emergency SMS with GPS coordinates to 3 pre-saved family contacts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 05. Design System -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">05</span>
+                            <h3>High-Contrast Safety Design System</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>Engineered for high visibility during nighttime navigation and storm conditions:</p>
+                            <div class="swatches-grid">
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #10b981;"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">Safety Green</span>
+                                        <span class="swatch-hex">#10B981</span>
+                                        <span class="swatch-role">Verified Safe Route</span>
+                                    </div>
+                                </div>
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #f59e0b;"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">Warning Amber</span>
+                                        <span class="swatch-hex">#F59E0B</span>
+                                        <span class="swatch-role">Minor Water (10–20cm) / Low Light</span>
+                                    </div>
+                                </div>
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #ef4444;"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">Hazard Red</span>
+                                        <span class="swatch-hex">#EF4444</span>
+                                        <span class="swatch-role">Deep Flood &gt; 35cm / Critical Danger</span>
+                                    </div>
+                                </div>
+                                <div class="swatch-item">
+                                    <div class="swatch-color" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2);"></div>
+                                    <div class="swatch-info">
+                                        <span class="swatch-name">Midnight Dark Map</span>
+                                        <span class="swatch-hex">#0F172A</span>
+                                        <span class="swatch-role">Anti-glare Night Navigation Surface</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 06. High-Fidelity UI Features Showcase -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">06</span>
+                            <h3>Core UI Features</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <p>3 intuitive feature interfaces optimized for rapid, safe interactions in rainy weather or night driving:</p>
+                            
+                            <div class="sm-screens-showcase-grid">
+                                <div class="sm-feature-card">
+                                    <div class="feature-mockup-frame">
+                                        <div class="mockup-header-bar">
+                                            <span class="mock-badge green"><i class="fas fa-shield-alt"></i> Safe Route Mode</span>
+                                            <span class="mock-badge red"><i class="fas fa-times-circle"></i> Avoid Flooding</span>
+                                        </div>
+                                        <div class="mockup-screen-view mode-nav">
+                                            <div class="mock-route-choice active">
+                                                <div class="mock-route-top">
+                                                    <span class="route-name">Safe Route (Recommended)</span>
+                                                    <span class="route-time">14 min</span>
+                                                </div>
+                                                <div class="mock-route-sub">Via Nguyen Van Linh · 100% Street lights · 0 Flooding</div>
+                                            </div>
+                                            <div class="mock-route-choice danger">
+                                                <div class="mock-route-top">
+                                                    <span class="route-name">Fast Route (Warning)</span>
+                                                    <span class="route-time">10 min</span>
+                                                </div>
+                                                <div class="mock-route-sub">Via Ham Nghi · ⚠️ Flooded 40cm at 21:15</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feature-card-info">
+                                        <h5>01. Dual-Route Comparison Engine</h5>
+                                        <p>Enables riders to see why the system detours (+1.2km) to protect them from entering deep water hazards.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sm-feature-card">
+                                    <div class="feature-mockup-frame">
+                                        <div class="mockup-header-bar">
+                                            <span class="mock-badge amber"><i class="fas fa-bullhorn"></i> 2-Tap Incident Pin</span>
+                                        </div>
+                                        <div class="mockup-screen-view mode-report">
+                                            <div class="report-quick-grid">
+                                                <div class="report-chip active"><i class="fas fa-water"></i> Deep Flooding</div>
+                                                <div class="report-chip"><i class="fas fa-lightbulb-slash"></i> Outage / No Light</div>
+                                                <div class="report-chip"><i class="fas fa-tree"></i> Fallen Tree / Debris</div>
+                                                <div class="report-chip"><i class="fas fa-car-crash"></i> Accident / Gridlock</div>
+                                            </div>
+                                            <div class="report-confirm-btn"><i class="fas fa-check"></i> Confirm &amp; Broadcast (4s)</div>
+                                        </div>
+                                    </div>
+                                    <div class="feature-card-info">
+                                        <h5>02. Crowdsourced Hazard Pin</h5>
+                                        <p>Optimized 2-tap gesture on oversized targets so motorcyclists can flag risks without taking off gloves.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sm-feature-card">
+                                    <div class="feature-mockup-frame">
+                                        <div class="mockup-header-bar">
+                                            <span class="mock-badge red"><i class="fas fa-life-ring"></i> Emergency SOS Center</span>
+                                        </div>
+                                        <div class="mockup-screen-view mode-sos">
+                                            <div class="sos-circle-trigger">
+                                                <div class="sos-pulse-ring"></div>
+                                                <span>HOLD 2S</span>
+                                            </div>
+                                            <div class="sos-helper-text">
+                                                Auto-broadcasts GPS location &amp; dials 3 emergency contacts
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feature-card-info">
+                                        <h5>03. One-Touch Emergency SOS</h5>
+                                        <p>2-second hold-to-activate lock prevents accidental triggers while relaying live coordinates during night emergencies.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 07. Usability & Contribution -->
+                    <section class="cs-section">
+                        <div class="cs-section-header">
+                            <span class="cs-num">07</span>
+                            <h3>Usability Testing &amp; Team Leadership</h3>
+                        </div>
+                        <div class="cs-text-block">
+                            <div class="test-metrics-dashboard">
+                                <div class="metric-score-card">
+                                    <span class="metric-title">Users Choosing Safe Route</span>
+                                    <div class="metric-gauge-bar">
+                                        <div class="gauge-fill" style="width: 92%;">92%</div>
+                                    </div>
+                                    <span class="metric-footnote">Prioritize safety even with 1.2km detour</span>
+                                </div>
+                                <div class="metric-score-card">
+                                    <span class="metric-title">Average Hazard Report Time</span>
+                                    <div class="metric-gauge-bar">
+                                        <div class="gauge-fill success" style="width: 20%;">4.8s</div>
+                                    </div>
+                                    <span class="metric-footnote">Significantly faster than typing social status updates</span>
+                                </div>
+                                <div class="metric-score-card">
+                                    <span class="metric-title">Night Driving Security Confidence</span>
+                                    <div class="sus-score-display">
+                                        <span class="sus-number">4.8 / 5.0</span>
+                                        <span class="sus-grade">Security Rating</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contribution-boxes" style="margin-top: 2rem;">
+                                <div class="contrib-box">
+                                    <h4><i class="fas fa-check-circle"></i> Nam Khanh's Key Contributions as Team Leader:</h4>
+                                    <ul>
+                                        <li><strong>Agile Scrum Project Management:</strong> Facilitated Sprint Planning, 15-min Daily Standups, Sprint Reviews, and Retrospectives across 4 bi-weekly sprints over 8 weeks.</li>
+                                        <li><strong>Lead UX Architecture &amp; Wireframing:</strong> Surveyed 45 field commuters, architected decision flow diagrams, and designed scalable high-fidelity components on Figma.</li>
+                                        <li><strong>Real-World Field Usability Testing:</strong> Conducted simulated nighttime road testing to calibrate SOS button hitboxes and map symbol legibility.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    </div>
+</article>
 
             </div>
             <!-- Floating Back To Top button inside Modal -->
             <button class="modal-back-top-btn" id="modalBackToTop" onclick="scrollModalToTop()" title="Về đầu trang Case Study" aria-label="Về đầu trang">
                 <i class="fas fa-arrow-up"></i>
-                <span>Đầu trang</span>
+                <span data-i18n="csBackTop">Đầu trang</span>
             </button>
         </div>
     </div>

@@ -338,7 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "profSpecLangSub": "Giao tiếp & đọc tài liệu kỹ thuật tốt",
         "profSpecSkillsLabel": "Bộ kỹ năng cốt lõi",
         "profileBioText": "Tốt nghiệp chuyên ngành Công nghệ thông tin (BSc Computing) tại <strong>Đại học Greenwich</strong>, kết hợp đào tạo chuyên sâu về <strong>UX/UI Design System</strong> tại Horus Academy. Đam mê biến các bài toán phức tạp thành trải nghiệm kỹ thuật số trực quan, thanh lịch và chuẩn hóa cao.",
-        "profileContactCta": "Liên hệ ngay"
+        "profileContactCta": "Liên hệ ngay",
+        "modalEscClose": "đóng",
+        "csBackTop": "Đầu trang"
 },
         'en': {
         "navHome": "Home",
@@ -428,7 +430,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "profSpecLangSub": "Fluent technical communication & documentation",
         "profSpecSkillsLabel": "Core Skillset",
         "profileBioText": "BSc Computing graduate from <strong>University of Greenwich</strong> with specialized training in <strong>UX/UI Design System</strong> from Horus Academy. Passionate about transforming complex challenges into intuitive, elegant, and production-ready digital experiences.",
-        "profileContactCta": "Get in touch"
+        "profileContactCta": "Get in touch",
+        "modalEscClose": "close",
+        "csBackTop": "Back to top"
 }
     };
 
