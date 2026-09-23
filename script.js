@@ -93,21 +93,237 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     }
 
-    // 3. Active Nav Link on Scroll
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.nav-link');
+    // ==========================================================================
+    // 3. MENISCUS LIQUID DOCK (Morphing SVG Notch & Spring Drag/Snap Bead)
+    // ==========================================================================
+    const meniscusDock = document.getElementById('navMenu');
+    const meniscusSvg = document.getElementById('meniscusSvg');
+    const meniscusPath = document.getElementById('meniscusPath');
+    const meniscusBead = document.getElementById('meniscusBead');
+    const beadIcon = document.getElementById('beadIcon');
+    const meniscusTabList = document.getElementById('meniscusTabList');
+    const meniscusLinks = document.querySelectorAll('.meniscus-tab-list .nav-link');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            if (window.pageYOffset >= section.offsetTop - section.clientHeight / 3) {
-                current = section.getAttribute('id');
+    if (meniscusDock && meniscusPath && meniscusBead) {
+        let currentX = 0;
+        let targetX = 0;
+        let velocityX = 0;
+        let isAnimating = false;
+        let isDragging = false;
+        let activeTabKey = 'home';
+
+        const R = 22; // corner radius of dock
+        const by = 11; // socket bowl dip depth
+        const S = 16;  // shoulder radius
+        const rb = 19; // bead radius
+
+        function getTabCenter(linkEl) {
+            const dockRect = meniscusDock.getBoundingClientRect();
+            const linkRect = linkEl.getBoundingClientRect();
+            return (linkRect.left - dockRect.left) + linkRect.width / 2;
+        }
+
+        function drawMeniscus(cx, vx) {
+            const W = meniscusDock.offsetWidth;
+            const H = meniscusDock.offsetHeight;
+            if (W <= 0 || H <= 0) return;
+
+            // Constrain cx within safe boundaries
+            const safeCx = Math.max(R + 10, Math.min(W - R - 10, cx));
+
+            // Velocity leans the surface (liquid trailing inertia)
+            const mag = Math.min(Math.abs(vx) / 12, 1.8);
+            const q = Math.sign(vx);
+            const sL = Math.max(8, S * (1 + 0.18 * mag - 0.35 * q));
+            const sR = Math.max(8, S * (1 + 0.18 * mag + 0.35 * q));
+
+            const reachL = Math.max(20, sL + rb * 0.85);
+            const reachR = Math.max(20, sR + rb * 0.85);
+
+            const p0x = Math.max(R + 2, safeCx - reachL);
+            const p1x = Math.min(W - R - 2, safeCx + reachR);
+            const pMidy = by;
+
+            // Generate smooth cubic bezier SVG path
+            const d = [
+                `M ${R} 0`,
+                `L ${p0x} 0`,
+                `C ${p0x + sL * 0.45} 0, ${safeCx - rb * 0.6} ${pMidy}, ${safeCx} ${pMidy}`,
+                `C ${safeCx + rb * 0.6} ${pMidy}, ${p1x - sR * 0.45} 0, ${p1x} 0`,
+                `L ${W - R} 0`,
+                `A ${R} ${R} 0 0 1 ${W} ${R}`,
+                `L ${W} ${H - R}`,
+                `A ${R} ${R} 0 0 1 ${W - R} ${H}`,
+                `L ${R} ${H}`,
+                `A ${R} ${R} 0 0 1 0 ${H - R}`,
+                `L 0 ${R}`,
+                `A ${R} ${R} 0 0 1 ${R} 0`,
+                `Z`
+            ].join(' ');
+
+            meniscusPath.setAttribute('d', d);
+
+            // Position bead centered on socket
+            meniscusBead.style.left = `${safeCx}px`;
+            meniscusBead.style.top = `${pMidy + 4}px`;
+        }
+
+        function updatePhysicsLoop() {
+            const diff = targetX - currentX;
+            velocityX = velocityX * 0.72 + diff * 0.085;
+            currentX += velocityX;
+
+            drawMeniscus(currentX, velocityX);
+
+            if (Math.abs(diff) > 0.05 || Math.abs(velocityX) > 0.02 || isDragging) {
+                requestAnimationFrame(updatePhysicsLoop);
+            } else {
+                currentX = targetX;
+                velocityX = 0;
+                drawMeniscus(currentX, 0);
+                isAnimating = false;
+            }
+        }
+
+        function wakePhysics() {
+            if (!isAnimating) {
+                isAnimating = true;
+                requestAnimationFrame(updatePhysicsLoop);
+            }
+        }
+
+        function setMeniscusTab(tabKey, smooth = true) {
+            const targetLink = Array.from(meniscusLinks).find(l => l.dataset.tab === tabKey);
+            if (!targetLink) return;
+
+            activeTabKey = tabKey;
+            meniscusLinks.forEach(l => l.classList.toggle('active', l === targetLink));
+
+            const color = targetLink.dataset.color || '#10b981';
+            const glow = targetLink.dataset.glow || 'rgba(16,185,129,0.5)';
+            const icon = targetLink.dataset.icon || 'fa-home';
+
+            meniscusDock.style.setProperty('--bead-color', color);
+            meniscusDock.style.setProperty('--bead-glow', glow);
+
+            if (beadIcon && !beadIcon.classList.contains(icon)) {
+                beadIcon.style.transform = 'scale(0.3) rotate(-30deg)';
+                setTimeout(() => {
+                    beadIcon.className = `bead-icon fas ${icon}`;
+                    beadIcon.style.transform = 'scale(1) rotate(0deg)';
+                }, 120);
+            }
+
+            targetX = getTabCenter(targetLink);
+            if (!smooth) {
+                currentX = targetX;
+                velocityX = 0;
+                drawMeniscus(currentX, 0);
+            } else {
+                wakePhysics();
+            }
+        }
+
+        // Click on tabs
+        meniscusLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const tab = link.dataset.tab;
+                if (tab) setMeniscusTab(tab, true);
+            });
+        });
+
+        // Pointer Drag & Snap on Bead
+        meniscusBead.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            meniscusBead.classList.add('is-dragging');
+            meniscusBead.setPointerCapture(e.pointerId);
+            wakePhysics();
+        });
+
+        meniscusBead.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const rect = meniscusDock.getBoundingClientRect();
+            targetX = Math.max(R + 5, Math.min(rect.width - R - 5, e.clientX - rect.left));
+            wakePhysics();
+        });
+
+        function handlePointerRelease(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            meniscusBead.classList.remove('is-dragging');
+            try { meniscusBead.releasePointerCapture(e.pointerId); } catch (_) {}
+
+            // Snap to closest tab
+            let closestLink = meniscusLinks[0];
+            let minDist = Infinity;
+            meniscusLinks.forEach(link => {
+                const c = getTabCenter(link);
+                const dist = Math.abs(c - currentX);
+                if (dist < minDist) {
+                    minDist = dist;
+                    closestLink = link;
+                }
+            });
+
+            if (closestLink) {
+                setMeniscusTab(closestLink.dataset.tab, true);
+                const targetHash = closestLink.getAttribute('href');
+                if (targetHash && targetHash.startsWith('#')) {
+                    const el = document.querySelector(targetHash);
+                    if (el) {
+                        window.scrollTo({
+                            top: Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - 85),
+                            behavior: 'smooth'
+                        });
+                        history.pushState(null, '', targetHash);
+                    }
+                }
+            }
+        }
+
+        meniscusBead.addEventListener('pointerup', handlePointerRelease);
+        meniscusBead.addEventListener('pointercancel', handlePointerRelease);
+
+        // Resize observer to recalculate coordinates when window resizes
+        const resizeObserver = new ResizeObserver(() => {
+            const activeLink = document.querySelector('.meniscus-tab-list .nav-link.active') || meniscusLinks[0];
+            if (activeLink) {
+                targetX = getTabCenter(activeLink);
+                currentX = targetX;
+                drawMeniscus(currentX, 0);
             }
         });
-        navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-        });
-    });
+        resizeObserver.observe(meniscusDock);
+
+        // Initial setup
+        setTimeout(() => {
+            setMeniscusTab('home', false);
+        }, 120);
+
+        // Scroll-spy synchronization
+        const sections = document.querySelectorAll('.section');
+        window.addEventListener('scroll', () => {
+            if (isDragging) return;
+            let current = 'home';
+            sections.forEach(section => {
+                if (window.pageYOffset >= section.offsetTop - section.clientHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            const tabMap = {
+                'home': 'home',
+                'projects': 'projects',
+                'credentials': 'credentials',
+                'contact': 'contact'
+            };
+
+            const mappedKey = tabMap[current] || 'home';
+            if (mappedKey !== activeTabKey) {
+                setMeniscusTab(mappedKey, true);
+            }
+        }, { passive: true });
+    }
 
     // 4. Scroll Reveal Animation (Mượt mà, ổn định tuyệt đối, triệt tiêu giật khung hình)
     const revealElements = document.querySelectorAll('.reveal');
