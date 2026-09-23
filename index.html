@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=3.3.0">
+    <link rel="stylesheet" href="styles.css?v=3.2.0">
     <script>
         (function() {
             var lang = localStorage.getItem('nk_user_lang') || 'vi';
@@ -31,63 +31,14 @@
             </button>
         </div>
 
-        <!-- Island 2 (Center): Meniscus Liquid Dock (Thanh Điều Hướng Lỏng Giọt Nước) -->
-        <nav class="nav-island nav-island-center dock" id="dock" role="navigation" aria-label="Main Navigation">
-            <span class="dock__cast" aria-hidden="true"></span>
-
-            <svg class="dock__skin" id="skin" aria-hidden="true" focusable="false" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="mnPlate" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#1c162b" stop-opacity="0.95" />
-                        <stop offset="100%" stop-color="#0c0816" stop-opacity="0.98" />
-                    </linearGradient>
-                    <linearGradient id="mnRim" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65" />
-                        <stop offset="45%" stop-color="#ffffff" stop-opacity="0.25" />
-                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.04" />
-                    </linearGradient>
-                </defs>
-                <path class="dock__fill" id="skinFill" />
-            </svg>
-
-            <!-- Floating Liquid Bead (Giọt Nước Lỏng Phát Sáng) -->
-            <div class="dock__bead" id="bead" aria-hidden="true"></div>
-
-            <div class="dock__tabs" role="tablist" id="tabs">
-                <a href="#home" class="tab" role="tab" id="tab-home" aria-selected="true" tabindex="0" style="--acc:#10b981">
-                    <svg class="tab__icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M3.5 10.6 12 3.9l8.5 6.7" />
-                        <path d="M5.7 9.2v9.1a1.6 1.6 0 0 0 1.6 1.6h9.4a1.6 1.6 0 0 0 1.6-1.6V9.2" />
-                        <path d="M9.9 19.9v-4.8a1.2 1.2 0 0 1 1.2-1.2h1.8a1.2 1.2 0 0 1 1.2 1.2v4.8" />
-                    </svg>
-                    <span class="tab__label" data-i18n="navHome">Trang chủ</span>
-                </a>
-
-                <a href="#projects" class="tab" role="tab" id="tab-projects" aria-selected="false" tabindex="-1" style="--acc:#00f0ff">
-                    <svg class="tab__icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                        <polyline points="2 17 12 22 22 17" />
-                        <polyline points="2 12 12 17 22 12" />
-                    </svg>
-                    <span class="tab__label" data-i18n="navProjects">Case Studies</span>
-                </a>
-
-                <a href="#credentials" class="tab" role="tab" id="tab-credentials" aria-selected="false" tabindex="-1" style="--acc:#a78bfa">
-                    <svg class="tab__icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="6" />
-                        <path d="m15.4 12.8 2.6 7.2-6-3.5-6 3.5 2.6-7.2" />
-                    </svg>
-                    <span class="tab__label" data-i18n="navCredentials">Nền tảng & Kỹ năng</span>
-                </a>
-
-                <a href="#contact" class="tab" role="tab" id="tab-contact" aria-selected="false" tabindex="-1" style="--acc:#fb923c">
-                    <svg class="tab__icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <line x1="22" y1="2" x2="11" y2="13" />
-                        <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                    </svg>
-                    <span class="tab__label" data-i18n="navContact">Liên hệ</span>
-                </a>
-            </div>
+        <!-- Island 2 (Center): Primary Navigation Menu -->
+        <nav class="nav-island nav-island-center nav-pill-menu" id="navMenu">
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active" data-i18n="navHome">Trang chủ</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="navProjects">Case Studies</a></li>
+                <li><a href="#credentials" class="nav-link" data-i18n="navCredentials">Nền tảng & Kỹ năng</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="navContact">Liên hệ</a></li>
+            </ul>
         </nav>
 
         <!-- Island 3 (Right): Social Channels & Language Toggle -->
@@ -2978,6 +2929,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js?v=3.3.0"></script>
+    <script src="script.js?v=3.2.0"></script>
 </body>
 </html>
