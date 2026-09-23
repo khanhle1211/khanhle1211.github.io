@@ -548,16 +548,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* SCREEN 1: Splash Screen */
 #screenSplash {
-    background: #f0faf5;
+    background: #73c2b4; /* Exact Figma green background */
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 2rem 1.4rem;
 }
 
 .splash-hero-art {
-    width: 180px;
+    width: 200px;
     height: 180px;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -567,7 +568,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 15px 25px rgba(0, 176, 116, 0.25));
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
     animation: frogFloat 3s ease-in-out infinite;
 }
 
@@ -576,19 +577,30 @@ h1, h2, h3, h4, h5, h6 {
     50% { transform: translateY(-8px); }
 }
 
-.app-brand-name {
-    font-size: 2.2rem;
+#screenSplash .app-brand-name {
+    font-size: 2.4rem;
     font-weight: 800;
-    color: var(--app-teal);
-    letter-spacing: -0.02em;
-    margin-bottom: 0.4rem;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
 }
 
-.app-brand-sub {
-    font-size: 0.95rem;
-    color: #64748b;
+#screenSplash .app-brand-sub {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
     line-height: 1.4;
+}
+
+#screenSplash .app-btn-primary {
+    background: #ffffff;
+    color: #008f5d;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+#screenSplash .app-btn-primary:hover {
+    background: #f0faf5;
+    transform: translateY(-2px);
 }
 
 .app-btn-primary {
@@ -618,7 +630,7 @@ h1, h2, h3, h4, h5, h6 {
 .app-top-nav {
     display: flex;
     align-items: center;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
 }
 
 .app-back-btn {
@@ -637,15 +649,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .welcome-badge-art {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 0.8rem;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .welcome-badge-art img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 176, 116, 0.2));
 }
 
 .app-title-h3 {
@@ -977,15 +993,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* SCREEN 5: Onboarding ("Stay On Track") */
 .onboard-art-wrapper {
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 120px;
     margin: 0.5rem auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .onboard-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 176, 116, 0.2));
 }
 
 .onboard-caption {
