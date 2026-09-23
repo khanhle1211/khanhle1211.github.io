@@ -8,6 +8,25 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Profile Modal backdrop and escape listeners
+    const profileModalOverlay = document.getElementById('profileModal');
+    if (profileModalOverlay) {
+        profileModalOverlay.addEventListener('click', (e) => {
+            if (e.target === profileModalOverlay) {
+                toggleProfileCard();
+            }
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const pm = document.getElementById('profileModal');
+            if (pm && pm.classList.contains('active')) {
+                toggleProfileCard();
+            }
+        }
+    });
+
     // 1. Sticky Header
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
@@ -236,6 +255,25 @@ window.switchCaseStudyTab = function (projectId) {
 
 // Modal Backdrop Click & ESC Key Listeners
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Profile Modal backdrop and escape listeners
+    const profileModalOverlay = document.getElementById('profileModal');
+    if (profileModalOverlay) {
+        profileModalOverlay.addEventListener('click', (e) => {
+            if (e.target === profileModalOverlay) {
+                toggleProfileCard();
+            }
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const pm = document.getElementById('profileModal');
+            if (pm && pm.classList.contains('active')) {
+                toggleProfileCard();
+            }
+        }
+    });
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeCaseStudy();
@@ -297,4 +335,36 @@ window.scrollModalToTop = function () {
     if (scrollBody) {
         scrollBody.scrollTo({ top: 0, behavior: 'smooth' });
     }
+};
+
+// Global Functions: Toggle Profile Card Modal
+window.toggleProfileCard = function (e) {
+    if (e) e.preventDefault();
+    const modal = document.getElementById('profileModal');
+    if (!modal) return;
+    const isActive = modal.classList.contains('active');
+    if (isActive) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    } else {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.copyProfileEmail = function () {
+    const email = 'namkhanhle56@gmail.com';
+    navigator.clipboard.writeText(email).then(() => {
+        const hint = document.getElementById('copyStatusText');
+        if (hint) {
+            hint.innerHTML = '<i class="fas fa-check" style="color: #10b981;"></i> Đã chép!';
+            setTimeout(() => {
+                hint.innerHTML = '<i class="far fa-copy"></i>';
+            }, 3000);
+        }
+    }).catch(() => {
+        alert('Email: ' + email);
+    });
 };

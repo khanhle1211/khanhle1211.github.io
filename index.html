@@ -17,10 +17,11 @@
     <!-- Floating Pill Navigation (Modern shadcn / Awwwards standard) -->
     <header class="header-floating">
         <div class="nav-pill-wrapper">
-            <a href="#home" class="logo-pill">
+            <button class="logo-pill" id="logoPillBtn" onclick="toggleProfileCard(event)" aria-label="Xem hồ sơ cá nhân Nam Khánh" title="Bấm để xem thông tin cá nhân Nam Khánh">
                 <img src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" class="logo-avatar">
                 <span class="logo-text">Nam Khanh<span class="accent-dot">.</span></span>
-            </a>
+                <span class="logo-pill-dot" title="Sẵn sàng nhận việc"></span>
+            </button>
             <nav class="nav-pill-menu">
                 <ul class="nav-list">
                     <li><a href="#home" class="nav-link active">Trang chủ</a></li>
@@ -90,9 +91,7 @@
                         <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="btn btn-figma">
                             <i class="fab fa-figma"></i> Mở Figma Design
                         </a>
-                        <a href="#showcase" class="btn btn-glass">
-                            <i class="fas fa-mobile-alt"></i> Demo 3D Phone
-                        </a>
+
                     </div>
 
                     <!-- Tech & Tools Pill Strip -->
@@ -268,9 +267,7 @@
                                     <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="btn btn-figma-inline">
                                         <i class="fab fa-figma"></i> Mở Figma File
                                     </a>
-                                    <a href="#showcase" class="btn btn-glass-inline">
-                                        <i class="fas fa-play"></i> Thử Demo 3D
-                                    </a>
+
                                 </div>
                             </div>
 
@@ -697,9 +694,7 @@
                             <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="btn btn-figma">
                                 <i class="fab fa-figma"></i> Mở Bản Thiết Kế Figma Gốc
                             </a>
-                            <a href="#showcase" onclick="closeCaseStudy()" class="btn btn-glass">
-                                <i class="fas fa-mobile-alt"></i> Dùng Thử 3D Phone Demo
-                            </a>
+
                         </div>
 
                         <!-- Hero Banner Image from Figma -->
@@ -1595,6 +1590,106 @@
                 <i class="fas fa-arrow-up"></i>
                 <span>Đầu trang</span>
             </button>
+        </div>
+    </div>
+
+        <!-- ==================== INTERACTIVE PROFILE CARD MODAL ==================== -->
+    <div class="profile-modal-overlay" id="profileModal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="profile-modal-card">
+            <!-- Header Cover Banner -->
+            <div class="profile-card-cover">
+                <div class="cover-pattern"></div>
+                <button class="profile-close-btn" onclick="toggleProfileCard()" aria-label="Đóng hồ sơ">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Profile Identity Header -->
+            <div class="profile-card-header">
+                <div class="profile-avatar-wrap">
+                    <img src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" class="profile-card-avatar">
+                    <span class="status-pulse-badge" title="Đang sẵn sàng nhận việc"></span>
+                </div>
+                <div class="profile-identity">
+                    <div class="profile-name-row">
+                        <h3>Lê Đức Nam Khánh</h3>
+                        <span class="open-work-pill"><i class="fas fa-check-circle"></i> Open for work</span>
+                    </div>
+                    <p class="profile-role-title">UX/UI Designer · Front-end Developer</p>
+                    <p class="profile-loc"><i class="fas fa-map-marker-alt"></i> Hải Châu, Đà Nẵng, Việt Nam</p>
+                </div>
+            </div>
+
+            <!-- Quick Bio -->
+            <div class="profile-bio-box">
+                <p>
+                    Tốt nghiệp chuyên ngành Công nghệ thông tin (BSc Computing) tại <strong>Đại học Greenwich</strong>, kết hợp đào tạo chuyên sâu về <strong>UX/UI Design System</strong> tại Horus Academy. Đam mê biến các bài toán phức tạp thành trải nghiệm kỹ thuật số trực quan, thanh lịch và chuẩn hóa cao.
+                </p>
+            </div>
+
+            <!-- Core Specs Grid -->
+            <div class="profile-specs-grid">
+                <div class="spec-card">
+                    <span class="spec-label"><i class="fas fa-graduation-cap"></i> Học vấn</span>
+                    <strong>Đại học Greenwich</strong>
+                    <span class="spec-sub">BSc (Hons) Computing (2022 - 2026)</span>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-label"><i class="fas fa-certificate"></i> Chuyên môn UX/UI</span>
+                    <strong>Horus Academy</strong>
+                    <span class="spec-sub">Design System & Interaction (2025)</span>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-label"><i class="fas fa-language"></i> Ngoại ngữ</span>
+                    <strong>IELTS 5.5 · VSTEP B2</strong>
+                    <span class="spec-sub">Giao tiếp & đọc tài liệu kỹ thuật tốt</span>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-label"><i class="fas fa-tools"></i> Bộ kỹ năng cốt lõi</span>
+                    <strong>Figma · React · Three.js</strong>
+                    <span class="spec-sub">Tokens, Auto-layout, Agile Scrum</span>
+                </div>
+            </div>
+
+            <!-- Contact Channels -->
+            <div class="profile-contact-strip">
+                <div class="contact-quick-item" onclick="copyProfileEmail()" id="copyEmailTrigger" title="Bấm để sao chép email">
+                    <div class="cq-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="cq-text">
+                        <span class="cq-label">Email (Bấm để copy)</span>
+                        <strong class="cq-val">namkhanhle56@gmail.com</strong>
+                    </div>
+                    <span class="copy-hint" id="copyStatusText"><i class="far fa-copy"></i></span>
+                </div>
+
+                <a href="tel:0702666921" class="contact-quick-item">
+                    <div class="cq-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="cq-text">
+                        <span class="cq-label">Số điện thoại</span>
+                        <strong class="cq-val">0702-666-921</strong>
+                    </div>
+                    <span class="call-hint"><i class="fas fa-arrow-up-right-from-square"></i></span>
+                </a>
+            </div>
+
+            <!-- Social Links & Action -->
+            <div class="profile-card-footer">
+                <div class="profile-social-icons">
+                    <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="soc-btn figma" title="FROGGY Figma File">
+                        <i class="fab fa-figma"></i>
+                    </a>
+                    <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="soc-btn github" title="GitHub Profile">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="soc-btn linkedin" title="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <a href="#contact" onclick="toggleProfileCard()" class="btn-profile-cta">
+                    <span>Liên hệ ngay</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 
