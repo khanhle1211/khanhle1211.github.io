@@ -2784,14 +2784,22 @@ h1, h2, h3, h4, h5, h6 {
 
     .contact-wrapper {
         grid-template-columns: 1fr;
-        padding: 2.5rem;
-        gap: 2.5rem;
+        padding: 1.5rem;
+        gap: 2rem;
     }
 }
 
 @media (max-width: 768px) {
     .section {
         padding: 100px 0 70px;
+    }
+
+    .container {
+        padding: 0 1.2rem;
+    }
+
+    .glass-card {
+        padding: 1.5rem;
     }
 
     .header-floating {
@@ -2856,8 +2864,13 @@ h1, h2, h3, h4, h5, h6 {
         height: 628px;
     }
 
+    .case-study-card {
+        padding: 1.5rem;
+    }
+
     .case-card-body {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .case-metrics-row {
