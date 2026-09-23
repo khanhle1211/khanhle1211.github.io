@@ -439,7 +439,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     border-radius: 46px;
-    background: var(--app-bg);
+    background: #73c2b4;
     overflow: hidden;
     position: relative;
     font-family: 'Outfit', sans-serif;
@@ -520,20 +520,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   APP SCREENS (Interactive Inside Phone)
+   APP SCREENS (Interactive Inside Phone - Full Bleed 100% Edge-to-Edge)
    ========================================================================== */
 .app-screen {
     position: absolute;
     inset: 0;
-    top: 44px;
-    bottom: 20px;
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
     display: none;
     flex-direction: column;
-    padding: 1.4rem 1.3rem;
+    padding: 52px 1.3rem 32px; /* Chừa safe-area cho status bar & home indicator */
     background: #ffffff;
     color: #1e293b;
     z-index: 10;
+    box-sizing: border-box;
 }
 
 .app-screen.active {
@@ -546,13 +547,13 @@ h1, h2, h3, h4, h5, h6 {
     to { opacity: 1; transform: scale(1); }
 }
 
-/* SCREEN 1: Splash Screen */
+/* SCREEN 1: Splash Screen (Tràn nền 100% xanh ngọc) */
 #screenSplash {
-    background: #73c2b4; /* Exact Figma green background */
+    background: #73c2b4; /* Exact Figma green background tràn 100% */
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 2rem 1.4rem;
+    padding: 52px 1.4rem 36px;
 }
 
 .splash-hero-art {
