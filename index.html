@@ -11,7 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3.1.0">
+    <script>
+        (function() {
+            var lang = localStorage.getItem('nk_user_lang') || 'vi';
+            document.documentElement.lang = lang;
+        })();
+    </script>
 </head>
 <body>
     <!-- Floating 3-Island Navigation (Modern Awwwards / Apple Standard) -->
@@ -899,7 +905,7 @@
                         <h4 data-i18n="footerNavTitle">Điều hướng</h4>
                         <ul>
                             <li><a href="#home" data-i18n="navHome">Trang chủ</a></li>
-                            <li><a href="#projects" data-i18n="footerProjectsLink">Dự án & Case Studies</a></li>
+                            <li><a href="#projects" data-i18n="navProjects">Case Studies</a></li>
                             <li><a href="#credentials" data-i18n="navCredentials">Nền tảng & Kỹ năng</a></li>
                             <li><a href="#contact" data-i18n="navContact">Liên hệ</a></li>
                         </ul>
@@ -2924,6 +2930,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="script.js?v=3.1.0"></script>
 </body>
 </html>
