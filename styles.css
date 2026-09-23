@@ -40,7 +40,10 @@
     box-sizing: border-box;
 }
 
-html {
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
     background-color: var(--bg-0);
@@ -759,8 +762,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .avatar-glow-ring {
     position: absolute;
-    width: 320px;
-    height: 320px;
+    width: 105%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+    height: auto;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(0, 240, 255, 0.22) 0%, rgba(123, 97, 255, 0.18) 45%, transparent 70%);
     filter: blur(28px);
@@ -772,8 +777,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Avatar Frame - The Character Card */
 .avatar-character-frame {
     position: relative;
-    width: 310px;
-    height: 360px;
+    width: 100%;
+    max-width: 310px;
+    aspect-ratio: 310 / 360;
+    height: auto;
     border-radius: 26px;
     overflow: hidden;
     border: 1.5px solid rgba(0, 240, 255, 0.35);
@@ -999,8 +1006,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* The 3D Phone Chassis */
 .phone-device {
-    width: 320px;
-    height: 692px;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 320 / 692;
+    height: auto;
     background: #12131a;
     border-radius: 52px;
     border: 4px solid #2d2f3d;
@@ -2860,8 +2869,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .phone-device {
-        width: 290px;
-        height: 628px;
+        max-width: 290px;
     }
 
     .case-study-card {
@@ -2913,13 +2921,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .avatar-character-frame {
-        width: 270px;
-        height: 320px;
+        max-width: 270px;
     }
 
     .avatar-glow-ring {
-        width: 260px;
-        height: 260px;
+        max-width: 260px;
     }
 
     .avatar-float-badge {
