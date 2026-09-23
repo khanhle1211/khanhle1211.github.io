@@ -14,26 +14,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Floating Pill Navigation (Modern shadcn / Awwwards standard) -->
+    <!-- Floating 3-Island Navigation (Modern Awwwards / Apple Standard) -->
     <header class="header-floating">
-        <div class="nav-pill-wrapper">
+        <!-- Island 1 (Left): Identity & Profile Modal Trigger -->
+        <div class="nav-island nav-island-left">
             <button class="logo-pill" id="logoPillBtn" onclick="toggleProfileCard(event)" aria-label="Xem hồ sơ cá nhân Nam Khánh" title="Bấm để xem thông tin cá nhân Nam Khánh">
                 <img src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" class="logo-avatar">
                 <span class="logo-text">Nam Khanh<span class="accent-dot">.</span></span>
                 <span class="logo-pill-dot" title="Sẵn sàng nhận việc"></span>
             </button>
-            <nav class="nav-pill-menu">
-                <ul class="nav-list">
-                    <li><a href="#home" class="nav-link active" data-i18n="navHome">Trang chủ</a></li>
-                    <li><a href="#projects" class="nav-link" data-i18n="navProjects">Case Studies</a></li>
-                    <li><a href="#credentials" class="nav-link" data-i18n="navCredentials">Nền tảng & Kỹ năng</a></li>
-                    <li><a href="#contact" class="nav-link" data-i18n="navContact">Liên hệ</a></li>
-                </ul>
-            </nav>
+        </div>
+
+        <!-- Island 2 (Center): Primary Navigation Menu -->
+        <nav class="nav-island nav-island-center nav-pill-menu" id="navMenu">
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active" data-i18n="navHome">Trang chủ</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="navProjects">Case Studies</a></li>
+                <li><a href="#credentials" class="nav-link" data-i18n="navCredentials">Nền tảng & Kỹ năng</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="navContact">Liên hệ</a></li>
+            </ul>
+        </nav>
+
+        <!-- Island 3 (Right): Social Channels & Language Toggle -->
+        <div class="nav-island nav-island-right">
             <div class="nav-social-quick">
-                <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="nav-social-btn figma-nav-btn" title="Xem Figma Design">
-                    <i class="fab fa-figma"></i>
-                </a>
                 <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="nav-social-btn" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
@@ -48,13 +52,6 @@
                 <span class="lang-sep">/</span>
                 <span class="lang-opt" id="langOptEN">EN</span>
             </button>
-            <a href="#contact" class="btn-pill-cta">
-                <span data-i18n="navCta">Liên hệ</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M7 7h10v10"/>
-                    <path d="M7 17 17 7"/>
-                </svg>
-            </a>
             <button class="mobile-menu-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         </div>
     </header>
