@@ -42,6 +42,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
     background-color: var(--bg-0);
     color: var(--text-300);
 }
@@ -1558,15 +1559,148 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(0, 0, 0, 0.45);
 }
 
+.contact.section {
+    min-height: auto;
+    padding: 110px 0 60px;
+}
+
 /* ==========================================================================
-   Footer
+   Footer (Professional UI/UX Portfolio Footer)
    ========================================================================== */
 .footer {
-    padding: 2.5rem 0;
-    text-align: center;
+    padding: 4.5rem 0 2.5rem;
     border-top: 1px solid var(--card-border);
-    font-size: 0.88rem;
+    background: linear-gradient(180deg, rgba(9, 9, 11, 0) 0%, rgba(18, 18, 24, 0.7) 100%);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.footer-bio {
+    font-size: 0.92rem;
     color: var(--text-400);
+    line-height: 1.65;
+}
+
+.footer-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--text-200);
+    padding: 0.35rem 0.9rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-full);
+    width: fit-content;
+}
+
+.footer-links-group {
+    display: flex;
+    gap: 4.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-col h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-200);
+    margin-bottom: 1.2rem;
+}
+
+.footer-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-col a {
+    font-size: 0.9rem;
+    color: var(--text-400);
+    transition: var(--transition);
+}
+
+.footer-col a:hover {
+    color: var(--text-100);
+    transform: translateX(4px);
+}
+
+.footer-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.social-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    font-size: 0.85rem;
+    color: var(--text-200);
+    transition: var(--transition);
+}
+
+.social-chip:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.85rem;
+    color: var(--text-400);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--text-200);
+    padding: 0.4rem 0.95rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    transition: var(--transition);
+}
+
+.back-to-top:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
