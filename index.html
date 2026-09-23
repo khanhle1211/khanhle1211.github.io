@@ -5,28 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#09090b">
     <title>Lê Đức Nam Khánh — UX/UI Developer Portfolio</title>
+    <!-- Google Fonts: Instrument Serif + Outfit + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-container">
-            <a href="#home" class="logo">Nam Khanh<span>.</span></a>
-            <nav class="nav">
+    <!-- Floating Pill Navigation (Inspired by shadcn & modern Awwwards standards) -->
+    <header class="header-floating">
+        <div class="nav-pill-wrapper">
+            <a href="#home" class="logo-pill">
+                <img src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" class="logo-avatar">
+                <span class="logo-text">Nam Khanh<span class="accent-dot">.</span></span>
+            </a>
+            <nav class="nav-pill-menu">
                 <ul class="nav-list">
                     <li><a href="#home"       class="nav-link active">Trang chủ</a></li>
                     <li><a href="#showcase"   class="nav-link">App 3D</a></li>
                     <li><a href="#experience" class="nav-link">Dự án</a></li>
                     <li><a href="#skills"     class="nav-link">Kỹ năng</a></li>
                     <li><a href="#education"  class="nav-link">Học vấn</a></li>
-                    <li><a href="#contact"    class="nav-link">Liên hệ</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            <a href="#contact" class="btn-pill-cta">
+                <span>Liên hệ</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 7h10v10"/>
+                    <path d="M7 17 17 7"/>
+                </svg>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
@@ -34,35 +44,55 @@
         <!-- ===== HERO SECTION ===== -->
         <section id="home" class="hero section">
             <div class="container hero-container">
-                <!-- Left: Intro & Title -->
+                <!-- Left: Editorial Typography & Intro -->
                 <div class="hero-content reveal">
-                    <div class="profile-badge">
-                        <img src="avatar.jpg?v=2" alt="Lê Đức Nam Khánh" class="avatar-mini">
-                        <span>Sẵn sàng nhận vị trí UX/UI Intern</span>
+                    <!-- Glass Badge Pill -->
+                    <div class="hero-badge animate-fade-slide-in-1">
+                        <span class="badge-label">Available</span>
+                        <span class="badge-text">Sẵn sàng nhận vị trí UX/UI Intern 2026</span>
                     </div>
 
-                    <h1 class="title">
+                    <!-- Editorial Headline (Instrument Serif + Outfit) -->
+                    <h1 class="title animate-fade-slide-in-2">
                         <span class="line">Designing</span>
-                        <span class="line gradient-text">Experiences</span>
+                        <span class="line font-serif italic text-gradient-hero">Experiences</span>
                         <span class="line">That Matter.</span>
                     </h1>
 
-                    <p class="subtitle">
+                    <p class="subtitle animate-fade-slide-in-3">
                         <strong>Lê Đức Nam Khánh</strong> · UX/UI Developer Intern · Đà Nẵng
                     </p>
 
-                    <p class="hero-body">
-                        Sinh viên Kỹ thuật Phần mềm đam mê nghiên cứu người dùng (UX Research) và thiết kế giao diện (UI Design). 
-                        Tôi tập trung biến các bài toán phức tạp thành những trải nghiệm tương tác trực quan, dễ dùng và thẩm mỹ.
+                    <p class="hero-body animate-fade-slide-in-3">
+                        Sinh viên Kỹ thuật Phần mềm đam mê nghiên cứu hành vi người dùng (UX Research) và tạo tác giao diện chuẩn quốc tế (UI Design). 
+                        Tôi biến các bài toán phức tạp thành những trải nghiệm tương tác trực quan, thanh lịch và giàu cảm xúc.
                     </p>
 
-                    <div class="hero-actions">
-                        <a href="#experience" class="btn btn-primary">Xem Dự Án <i class="fas fa-arrow-down"></i></a>
-                        <a href="#contact" class="btn btn-glass">Liên Hệ Ngay</a>
+                    <div class="hero-actions animate-fade-slide-in-4">
+                        <a href="#experience" class="btn btn-primary">
+                            <span>Khám Phá Dự Án</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"/>
+                                <path d="m12 5 7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#contact" class="btn btn-glass">Trò Chuyện Ngay</a>
+                    </div>
+
+                    <!-- Tech & Tools Pill Strip -->
+                    <div class="hero-tools-strip animate-fade-slide-in-4">
+                        <span class="tools-label">Chuyên môn & Công nghệ:</span>
+                        <div class="tools-pills">
+                            <span class="tool-pill"><i class="fab fa-figma"></i> Figma</span>
+                            <span class="tool-pill"><i class="fas fa-layer-group"></i> Design System</span>
+                            <span class="tool-pill"><i class="fab fa-react"></i> React / TS</span>
+                            <span class="tool-pill"><i class="fas fa-cube"></i> Three.js</span>
+                            <span class="tool-pill"><i class="fas fa-tasks"></i> Agile Scrum</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Right: Real Interactive 3D Phone Mockup (Living App, Not Flat Image!) -->
+                <!-- Right: Real Interactive 3D Phone Mockup (Full-Bleed 100%) -->
                 <div class="phone-showcase-container reveal" id="showcase">
                     <div class="showcase-header">
                         <span class="app-tag"><span class="pulse-dot"></span> Live Interactive App · FROGGY</span>
@@ -79,7 +109,7 @@
                             <!-- Dynamic Glass Glare Reflection -->
                             <div class="phone-glare"></div>
 
-                            <!-- Screen Viewport -->
+                            <!-- Screen Viewport (Full Bleed 100%) -->
                             <div class="phone-screen" id="phoneScreen">
                                 <!-- Status Bar -->
                                 <div class="screen-status-bar">
@@ -95,7 +125,7 @@
                                     </div>
                                 </div>
 
-                                <!-- SCREEN 1: Splash Screen -->
+                                <!-- SCREEN 1: Splash Screen (Full Bleed Green) -->
                                 <div class="app-screen active" id="screenSplash">
                                     <div class="screen-content-center">
                                         <div class="splash-hero-art">
@@ -473,7 +503,7 @@
                 <div class="bento-card glass-card contact-wrapper reveal">
                     <div class="contact-left">
                         <span class="section-tag">Liên hệ</span>
-                        <h2>Hãy Cùng Tạo Nên <br><span class="gradient-text">Sản Phẩm Đột Phá.</span></h2>
+                        <h2>Hãy Cùng Tạo Nên <br><span class="gradient-text font-serif italic">Sản Phẩm Đột Phá.</span></h2>
                         <p>Tôi đang tìm kiếm cơ hội thực tập vị trí UX/UI Designer / Developer. Rất mong được đồng hành cùng dự án của bạn!</p>
 
                         <div class="contact-methods">
@@ -527,7 +557,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© 2026 Lê Đức Nam Khánh · UX/UI Developer Portfolio · Built with Passion.</p>
+            <p>© 2026 Lê Đức Nam Khánh · UX/UI Developer Portfolio · Refined with UI/UX Pro Max.</p>
         </div>
     </footer>
 

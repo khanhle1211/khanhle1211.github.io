@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navList = document.querySelector('.nav-list');
+    const navMenu = document.querySelector('.nav-pill-menu') || document.querySelector('.nav-list');
     const mobileMenuIcon = document.querySelector('.mobile-menu-btn i');
 
-    if (mobileMenuBtn && navList) {
+    if (mobileMenuBtn && navMenu) {
         mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = navList.classList.toggle('show');
+            const isOpen = navMenu.classList.toggle('show');
             if (mobileMenuIcon) {
                 mobileMenuIcon.classList.toggle('fa-bars', !isOpen);
                 mobileMenuIcon.classList.toggle('fa-times', isOpen);
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                navList.classList.remove('show');
+                navMenu.classList.remove('show');
                 if (mobileMenuIcon) {
                     mobileMenuIcon.classList.replace('fa-times', 'fa-bars');
                 }
