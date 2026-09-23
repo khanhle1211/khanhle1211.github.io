@@ -797,9 +797,6 @@
 
                         <!-- Professional Links -->
                         <div class="cred-links-row">
-                            <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="social-chip">
-                                <i class="fab fa-figma"></i> Figma Community Profile
-                            </a>
                             <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="social-chip">
                                 <i class="fab fa-github"></i> GitHub Repositories
                             </a>
@@ -832,24 +829,21 @@
                             <a href="tel:0702666921" class="method">
                                 <div class="method-icon"><i class="fas fa-phone"></i></div>
                                 <div>
-                                    <h4>Số điện thoại</h4>
+                                    <h4 data-i18n="contactPhoneLabel">Số điện thoại</h4>
                                     <p>0702-666-921</p>
                                 </div>
                             </a>
                             <div class="method">
                                 <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div>
-                                    <h4>Địa chỉ</h4>
-                                    <p>Hải Châu, TP. Đà Nẵng, Việt Nam</p>
+                                    <h4 data-i18n="contactLocationLabel">Địa chỉ</h4>
+                                    <p data-i18n="contactLocationVal">Hải Châu, TP. Đà Nẵng, Việt Nam</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Social Quick Buttons in Contact -->
                         <div class="contact-social-pills">
-                            <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="social-chip highlight">
-                                <i class="fab fa-figma"></i> Figma Projects
-                            </a>
                             <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="social-chip">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
@@ -863,15 +857,15 @@
                         <form id="contactForm">
                             <div class="form-group">
                                 <label data-i18n="formNameLabel">Họ và Tên</label>
-                                <input type="text" name="Họ và Tên" placeholder="Nguyễn Văn A" required>
+                                <input type="text" name="Họ và Tên" placeholder="Nguyễn Văn A" data-i18n-placeholder="formNamePlaceholder" required>
                             </div>
                             <div class="form-group">
                                 <label data-i18n="formEmailLabel">Email liên hệ</label>
-                                <input type="email" name="Email" placeholder="your@email.com" required>
+                                <input type="email" name="Email" placeholder="your@email.com" data-i18n-placeholder="formEmailPlaceholder" required>
                             </div>
                             <div class="form-group">
                                 <label data-i18n="formMsgLabel">Lời nhắn / Dự án trao đổi</label>
-                                <textarea name="Lời nhắn" rows="4" placeholder="Nội dung cần trao đổi công việc hoặc cơ hội hợp tác..." required></textarea>
+                                <textarea name="Lời nhắn" rows="4" placeholder="Nội dung cần trao đổi công việc hoặc cơ hội hợp tác..." data-i18n-placeholder="formMsgPlaceholder" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">
                                 <span data-i18n="formBtnSend">Gửi Tin Nhắn</span> <i class="fas fa-paper-plane"></i>
@@ -904,20 +898,16 @@
                     <div class="footer-col">
                         <h4 data-i18n="footerNavTitle">Điều hướng</h4>
                         <ul>
-                            <li><a href="#home">Trang chủ</a></li>
-                            <li><a href="#projects">Dự án & Case Studies</a></li>
-                            <li><a href="#showcase">Demo App 3D FROGGY</a></li>
-                            <li><a href="#credentials">Nền tảng & Kỹ năng</a></li>
-                            <li><a href="#contact">Liên hệ</a></li>
+                            <li><a href="#home" data-i18n="navHome">Trang chủ</a></li>
+                            <li><a href="#projects" data-i18n="footerProjectsLink">Dự án & Case Studies</a></li>
+                            <li><a href="#credentials" data-i18n="navCredentials">Nền tảng & Kỹ năng</a></li>
+                            <li><a href="#contact" data-i18n="navContact">Liên hệ</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-col">
                         <h4 data-i18n="footerSocialTitle">Mạng xã hội & Kênh làm việc</h4>
                         <div class="footer-socials">
-                            <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="social-chip highlight">
-                                <i class="fab fa-figma"></i> Figma
-                            </a>
                             <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="social-chip">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
@@ -1939,7 +1929,7 @@
 
             <!-- Quick Bio -->
             <div class="profile-bio-box">
-                <p>
+                <p data-i18n="profileBioText">
                     Tốt nghiệp chuyên ngành Công nghệ thông tin (BSc Computing) tại <strong>Đại học Greenwich</strong>, kết hợp đào tạo chuyên sâu về <strong>UX/UI Design System</strong> tại Horus Academy. Đam mê biến các bài toán phức tạp thành trải nghiệm kỹ thuật số trực quan, thanh lịch và chuẩn hóa cao.
                 </p>
             </div>
@@ -1959,7 +1949,7 @@
                 <div class="spec-card">
                     <span class="spec-label"><i class="fas fa-language"></i> <span data-i18n="profSpecLangLabel">Ngoại ngữ</span></span>
                     <strong>IELTS 5.5 · VSTEP B2</strong>
-                    <span class="spec-sub">Giao tiếp & đọc tài liệu kỹ thuật tốt</span>
+                    <span class="spec-sub" data-i18n="profSpecLangSub">Giao tiếp & đọc tài liệu kỹ thuật tốt</span>
                 </div>
                 <div class="spec-card">
                     <span class="spec-label"><i class="fas fa-tools"></i> <span data-i18n="profSpecSkillsLabel">Bộ kỹ năng cốt lõi</span></span>
@@ -1992,9 +1982,6 @@
             <!-- Social Links & Action -->
             <div class="profile-card-footer">
                 <div class="profile-social-icons">
-                    <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="soc-btn figma" title="FROGGY Figma File">
-                        <i class="fab fa-figma"></i>
-                    </a>
                     <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="soc-btn github" title="GitHub Profile">
                         <i class="fab fa-github"></i>
                     </a>
@@ -2003,7 +1990,7 @@
                     </a>
                 </div>
                 <a href="#contact" onclick="toggleProfileCard()" class="btn-profile-cta">
-                    <span>Liên hệ ngay</span>
+                    <span data-i18n="profileContactCta">Liên hệ ngay</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>

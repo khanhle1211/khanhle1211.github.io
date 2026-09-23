@@ -313,13 +313,20 @@ document.addEventListener('DOMContentLoaded', () => {
         "contactTag": "03 / Liên hệ",
         "contactTitle": "Hãy Cùng Tạo Nên <br><span class=\"gradient-text font-serif italic\">Sản Phẩm Đột Phá.</span>",
         "contactDesc": "Tôi đang tìm kiếm cơ hội hợp tác và gia nhập đội ngũ với vai trò <strong>UX/UI Designer</strong> hoặc <strong>Front-end Developer</strong>. Rất mong được trao đổi cùng bạn!",
+        "contactPhoneLabel": "Số điện thoại",
+        "contactLocationLabel": "Địa chỉ",
+        "contactLocationVal": "Hải Châu, TP. Đà Nẵng, Việt Nam",
         "formNameLabel": "Họ và Tên",
         "formEmailLabel": "Email liên hệ",
         "formMsgLabel": "Lời nhắn / Dự án trao đổi",
+        "formNamePlaceholder": "Nguyễn Văn A",
+        "formEmailPlaceholder": "your@email.com",
+        "formMsgPlaceholder": "Nội dung cần trao đổi công việc hoặc cơ hội hợp tác...",
         "formBtnSend": "Gửi Tin Nhắn",
         "footerBio": "UX/UI Designer · Front-end Developer · Đam mê biến các bài toán phức tạp thành trải nghiệm tương tác trực quan & thanh lịch.",
         "footerStatus": "Sẵn sàng nhận vị trí UX/UI Designer · Front-end Developer",
         "footerNavTitle": "Điều hướng",
+        "footerProjectsLink": "Dự án & Case Studies",
         "footerSocialTitle": "Mạng xã hội & Kênh làm việc",
         "footerBackToTop": "Lên đầu trang",
         "profLocation": "Hải Châu, Đà Nẵng, Việt Nam",
@@ -328,7 +335,10 @@ document.addEventListener('DOMContentLoaded', () => {
         "profSpecEduLabel": "Học vấn",
         "profSpecUxLabel": "Chuyên môn UX/UI",
         "profSpecLangLabel": "Ngoại ngữ",
-        "profSpecSkillsLabel": "Bộ kỹ năng cốt lõi"
+        "profSpecLangSub": "Giao tiếp & đọc tài liệu kỹ thuật tốt",
+        "profSpecSkillsLabel": "Bộ kỹ năng cốt lõi",
+        "profileBioText": "Tốt nghiệp chuyên ngành Công nghệ thông tin (BSc Computing) tại <strong>Đại học Greenwich</strong>, kết hợp đào tạo chuyên sâu về <strong>UX/UI Design System</strong> tại Horus Academy. Đam mê biến các bài toán phức tạp thành trải nghiệm kỹ thuật số trực quan, thanh lịch và chuẩn hóa cao.",
+        "profileContactCta": "Liên hệ ngay"
 },
         'en': {
         "navHome": "Home",
@@ -393,13 +403,20 @@ document.addEventListener('DOMContentLoaded', () => {
         "contactTag": "03 / Contact",
         "contactTitle": "Let's Create <br><span class=\"gradient-text font-serif italic\">Breakthrough Products.</span>",
         "contactDesc": "I am seeking collaboration opportunities and joining forward-thinking teams as a <strong>UX/UI Designer</strong> or <strong>Front-end Developer</strong>. Looking forward to connecting with you!",
+        "contactPhoneLabel": "Phone",
+        "contactLocationLabel": "Location",
+        "contactLocationVal": "Hai Chau, Da Nang City, Vietnam",
         "formNameLabel": "Full Name",
         "formEmailLabel": "Email Address",
         "formMsgLabel": "Message / Project Inquiry",
+        "formNamePlaceholder": "John Doe",
+        "formEmailPlaceholder": "your@email.com",
+        "formMsgPlaceholder": "Tell me about your project, timeline, or inquiry...",
         "formBtnSend": "Send Message",
         "footerBio": "UX/UI Designer · Front-end Developer · Passionate about turning complex challenges into intuitive, elegant, and impactful interactive experiences.",
         "footerStatus": "Available for UX/UI Designer & Front-end Developer Roles",
         "footerNavTitle": "Navigation",
+        "footerProjectsLink": "Projects & Case Studies",
         "footerSocialTitle": "Social & Professional Channels",
         "footerBackToTop": "Back to Top",
         "profLocation": "Hai Chau, Da Nang, Vietnam",
@@ -408,7 +425,10 @@ document.addEventListener('DOMContentLoaded', () => {
         "profSpecEduLabel": "Education",
         "profSpecUxLabel": "UX/UI Specialization",
         "profSpecLangLabel": "Languages",
-        "profSpecSkillsLabel": "Core Skillset"
+        "profSpecLangSub": "Fluent technical communication & documentation",
+        "profSpecSkillsLabel": "Core Skillset",
+        "profileBioText": "BSc Computing graduate from <strong>University of Greenwich</strong> with specialized training in <strong>UX/UI Design System</strong> from Horus Academy. Passionate about transforming complex challenges into intuitive, elegant, and production-ready digital experiences.",
+        "profileContactCta": "Get in touch"
 }
     };
 
@@ -431,6 +451,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const key = el.getAttribute('data-i18n');
             if (dict[key]) {
                 el.innerHTML = dict[key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (dict[key]) {
+                el.setAttribute('placeholder', dict[key]);
             }
         });
     }
