@@ -2777,6 +2777,7 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 100%;
     }
 
+    .bento-grid.two-cols,
     .bento-grid.three-cols {
         grid-template-columns: 1fr;
     }
@@ -2804,6 +2805,7 @@ h1, h2, h3, h4, h5, h6 {
         left: 0.8rem;
         right: 0.8rem;
         width: auto;
+        height: auto !important;
         border-radius: 20px;
         background: rgba(18, 18, 24, 0.96) !important;
         backdrop-filter: blur(20px);
