@@ -242,51 +242,170 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--accent-violet);
 }
 
-/* Island 2: Center Navigation Menu */
-.nav-island-center {
-    padding: 0.35rem 0.5rem;
-    height: 44px;
-    box-sizing: border-box;
-}
-
-.nav-island-center .nav-list {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    margin: 0;
+/* ==========================================================================
+   MENISCUS LIQUID DOCK (Thanh Điều Hướng Lỏng Giọt Nước Awwwards)
+   ========================================================================== */
+.nav-island-center.dock {
+    position: relative;
+    width: clamp(380px, 38vw, 470px);
+    height: 48px;
     padding: 0;
-    list-style: none;
-    white-space: nowrap;
-}
-
-.nav-island-center .nav-list li {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.nav-link {
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--text-400);
-    padding: 0.42rem 0.95rem;
-    border-radius: var(--radius-full);
-    text-decoration: none;
-    white-space: nowrap;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    display: inline-flex;
+/* Soft ground shadow behind lower half of dock */
+.dock__cast {
+    position: absolute;
+    inset: 42% 6% 4% 6%;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.65);
+    box-shadow: 
+        0 10px 24px -6px rgba(0, 0, 0, 0.75),
+        0 24px 48px -12px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
+}
+
+/* Parametric SVG Skin */
+.dock__skin {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 1;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6));
+}
+
+.dock__fill {
+    fill: url(#mnPlate);
+    stroke: url(#mnRim);
+    stroke-width: 1.2px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+/* The Liquid Bead (Giọt Nước Nổi Phát Sáng) */
+.dock__bead {
+    position: absolute;
+    top: var(--bead-cy, 0px);
+    left: 0;
+    width: var(--bead-d, 38px);
+    height: var(--bead-d, 38px);
+    margin: calc(var(--bead-d, 38px) / -2) 0 0 calc(var(--bead-d, 38px) / -2);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 32%, #ffffff 0%, var(--glow, #10b981) 48%, #043825 100%);
+    box-shadow:
+        0 0 0 1px rgb(var(--glow-rgb, 16 185 129) / .65),
+        0 0 24px 4px rgb(var(--glow-rgb, 16 185 129) / .45),
+        0 8px 18px -4px rgba(0, 0, 0, .8),
+        inset 0 1.5px 2px rgba(255, 255, 255, .7),
+        inset 0 -2px 4px rgba(0, 0, 0, .4);
+    will-change: transform;
+    pointer-events: auto;
+    cursor: grab;
+    z-index: 4;
+    transition: box-shadow 0.3s ease;
+}
+
+.dock__bead:active,
+.dock.is-dragging .dock__bead {
+    cursor: grabbing;
+}
+
+.dock:not(.is-ready) .dock__bead {
+    opacity: 0;
+}
+
+/* Tabs Container */
+.dock__tabs {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 5;
+    padding-inline: 16px;
+    margin: 0;
+}
+
+.tab {
+    position: relative;
+    flex: 1;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 12px;
+    --t: 0; /* 0 = rest on bar · 1 = riding into bead */
 }
 
-.nav-link:hover {
-    color: var(--text-100);
-    background: rgba(255, 255, 255, 0.07);
+.tab:focus-visible {
+    outline: 2px solid var(--acc);
+    outline-offset: -2px;
 }
 
-.nav-link.active {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+/* Tab Icon - rides up into the bead */
+.tab__icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    color: color-mix(in oklab, rgba(255, 255, 255, 0.65) calc((1 - var(--t)) * 100%), #0c0814);
+    transform: translate(-50%, -50%) translateY(calc(var(--t) * var(--rise, 24px) * -1));
+    will-change: transform, color;
+    pointer-events: none;
+    transition: stroke-width 0.2s ease;
+}
+
+.tab:hover .tab__icon {
+    stroke-width: 2.2;
+    color: color-mix(in oklab, #ffffff calc((1 - var(--t)) * 100%), #0c0814);
+}
+
+/* Tab Label - sits in the bar below the bead */
+.tab__label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    font-size: 10px;
     font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--acc);
+    opacity: 0;
+    text-align: center;
+    transform: translateY(calc((1 - var(--t)) * 6px));
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tab[aria-selected="true"] .tab__label,
+.dock.is-dragging .tab__label {
+    opacity: var(--t);
 }
 
 /* Island 3: Right Utilities (Socials & Language Toggle) */
@@ -2798,40 +2917,71 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0 0.8rem;
     }
 
-    .nav-island-center {
+    .nav-island-center.dock {
         position: fixed;
         top: 72px;
         left: 0.8rem;
         right: 0.8rem;
-        width: auto;
-        border-radius: 20px;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 20px !important;
         background: rgba(18, 18, 24, 0.96) !important;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        padding: 1.2rem;
+        padding: 1.2rem !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
         display: none;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85) !important;
+        overflow: hidden;
     }
 
-    .nav-island-center.show {
-        display: block;
+    .nav-island-center.dock.show {
+        display: block !important;
     }
 
-    .nav-island-center .nav-list {
-        flex-direction: column;
-        gap: 0.6rem;
-        align-items: stretch;
+    .nav-island-center.dock .dock__cast,
+    .nav-island-center.dock .dock__skin,
+    .nav-island-center.dock .dock__bead {
+        display: none !important;
     }
 
-    .nav-island-center .nav-link {
-        display: flex;
-        align-items: center;
-        padding: 0.7rem 1rem;
-        border-radius: 12px;
+    .nav-island-center.dock .dock__tabs {
+        position: static !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.6rem !important;
+        padding: 0 !important;
     }
 
-    .nav-island-center .nav-link.active {
+    .nav-island-center.dock .tab {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.85rem !important;
+        height: auto !important;
+        padding: 0.75rem 1rem !important;
+        border-radius: 12px !important;
+    }
+
+    .nav-island-center.dock .tab__icon {
+        position: static !important;
+        transform: none !important;
+        width: 18px !important;
+        height: 18px !important;
+        color: var(--acc) !important;
+    }
+
+    .nav-island-center.dock .tab__label {
+        position: static !important;
+        opacity: 1 !important;
+        transform: none !important;
+        font-size: 0.95rem !important;
+        color: #ffffff !important;
+        text-align: left !important;
+    }
+
+    .nav-island-center.dock .tab[aria-selected="true"] {
         background: rgba(255, 255, 255, 0.08) !important;
     }
 

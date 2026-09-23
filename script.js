@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-pill-menu') || document.querySelector('.nav-list');
+    const navMenu = document.querySelector('.dock') || document.querySelector('.nav-pill-menu');
     const mobileMenuIcon = document.querySelector('.mobile-menu-btn i');
 
     if (mobileMenuBtn && navMenu) {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        document.querySelectorAll('.nav-link').forEach(link => {
+        document.querySelectorAll('.nav-link, .tab').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('show');
                 if (mobileMenuIcon) {
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Smooth scroll for in-page anchor links with navbar offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Smooth scroll for in-page anchor links with navbar offset (excluding .tab handled by dock)
+    document.querySelectorAll('a[href^="#"]:not(.tab)').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const hash = this.getAttribute('href');
             if (!hash || hash === '#' || hash === 'javascript:void(0)') return;
@@ -93,21 +93,284 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     }
 
-    // 3. Active Nav Link on Scroll (Scroll-Spy)
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.nav-link');
+    // ==========================================================================
+    // 3. MENISCUS LIQUID DOCK CONTROLLER (Thanh Điều Hướng Lỏng Giọt Nước)
+    // ==========================================================================
+    function initMeniscusDock() {
+        const dock = document.getElementById('dock');
+        if (!dock) return;
+        const svg = document.getElementById('skin');
+        const fillP = document.getElementById('skinFill');
+        const bead = document.getElementById('bead');
+        const tabs = [...dock.querySelectorAll('.tab')];
+        if (!svg || !fillP || !bead || tabs.length === 0) return;
 
-    window.addEventListener('scroll', () => {
-        let current = 'home';
-        sections.forEach(section => {
-            if (window.pageYOffset >= section.offsetTop - section.clientHeight / 3) {
-                current = section.getAttribute('id');
+        const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+        const smooth = (t) => t * t * (3 - 2 * t);
+        const hex = (s) => {
+            const h = (s || '').trim().replace('#', '');
+            const n = parseInt(h.length === 3 ? h.replace(/./g, '$&$&') : h, 16);
+            if (isNaN(n)) return [16, 185, 129];
+            return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+        };
+        const ACC = tabs.map((t) => hex(t.style.getPropertyValue('--acc') || '#10b981'));
+        const mixRGB = (a, b, t) =>
+            `${Math.round(a[0] + (b[0] - a[0]) * t)} ${Math.round(a[1] + (b[1] - a[1]) * t)} ${Math.round(a[2] + (b[2] - a[2]) * t)}`;
+
+        const G = { W: 0, H: 0, R: 18, D: 38, RB: 24, S: 8.36, CY: 0, slots: [], span: 110 };
+        const reach = (s, rb, by) => Math.sqrt(Math.max((s + rb) ** 2 - (s - by) ** 2, 1));
+
+        function measure() {
+            if (window.innerWidth <= 768) return false;
+            const r = dock.getBoundingClientRect();
+            const W = Math.round(r.width), H = Math.round(r.height);
+            if (W < 40 || H < 30) return false;
+
+            G.slots = tabs.map((t) => {
+                const b = t.getBoundingClientRect();
+                return b.left - r.left + b.width / 2;
+            });
+            G.span = G.slots.length > 1 ? G.slots[1] - G.slots[0] : W;
+            G.W = W;
+            G.H = H;
+            G.R = clamp(H * 0.38, 14, 20);
+            G.CY = 0;
+
+            let D = Math.min(H * 0.78, G.span * 0.65);
+            const room = G.slots[0] - G.R - 4;
+            for (let i = 0; i < 3; i++) {
+                const hw = reach(D * 0.22, D / 2 + 5, G.CY);
+                if (hw <= room) break;
+                D *= room / hw;
+            }
+            G.D = Math.max(Math.round(D), 32);
+            G.S = G.D * 0.22;
+            G.RB = G.D / 2 + 5;
+
+            svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+            dock.style.setProperty('--bead-d', `${G.D}px`);
+            dock.style.setProperty('--bead-cy', `${G.CY}px`);
+            dock.style.setProperty('--rise', `${(H / 2 - G.CY).toFixed(1)}px`);
+            return true;
+        }
+
+        function trough(bx, by, rb, sL, sR) {
+            const { W, H, R } = G;
+            const wing = (s, side) => {
+                const L = s + rb;
+                const half = reach(s, rb, by);
+                const sx = bx + side * half;
+                return { sx, s, tx: sx + ((bx - sx) / L) * s, ty: s + ((by - s) / L) * s };
+            };
+            const A = wing(sL, -1), B = wing(sR, +1);
+
+            const a0 = Math.atan2(A.ty - by, A.tx - bx);
+            const a1 = Math.atan2(B.ty - by, B.tx - bx);
+            let sweep = ((a0 - a1) * 180) / Math.PI;
+            while (sweep < 0) sweep += 360;
+            const large = sweep > 180 ? 1 : 0;
+
+            const n = (v) => v.toFixed(2);
+            return (
+                `M0 ${n(R)}` +
+                ` A${n(R)} ${n(R)} 0 0 1 ${n(R)} 0` +
+                ` L${n(clamp(A.sx, R, W - R))} 0` +
+                ` A${n(sL)} ${n(sL)} 0 0 1 ${n(A.tx)} ${n(A.ty)}` +
+                ` A${n(rb)} ${n(rb)} 0 ${large} 0 ${n(B.tx)} ${n(B.ty)}` +
+                ` A${n(sR)} ${n(sR)} 0 0 1 ${n(clamp(B.sx, R, W - R))} 0` +
+                ` L${n(W - R)} 0` +
+                ` A${n(R)} ${n(R)} 0 0 1 ${n(W)} ${n(R)}` +
+                ` L${n(W)} ${n(H - R)}` +
+                ` A${n(R)} ${n(R)} 0 0 1 ${n(W - R)} ${n(H)}` +
+                ` L${n(R)} ${n(H)}` +
+                ` A${n(R)} ${n(R)} 0 0 1 0 ${n(H - R)}` +
+                ` Z`
+            );
+        }
+
+        let x = 0, v = 0, target = 0, dragging = false, raf = 0, last = 0;
+        let current = 0;
+
+        function paint() {
+            if (window.innerWidth <= 768) return;
+            const q = clamp(v / 1100, -1, 1) * (dragging ? 0.5 : 1);
+            const mag = Math.abs(q);
+            const sL = clamp(G.S * (1 + 0.06 * mag + 0.40 * q), G.S * 0.55, G.S * 2.1);
+            const sR = clamp(G.S * (1 + 0.06 * mag - 0.40 * q), G.S * 0.55, G.S * 2.1);
+
+            const d = trough(x, G.CY, G.RB, sL, sR);
+            fillP.setAttribute('d', d);
+
+            const sx = 1 + 0.07 * mag;
+            bead.style.transform = `translate3d(${x.toFixed(2)}px,0,0) scale(${sx.toFixed(3)},${(1 / sx).toFixed(3)})`;
+
+            let near = 0, nd = Infinity;
+            for (let i = 0; i < tabs.length; i++) {
+                const dx = Math.abs(x - G.slots[i]);
+                if (dx < nd) { nd = dx; near = i; }
+                tabs[i].style.setProperty('--t', smooth(clamp(1 - dx / (G.span * 0.55), 0, 1)).toFixed(3));
+            }
+
+            const side = x >= G.slots[near] ? 1 : -1;
+            const other = clamp(near + side, 0, tabs.length - 1);
+            const t = other === near ? 0 : clamp(Math.abs(x - G.slots[near]) / G.span, 0, 1);
+            const rgb = mixRGB(ACC[near], ACC[other], t);
+            dock.style.setProperty('--glow-rgb', rgb);
+            dock.style.setProperty('--glow', `rgb(${rgb})`);
+        }
+
+        function loop(now) {
+            raf = 0;
+            const dt = Math.min((now - last) / 1000, 1 / 30);
+            last = now;
+
+            const K = dragging ? 900 : 142;
+            const C = dragging ? 52 : 19.3;
+            let step = dt;
+            while (step > 0) {
+                const h = Math.min(step, 1 / 240);
+                v += (-K * (x - target) - C * v) * h;
+                x += v * h;
+                step -= h;
+            }
+
+            paint();
+            if (Math.abs(x - target) > 0.05 || Math.abs(v) > 0.6 || dragging) run();
+            else { x = target; v = 0; paint(); }
+        }
+
+        function run() {
+            if (raf) return;
+            last = performance.now();
+            raf = requestAnimationFrame(loop);
+        }
+
+        function select(i, { animate = true, scroll = false } = {}) {
+            current = clamp(i, 0, tabs.length - 1);
+            tabs.forEach((t, n) => {
+                t.setAttribute('aria-selected', String(n === current));
+                t.tabIndex = n === current ? 0 : -1;
+            });
+            if (G.slots.length > current) {
+                target = G.slots[current];
+                if (animate) run();
+                else { x = target; v = 0; paint(); }
+            }
+
+            if (scroll) {
+                const hash = tabs[current].getAttribute('href');
+                if (hash && hash.startsWith('#')) {
+                    const el = document.querySelector(hash);
+                    if (el) {
+                        window.scrollTo({
+                            top: Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - 85),
+                            behavior: 'smooth'
+                        });
+                        history.pushState(null, '', hash);
+                    }
+                }
+            }
+        }
+
+        tabs.forEach((t, i) => {
+            t.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!suppressClick) {
+                    select(i, { animate: true, scroll: true });
+                }
+                dock.classList.remove('show');
+                const mIcon = document.querySelector('.mobile-menu-btn i');
+                if (mIcon) mIcon.classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Pointer Drag Events for Bead
+        let startX = 0, pid = null, suppressClick = false;
+        dock.addEventListener('pointerdown', (e) => {
+            if (window.innerWidth <= 768) return;
+            if (e.button !== 0 && e.pointerType === 'mouse') return;
+            pid = e.pointerId;
+            startX = e.clientX;
+            suppressClick = false;
+        });
+
+        dock.addEventListener('pointermove', (e) => {
+            if (e.pointerId !== pid || window.innerWidth <= 768) return;
+            if (!dragging && Math.abs(e.clientX - startX) < 7) return;
+            if (!dragging) {
+                dragging = true;
+                suppressClick = true;
+                dock.classList.add('is-dragging');
+                dock.setPointerCapture(pid);
+            }
+            e.preventDefault();
+            const left = dock.getBoundingClientRect().left;
+            target = clamp(e.clientX - left, G.slots[0], G.slots[G.slots.length - 1]);
+            run();
+        });
+
+        function release(e) {
+            if (e.pointerId !== pid) return;
+            pid = null;
+            if (!dragging) return;
+            dragging = false;
+            dock.classList.remove('is-dragging');
+            let near = 0, nd = Infinity;
+            G.slots.forEach((s, i) => {
+                const d = Math.abs(target - s);
+                if (d < nd) { nd = d; near = i; }
+            });
+            select(near, { animate: true, scroll: true });
+            setTimeout(() => { suppressClick = false; }, 0);
+        }
+        dock.addEventListener('pointerup', release);
+        dock.addEventListener('pointercancel', release);
+
+        // Keyboard navigation
+        dock.addEventListener('keydown', (e) => {
+            const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+            if (step) {
+                e.preventDefault();
+                select((current + step + tabs.length) % tabs.length, { animate: true, scroll: true });
             }
         });
-        navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-        });
-    }, { passive: true });
+
+        function layout(animate = false) {
+            if (!measure()) return;
+            select(current, { animate });
+            dock.classList.add('is-ready');
+        }
+
+        window.addEventListener('resize', () => layout(false));
+        const ro = new ResizeObserver(() => layout(false));
+        ro.observe(dock);
+
+        setTimeout(() => layout(false), 80);
+
+        // Scroll spy integration
+        const sections = document.querySelectorAll('.section');
+        const sectionMap = { 'home': 0, 'projects': 1, 'credentials': 2, 'contact': 3 };
+        window.addEventListener('scroll', () => {
+            if (dragging) return;
+            let currentSec = 'home';
+            sections.forEach(sec => {
+                if (window.pageYOffset >= sec.offsetTop - sec.clientHeight / 3) {
+                    currentSec = sec.getAttribute('id');
+                }
+            });
+            const idx = sectionMap[currentSec];
+            if (idx !== undefined && idx !== current) {
+                select(idx, { animate: true, scroll: false });
+            }
+        }, { passive: true });
+
+        window.__meniscus = {
+            select: (i) => select(i, { animate: true, scroll: false }),
+            layout: () => layout(false)
+        };
+    }
+
+    initMeniscusDock();
 
     // 4. Scroll Reveal Animation (Mượt mà, ổn định tuyệt đối, triệt tiêu giật khung hình)
     const revealElements = document.querySelectorAll('.reveal');
@@ -464,6 +727,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.setAttribute('placeholder', dict[key]);
             }
         });
+
+        if (window.__meniscus && typeof window.__meniscus.layout === 'function') {
+            setTimeout(() => window.__meniscus.layout(), 30);
+        }
     }
 
     const langToggleBtn = document.getElementById('langToggleBtn');
