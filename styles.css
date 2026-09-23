@@ -115,6 +115,51 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================================================================
    Floating Pill Navigation (Modern shadcn / Awwwards Style)
    ========================================================================== */
+
+/* ==========================================================================
+   Language Switcher Toggle Pill (VI / EN)
+   ========================================================================== */
+.lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-400);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    user-select: none;
+}
+
+.lang-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.lang-opt {
+    color: var(--text-400);
+    transition: var(--transition);
+}
+
+.lang-opt.active {
+    color: var(--accent-cyan);
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
+}
+
+.lang-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 400;
+}
+
 .header-floating {
     position: fixed;
     top: 1.25rem;
@@ -376,7 +421,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   Hero Section with Dynamic Moving 3D Anime Backdrop & Editorial Layout
+   Hero Section with Dynamic Moving 3D Anime Character Backdrop
    ========================================================================== */
 .hero.section {
     padding-top: 140px;
@@ -461,117 +506,72 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     z-index: 10;
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1.05fr 1fr;
     align-items: center;
     gap: 3.5rem;
     width: 100%;
 }
 
-/* Editorial Year Markers (2024 / 2026) */
-.hero-year-marker {
-    font-family: var(--font-sans);
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #64748b;
-    letter-spacing: -0.02em;
-    user-select: none;
-}
-
-.hero-year-marker.top {
-    margin-bottom: 0.8rem;
-}
-
-.hero-year-marker.bottom {
-    margin-top: 1.8rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Technical Barcode & Folio Strip */
-.hero-barcode-strip {
+/* Glass Badge Pill */
+.hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.65rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.74rem;
-    color: #71717a;
-    margin-bottom: 0.6rem;
-    user-select: none;
+    padding: 0.35rem 0.95rem 0.35rem 0.45rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    margin-bottom: 1.8rem;
 }
 
-.barcode-tag {
-    font-weight: 700;
-    color: var(--accent-cyan);
-}
-
-.barcode-bars {
-    letter-spacing: 0.16em;
-    font-weight: 900;
-    color: #fafafa;
-    font-size: 0.85rem;
-}
-
-.barcode-folio {
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    color: #a1a1aa;
-}
-
-/* Category Technical Tag (>>Portfolio _ Lê Đức Nam Khánh) */
-.hero-category-label {
+.badge-label {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: #cbd5e1;
-    letter-spacing: 0.01em;
-    margin-bottom: 0.8rem;
-}
-
-.hero-category-label .cat-prefix {
-    color: #fb7185;
-    font-weight: 800;
-}
-
-/* Studio Bold Headline */
-.hero-studio-title {
-    font-size: clamp(3rem, 5.6vw, 5rem);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 0.95;
-    color: #ffffff;
-    margin-bottom: 1.2rem;
-    text-transform: uppercase;
-}
-
-.hero-studio-title .title-row-1 {
-    display: block;
-    color: #ffffff;
-}
-
-.hero-studio-title .title-row-2 {
-    display: block;
-    background: linear-gradient(135deg, #ffffff 10%, #22d3ee 60%, #8b5cf6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero-studio-sub {
-    font-size: 1.15rem;
-    color: #cbd5e1;
-    margin-bottom: 1.1rem;
-    font-weight: 500;
-}
-
-.hero-studio-sub strong {
-    color: #ffffff;
+    font-size: 0.72rem;
     font-weight: 700;
+    color: #09090b;
+    background: #ffffff;
+    border-radius: var(--radius-full);
+    padding: 0.2rem 0.65rem;
 }
 
-.hero-studio-desc {
-    font-size: 1.02rem;
-    color: #a1a1aa;
+.badge-text {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-200);
+}
+
+.hero .title {
+    font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: 1.3rem;
+}
+
+.hero .title .line {
+    display: block;
+}
+
+.hero .title .font-serif {
+    font-size: 1.15em;
+    font-weight: 400;
+}
+
+.hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-200);
+    margin-bottom: 1.2rem;
+}
+
+.hero .subtitle strong {
+    color: var(--text-100);
+}
+
+.hero-body {
+    font-size: 1.05rem;
+    color: var(--text-300);
     margin-bottom: 2rem;
     max-width: 95%;
     line-height: 1.75;
@@ -579,82 +579,31 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-actions {
     display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    margin-bottom: 1.2rem;
+    gap: 1rem;
+    margin-bottom: 2.2rem;
     flex-wrap: wrap;
 }
 
-/* Studio Action Buttons */
-.btn-studio-primary {
-    background: #ffffff;
-    color: #09090b;
-    padding: 0.85rem 1.8rem;
-    border-radius: var(--radius-full);
-    font-size: 0.88rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+.btn-figma {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
-    transition: var(--transition);
-    border: 1.5px solid #ffffff;
-}
-
-.btn-studio-primary:hover {
-    background: #e4e4e7;
-    border-color: #e4e4e7;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.25);
-    color: #09090b;
-}
-
-.btn-studio-secondary {
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 0.85rem 1.8rem;
-    border-radius: var(--radius-full);
-    font-size: 0.88rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    transition: var(--transition);
-}
-
-.btn-studio-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.btn-studio-figma {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.82rem 1.4rem;
+    gap: 0.55rem;
+    padding: 0.8rem 1.4rem;
     border-radius: var(--radius-full);
     background: rgba(242, 78, 30, 0.12);
-    border: 1.5px solid rgba(242, 78, 30, 0.35);
+    border: 1px solid rgba(242, 78, 30, 0.35);
     color: #ff8563;
-    font-weight: 700;
-    font-size: 0.88rem;
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    font-size: 0.92rem;
     transition: var(--transition);
 }
 
-.btn-studio-figma:hover {
-    background: #F24E1E;
-    border-color: #F24E1E;
+.btn-figma:hover {
+    background: rgba(242, 78, 30, 0.22);
+    border-color: rgba(242, 78, 30, 0.6);
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(242, 78, 30, 0.35);
+    box-shadow: 0 8px 25px rgba(242, 78, 30, 0.25);
 }
 
 /* Tools Strip */
@@ -662,16 +611,16 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .tools-label {
-    font-size: 0.76rem;
-    color: #71717a;
+    font-size: 0.78rem;
+    color: var(--text-400);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .tools-pills {
@@ -684,86 +633,31 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    padding: 0.38rem 0.85rem;
+    padding: 0.35rem 0.8rem;
     border-radius: var(--radius-full);
-    background: rgba(24, 24, 27, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
     font-size: 0.8rem;
-    font-weight: 500;
-    color: #d4d4d8;
-    backdrop-filter: blur(8px);
+    color: var(--text-200);
     transition: var(--transition);
 }
 
 .tool-pill:hover {
-    background: rgba(39, 39, 42, 0.8);
+    background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .tool-pill.highlight {
-    background: rgba(242, 78, 30, 0.12);
+    background: rgba(242, 78, 30, 0.1);
     border-color: rgba(242, 78, 30, 0.35);
     color: #ff9f85;
-    font-weight: 600;
 }
 
 .tool-pill.highlight:hover {
-    background: #F24E1E;
-    border-color: #F24E1E;
+    background: rgba(242, 78, 30, 0.2);
+    border-color: rgba(242, 78, 30, 0.6);
     color: #ffffff;
-}
-
-/* ==========================================================================
-   Infinite Studio Marquee Ticker
-   ========================================================================== */
-.studio-marquee-bar {
-    width: 100%;
-    background: #0d0e12;
-    color: #ffffff;
-    overflow: hidden;
-    white-space: nowrap;
-    padding: 0.95rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 25;
-}
-
-.studio-marquee-track {
-    display: inline-flex;
-    align-items: center;
-    gap: 2.2rem;
-    animation: studioMarqueeScroll 28s linear infinite;
-    will-change: transform;
-}
-
-.studio-marquee-track:hover {
-    animation-play-state: paused;
-}
-
-.marquee-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.82rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #f8fafc;
-}
-
-.marquee-item .sparkle {
-    color: #10b981;
-    font-size: 0.75rem;
-}
-
-@keyframes studioMarqueeScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
 }
 
 /* ==========================================================================

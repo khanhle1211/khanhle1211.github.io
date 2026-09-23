@@ -238,6 +238,148 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 8. Bilingual Language Switcher (Tiếng Việt / English)
+    const translations = {
+        'vi': {
+            'navHome': 'Trang chủ',
+            'navProjects': 'Case Studies',
+            'navCredentials': 'Nền tảng & Kỹ năng',
+            'navContact': 'Liên hệ',
+            'navCta': 'Liên hệ',
+            'heroBadgeLabel': 'Available',
+            'heroBadgeText': 'Sẵn sàng nhận vị trí UX/UI Designer · Front-end Developer',
+            'heroTitle1': 'Designing',
+            'heroTitle2': 'Experiences',
+            'heroTitle3': 'That Matter.',
+            'heroSubRole': 'UX/UI Designer · Front-end Developer · Đà Nẵng',
+            'heroBody': 'Định hướng phát triển chuyên sâu từ nghiên cứu hành vi người dùng (UX Research), chuẩn hóa Design System trên Figma đến lập trình giao diện tương tác cao cấp (Front-end Development). Tôi biến những bài toán phức tạp thành trải nghiệm kỹ thuật số trực quan, thanh lịch và giàu cảm xúc.',
+            'heroBtnProjects': 'Khám Phá Case Studies',
+            'heroBtnFigma': 'Mở Figma Design',
+            'heroToolsLabel': 'Chuyên môn & Công cụ:',
+            'phoneAppTag': 'Live Interactive App · FROGGY',
+            'phoneHint': 'Bấm & gõ tương tác trực tiếp như điện thoại thật · Thử bấm "+35k Cafe" để cập nhật số dư!',
+            'csSectionTag': '01 / Case Studies',
+            'csSectionTitle': 'Dự Án UX/UI Tiêu Biểu',
+            'csSectionDesc': 'Giải quyết bài toán thực tế bằng quy trình lấy người dùng làm trung tâm (User-Centered Design)',
+            'froggyBadge': 'Case Study Tiêu Biểu',
+            'froggyProjectName': 'Ứng Dụng Quản Lý Chi Tiêu Cá Nhân Gắn Kết Cảm Xúc',
+            'froggyProblemLabel': 'Vấn đề:',
+            'froggyProblemDesc': '73% người trẻ bỏ cuộc sau 2 tuần ghi chép chi tiêu vì quy trình nhập liệu thủ công quá phức tạp, giao diện tài chính khô khan và cảm giác áp lực tội lỗi mỗi khi nhìn vào ví tiền hụt.',
+            'froggySolutionLabel': 'Giải pháp UX:',
+            'froggySolutionDesc': 'Cơ chế "3-Tap Quick Log" tinh gọn thời gian ghi chép dưới 4.5 giây, kết hợp linh vật Ếch Xanh Froggy phản ứng theo mức chi tiêu, biến quản lý tài chính thành hành trình nuôi dưỡng cảm xúc tích cực.',
+            'froggyMetric1Lbl': 'Hoàn thành tác vụ (Task Completion)',
+            'froggyMetric2Lbl': 'Ghi chép nhanh (3-Tap Flow)',
+            'froggyMetric3Lbl': 'Thang đo UX (SUS Score)',
+            'froggyBtnRead': 'Xem Case Study Chi Tiết',
+            'froggyBtnTest': 'Dùng Thử App Thật (3D)',
+            'safemapProjectName': 'Bản Đồ Cảnh Báo An Toàn Thời Gian Thực & Định Vị Tuyến Đường',
+            'safemapProblemLabel': 'Vấn đề:',
+            'safemapProblemDesc': 'Người dân miền Trung thường mất phương hướng khi ngập lụt cục bộ xảy ra bất ngờ. Các ứng dụng bản đồ hiện tại không phản ánh kịp thời các điểm ngập nước theo chiều sâu và chướng ngại vật tức thời.',
+            'safemapSolutionLabel': 'Giải pháp UX:',
+            'safemapSolutionDesc': 'Hệ thống bản đồ đa lớp hiển thị mực nước ngập trực quan qua mã màu nhiệt (Heatmap), cho phép cộng đồng cảnh báo tức thì kèm tính năng điều hướng tự động né tránh vùng nguy hiểm.',
+            'safemapMetric1Lbl': 'Thời gian tiếp nhận cảnh báo',
+            'safemapMetric2Lbl': 'Độ trễ đồng bộ vị trí',
+            'safemapMetric3Lbl': 'Độ chính xác cảnh báo',
+            'safemapBtnRead': 'Xem Chi Tiết SafeMap',
+            'aboutSectionTag': '02 / Nền Tảng & Chuyên Môn',
+            'aboutSectionTitle': 'Hành Trình & Tư Duy Thiết Kế',
+            'aboutSectionDesc': 'Kết hợp giữa tư duy phân tích kỹ thuật và thẩm mỹ trực giác để xây dựng sản phẩm số bền vững',
+            'contactSectionTag': '03 / Kết Nối',
+            'contactSectionTitle': 'Khởi Đầu Một Dự Án Mới',
+            'contactSectionDesc': 'Tôi luôn sẵn sàng thảo luận về các cơ hội hợp tác, dự án UX/UI hoặc vị trí chính thức.',
+            'formNameLabel': 'Họ và tên',
+            'formEmailLabel': 'Email liên hệ',
+            'formMsgLabel': 'Nội dung lời nhắn',
+            'formBtnSend': 'Gửi Tin Nhắn'
+        },
+        'en': {
+            'navHome': 'Home',
+            'navProjects': 'Case Studies',
+            'navCredentials': 'Credentials & Skills',
+            'navContact': 'Contact',
+            'navCta': 'Contact',
+            'heroBadgeLabel': 'Available',
+            'heroBadgeText': 'Available for UX/UI Designer & Front-end Developer Roles',
+            'heroTitle1': 'Designing',
+            'heroTitle2': 'Experiences',
+            'heroTitle3': 'That Matter.',
+            'heroSubRole': 'UX/UI Designer · Front-end Developer · Da Nang, Vietnam',
+            'heroBody': 'Specialized in UX Research, scalable Figma Design Systems, and interactive front-end development. I transform complex problems into intuitive, elegant, and emotionally engaging digital products.',
+            'heroBtnProjects': 'Explore Case Studies',
+            'heroBtnFigma': 'Open Figma Design',
+            'heroToolsLabel': 'Expertise & Tools:',
+            'phoneAppTag': 'Live Interactive App · FROGGY',
+            'phoneHint': 'Tap & type interactively like a real phone · Try "+35k Cafe" to update balance!',
+            'csSectionTag': '01 / Case Studies',
+            'csSectionTitle': 'Featured UX/UI Projects',
+            'csSectionDesc': 'Solving real-world challenges through User-Centered Design methodologies',
+            'froggyBadge': 'Featured Case Study',
+            'froggyProjectName': 'Gamified Emotion-Driven Financial Tracker',
+            'froggyProblemLabel': 'The Problem:',
+            'froggyProblemDesc': '73% of Gen Z abandon expense tracking within 2 weeks due to tedious manual entry, cold financial UI, and guilt-driven balance drops.',
+            'froggySolutionLabel': 'The UX Solution:',
+            'froggySolutionDesc': '"3-Tap Quick Log" streamlines logging under 4.5 seconds, paired with Froggy the mascot reacting dynamically to spending habits, transforming finance into an engaging habit.',
+            'froggyMetric1Lbl': 'Task Completion Rate',
+            'froggyMetric2Lbl': 'Quick Log Speed (3-Tap Flow)',
+            'froggyMetric3Lbl': 'Usability Score (SUS)',
+            'froggyBtnRead': 'Read Full Case Study',
+            'froggyBtnTest': 'Test Live App (3D)',
+            'safemapProjectName': 'Real-Time Disaster & Safety Route Navigation Map',
+            'safemapProblemLabel': 'The Problem:',
+            'safemapProblemDesc': 'Citizens in Central Vietnam struggle during sudden urban flash floods. Standard map apps fail to reflect real-time water depths and route hazards.',
+            'safemapSolutionLabel': 'The UX Solution:',
+            'safemapSolutionDesc': 'Layered heatmap displaying water depths in real-time with crowdsourced hazard reporting and auto-rerouting away from danger zones.',
+            'safemapMetric1Lbl': 'Alert Dispatch Time',
+            'safemapMetric2Lbl': 'Location Sync Latency',
+            'safemapMetric3Lbl': 'Hazard Alert Accuracy',
+            'safemapBtnRead': 'Read SafeMap Story',
+            'aboutSectionTag': '02 / Credentials & Skills',
+            'aboutSectionTitle': 'Background & Design Philosophy',
+            'aboutSectionDesc': 'Bridging analytical engineering and intuitive aesthetics to craft enduring digital products',
+            'contactSectionTag': '03 / Get in Touch',
+            'contactSectionTitle': 'Start a Conversation',
+            'contactSectionDesc': 'I am always open to exploring new collaborations, UX/UI projects, or full-time opportunities.',
+            'formNameLabel': 'Your Name',
+            'formEmailLabel': 'Email Address',
+            'formMsgLabel': 'Your Message',
+            'formBtnSend': 'Send Message'
+        }
+    };
+
+    let currentLang = localStorage.getItem('nk_user_lang') || 'vi';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('nk_user_lang', lang);
+        document.documentElement.lang = lang;
+
+        const optVI = document.getElementById('langOptVI');
+        const optEN = document.getElementById('langOptEN');
+        if (optVI && optEN) {
+            optVI.classList.toggle('active', lang === 'vi');
+            optEN.classList.toggle('active', lang === 'en');
+        }
+
+        const dict = translations[lang] || translations['vi'];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key]) {
+                el.innerHTML = dict[key];
+            }
+        });
+    }
+
+    const langToggleBtn = document.getElementById('langToggleBtn');
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+            const nextLang = currentLang === 'vi' ? 'en' : 'vi';
+            setLanguage(nextLang);
+        });
+    }
+
+    // Initialize language
+    setLanguage(currentLang);
 });
 
 // ==========================================================================

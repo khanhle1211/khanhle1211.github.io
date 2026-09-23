@@ -24,10 +24,10 @@
             </button>
             <nav class="nav-pill-menu">
                 <ul class="nav-list">
-                    <li><a href="#home" class="nav-link active">Trang chủ</a></li>
-                    <li><a href="#projects" class="nav-link">Case Studies</a></li>
-                    <li><a href="#credentials" class="nav-link">Nền tảng & Kỹ năng</a></li>
-                    <li><a href="#contact" class="nav-link">Liên hệ</a></li>
+                    <li><a href="#home" class="nav-link active" data-i18n="navHome">Trang chủ</a></li>
+                    <li><a href="#projects" class="nav-link" data-i18n="navProjects">Case Studies</a></li>
+                    <li><a href="#credentials" class="nav-link" data-i18n="navCredentials">Nền tảng & Kỹ năng</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="navContact">Liên hệ</a></li>
                 </ul>
             </nav>
             <div class="nav-social-quick">
@@ -41,8 +41,15 @@
                     <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>
+            <!-- Language Switcher Toggle (VI / EN) -->
+            <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Chuyển đổi ngôn ngữ / Switch Language" title="Chuyển đổi Tiếng Việt / English">
+                <i class="fas fa-globe"></i>
+                <span class="lang-opt active" id="langOptVI">VI</span>
+                <span class="lang-sep">/</span>
+                <span class="lang-opt" id="langOptEN">EN</span>
+            </button>
             <a href="#contact" class="btn-pill-cta">
-                <span>Liên hệ</span>
+                <span data-i18n="navCta">Liên hệ</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7 7h10v10"/>
                     <path d="M7 17 17 7"/>
@@ -68,64 +75,48 @@
             </div>
 
             <div class="container hero-container">
-                <!-- Left: Editorial Typography & Intro -->
+                <!-- Left: Original Editorial Typography & Intro -->
                 <div class="hero-content reveal">
-                    <!-- Editorial Year Marker Top (from Studio reference) -->
-                    <div class="hero-year-marker top">2024</div>
-
-                    <!-- Tech Barcode & Folio Strip (from reference monitor) -->
-                    <div class="hero-barcode-strip animate-fade-slide-in-1">
-                        <span class="barcode-tag">&lt;001&gt;</span>
-                        <span class="barcode-bars" aria-hidden="true">|||▌|▌||▌||||▌|▌||▌|||▌|▌||</span>
-                        <span class="barcode-folio">PORTFOLIO // NK_2026</span>
+                    <!-- Glass Badge Pill -->
+                    <div class="hero-badge animate-fade-slide-in-1">
+                        <span class="badge-label" data-i18n="heroBadgeLabel">Available</span>
+                        <span class="badge-text" data-i18n="heroBadgeText">Sẵn sàng nhận vị trí UX/UI Designer · Front-end Developer</span>
                     </div>
 
-                    <!-- Category Technical Tag (>>Portfolio _ Lê Đức Nam Khánh) -->
-                    <div class="hero-category-label animate-fade-slide-in-1">
-                        <span class="cat-prefix">&gt;&gt;</span>Portfolio _ Lê Đức Nam Khánh
-                    </div>
-
-                    <!-- Studio Bold Grotesque Headline (matching Potato Designer reference) -->
-                    <h1 class="hero-studio-title animate-fade-slide-in-2">
-                        <span class="title-row-1">NAM KHANH</span>
-                        <span class="title-row-2">UX/UI DESIGNER</span>
+                    <!-- Editorial Headline (Instrument Serif + Outfit) -->
+                    <h1 class="title animate-fade-slide-in-2">
+                        <span class="line" data-i18n="heroTitle1">Designing</span>
+                        <span class="line font-serif italic text-gradient-hero" data-i18n="heroTitle2">Experiences</span>
+                        <span class="line" data-i18n="heroTitle3">That Matter.</span>
                     </h1>
 
-                    <p class="hero-studio-sub animate-fade-slide-in-3">
-                        <strong>Lê Đức Nam Khánh</strong> · UX/UI Designer · Front-end Developer · Đà Nẵng
+                    <p class="subtitle animate-fade-slide-in-3">
+                        <strong>Lê Đức Nam Khánh</strong> · <span data-i18n="heroSubRole">UX/UI Designer · Front-end Developer · Đà Nẵng</span>
                     </p>
 
-                    <p class="hero-studio-desc animate-fade-slide-in-3">
-                        A multidisciplinary UX/UI Designer & Front-end Developer shaping user research, scalable Figma Design Systems, and high-fidelity interactive digital experiences.<br>
-                        Biến những bài toán phức tạp thành giao diện trực quan, tinh tế và tối ưu hành vi người dùng.
+                    <p class="hero-body animate-fade-slide-in-3" data-i18n="heroBody">
+                        Định hướng phát triển chuyên sâu từ nghiên cứu hành vi người dùng (UX Research), chuẩn hóa Design System trên Figma đến lập trình giao diện tương tác cao cấp (Front-end Development). Tôi biến những bài toán phức tạp thành trải nghiệm kỹ thuật số trực quan, thanh lịch và giàu cảm xúc.
                     </p>
 
-                    <!-- Dual Studio Pill Action Buttons (matching reference photo) -->
                     <div class="hero-actions animate-fade-slide-in-4">
-                        <a href="#projects" class="btn btn-studio-primary">
-                            <span>VIEW SELECTED WORK</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <a href="#projects" class="btn btn-primary">
+                            <span data-i18n="heroBtnProjects">Khám Phá Case Studies</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M5 12h14"/>
                                 <path d="m12 5 7 7-7 7"/>
                             </svg>
                         </a>
-                        <a href="#contact" class="btn btn-studio-secondary">
-                            <span>START A PROJECT</span>
-                        </a>
-                        <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="btn btn-studio-figma" title="Mở file thiết kế gốc trên Figma">
-                            <i class="fab fa-figma"></i> Figma System
+                        <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="btn btn-figma" title="Mở file thiết kế gốc trên Figma">
+                            <i class="fab fa-figma"></i> <span data-i18n="heroBtnFigma">Mở Figma Design</span>
                         </a>
                     </div>
 
-                    <!-- Editorial Year Marker Bottom (from Studio reference) -->
-                    <div class="hero-year-marker bottom">2026</div>
-
                     <!-- Tech & Tools Pill Strip -->
                     <div class="hero-tools-strip animate-fade-slide-in-4">
-                        <span class="tools-label">Chuyên môn & Công nghệ:</span>
+                        <span class="tools-label" data-i18n="heroToolsLabel">Chuyên môn & Công cụ:</span>
                         <div class="tools-pills">
                             <a href="https://www.figma.com/design/NaDkLdqKVMniqA7Kd32xFU/FROGGY--Copy-?node-id=0-1&t=aJBA2T16q2i6Bxdo-1" target="_blank" rel="noopener noreferrer" class="tool-pill highlight">
-                                <i class="fab fa-figma"></i> Figma Tokens & Auto-Layout
+                                <i class="fab fa-figma"></i> Figma (Tokens & Auto-Layout)
                             </a>
                             <span class="tool-pill"><i class="fas fa-layer-group"></i> Design System</span>
                             <span class="tool-pill"><i class="fas fa-search"></i> UX Research & Testing</span>
@@ -139,7 +130,7 @@
                 <!-- Right: Real Interactive 3D Phone Mockup (Full-Bleed 100%) -->
                 <div class="phone-showcase-container reveal" id="showcase">
                     <div class="showcase-header">
-                        <span class="app-tag"><span class="pulse-dot"></span> Live Interactive App · FROGGY</span>
+                        <span class="app-tag"><span class="pulse-dot"></span> <span data-i18n="phoneAppTag">Live Interactive App · FROGGY</span></span>
                     </div>
 
                     <!-- 3D Phone Chassis Stage -->
@@ -476,45 +467,20 @@
                             </button>
                         </div>
                         <div class="dock-instruction">
-                            <i class="fas fa-hand-pointer"></i> Bấm & gõ tương tác trực tiếp như điện thoại thật · Thử bấm "+35k Cafe" để cập nhật số dư!
+                            <i class="fas fa-hand-pointer"></i> <span data-i18n="phoneHint">Bấm & gõ tương tác trực tiếp như điện thoại thật · Thử bấm "+35k Cafe" để cập nhật số dư!</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== INFINITE STUDIO MARQUEE TICKER (INSPIRED BY REFERENCE MONITOR) ===== -->
-        <div class="studio-marquee-bar" aria-hidden="true">
-            <div class="studio-marquee-track">
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> UX/UI DESIGN</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> FRONT-END DEVELOPMENT</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> FIGMA DESIGN SYSTEM</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> 3-TAP QUICK LOG</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> RAPID PROTOTYPING</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> USER RESEARCH & TESTING</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> THREE.JS & 3D INTERACTION</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> AGILE SCRUM</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> USABILITY SCORE 85/100</span>
-                <!-- Loop duplicated for seamless infinite scroll -->
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> UX/UI DESIGN</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> FRONT-END DEVELOPMENT</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> FIGMA DESIGN SYSTEM</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> 3-TAP QUICK LOG</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> RAPID PROTOTYPING</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> USER RESEARCH & TESTING</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> THREE.JS & 3D INTERACTION</span>
-                <span class="marquee-item"><i class="fas fa-circle sparkle"></i> AGILE SCRUM</span>
-                <span class="marquee-item"><i class="fas fa-sparkles sparkle"></i> USABILITY SCORE 85/100</span>
-            </div>
-        </div>
-
         <!-- ===== 01. FEATURED CASE STUDIES SECTION (ĐẨY LÊN ĐẦU TIÊN) ===== -->
         <section id="projects" class="experience section">
             <div class="container">
                 <div class="section-header reveal">
                     <span class="section-tag">01 / Case Studies</span>
-                    <h2>Dự Án UX/UI Tiêu Biểu</h2>
-                    <p>Giải quyết bài toán thực tế bằng quy trình lấy người dùng làm trung tâm (User-Centered Design)</p>
+                    <h2 data-i18n="csSectionTitle">Dự Án UX/UI Tiêu Biểu</h2>
+                    <p data-i18n="csSectionDesc">Giải quyết bài toán thực tế bằng quy trình lấy người dùng làm trung tâm (User-Centered Design)</p>
                 </div>
 
                 <div class="bento-grid case-studies-grid">
