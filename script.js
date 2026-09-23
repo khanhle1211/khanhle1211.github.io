@@ -59,6 +59,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Smooth scroll for in-page anchor links with navbar offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const hash = this.getAttribute('href');
+            if (!hash || hash === '#' || hash === 'javascript:void(0)') return;
+            const target = document.querySelector(hash);
+            if (target) {
+                e.preventDefault();
+                const offset = 85;
+                const elementTop = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: Math.max(0, elementTop - offset),
+                    behavior: 'smooth'
+                });
+                history.pushState(null, '', hash);
+            }
+        });
+    });
+
+    // Check if loaded with initial hash (e.g. #credentials) and offset properly
+    if (window.location.hash) {
+        setTimeout(() => {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                const offset = 85;
+                const elementTop = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: Math.max(0, elementTop - offset),
+                    behavior: 'smooth'
+                });
+            }
+        }, 150);
+    }
+
     // 3. Active Nav Link on Scroll
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -75,21 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Two-Way Scroll Reveal Animation (Xuất hiện khi lướt xuống, Biến mất khi lướt lên!)
+    // 4. Scroll Reveal Animation (Mượt mà, ổn định tuyệt đối, triệt tiêu giật khung hình)
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Cuộn tới: Hiện ra mượt mà
                 entry.target.classList.add('active');
-            } else {
-                // Cuộn qua / Cuộn ngược lên: Biến mất mượt mà!
-                entry.target.classList.remove('active');
+                revealObserver.unobserve(entry.target); // Hiện mượt mà 1 lần và giữ ổn định, không bị giật/rung lắc
             }
         });
     }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));

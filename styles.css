@@ -350,11 +350,9 @@ h1, h2, h3, h4, h5, h6 {
    Section Layouts
    ========================================================================== */
 .section {
-    padding: 130px 0 100px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+    padding: 110px 0 90px;
     position: relative;
+    scroll-margin-top: 80px;
 }
 
 .section-header {
