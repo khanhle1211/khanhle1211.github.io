@@ -60,19 +60,8 @@
     </header>
 
     <main>
-        <!-- ===== HERO SECTION (WITH DYNAMIC MOVING ANIME CHARACTER BACKGROUND) ===== -->
+        <!-- ===== HERO SECTION ===== -->
         <section id="home" class="hero section">
-            <!-- Dynamic Anime Background / Video Layer (Matching Reference Monitor) -->
-            <div class="hero-anime-backdrop" aria-hidden="true">
-                <video class="hero-anime-video" autoplay loop muted playsinline poster="assets/hero-anime-character.jpg">
-                    <source src="assets/hero-anime-video.mp4" type="video/mp4">
-                </video>
-                <div class="hero-anime-character-wrap" id="heroAnimeWrap">
-                    <img src="assets/hero-anime-character.jpg" alt="3D Stylized Anime Character" class="hero-anime-character-img" id="heroAnimeImg">
-                </div>
-                <!-- Dark Cyber Ambient Gradient & Vignette (Seamless Dark Transition) -->
-                <div class="hero-anime-vignette"></div>
-            </div>
 
             <div class="container hero-container">
                 <!-- Left: Original Editorial Typography & Intro -->
@@ -127,14 +116,75 @@
                     </div>
                 </div>
 
-                <!-- Right: Real Interactive 3D Phone Mockup (Full-Bleed 100%) -->
+                <!-- Right: Dual-Mode Interactive 3D Showcase (Custom 3D Avatar + 3D Phone) -->
                 <div class="phone-showcase-container reveal" id="showcase">
-                    <div class="showcase-header">
-                        <span class="app-tag"><span class="pulse-dot"></span> <span data-i18n="phoneAppTag">Live Interactive App · FROGGY</span></span>
+                    <!-- Showcase Mode Switcher (Avatar vs App) -->
+                    <div class="showcase-mode-tabs" role="tablist">
+                        <button type="button" class="showcase-mode-btn active" id="modeBtnAvatar" onclick="switchHeroStageMode('avatar')" role="tab" aria-selected="true">
+                            <span class="mode-icon"><i class="fas fa-bolt"></i></span>
+                            <span data-i18n="heroTabAvatar">3D Avatar · Nam Khánh</span>
+                        </button>
+                        <button type="button" class="showcase-mode-btn" id="modeBtnPhone" onclick="switchHeroStageMode('phone')" role="tab" aria-selected="false">
+                            <span class="mode-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <span data-i18n="heroTabPhone">FROGGY App (3D Phone)</span>
+                        </button>
                     </div>
 
-                    <!-- 3D Phone Chassis Stage -->
-                    <div class="phone-3d-stage" id="phoneStage">
+                    <!-- MODE 1: Custom 3D Designer Avatar Stage (Front & Center, Animated) -->
+                    <div class="avatar-3d-stage active" id="avatarStage">
+                        <!-- Speech Bubble -->
+                        <div class="avatar-speech-bubble" id="avatarBubble">
+                            <span class="bubble-sparkle">✨</span>
+                            <span class="bubble-text" id="avatarBubbleText" data-i18n="avatarGreeting">Hi! Tôi là Nam Khánh 👋 UX/UI Designer &amp; Front-end Dev. Chào mừng bạn ghé thăm portfolio!</span>
+                        </div>
+
+                        <!-- 3D Avatar Viewport with Parallax & Motion -->
+                        <div class="avatar-3d-viewport" id="avatarViewport">
+                            <!-- Cyber Ambient Glow Backing -->
+                            <div class="avatar-glow-ring"></div>
+                            
+                            <!-- 3D Character Card Frame -->
+                            <div class="avatar-character-frame" id="avatarCharFrame" onclick="onAvatarCharacterClick()">
+                                <img src="assets/namkhanh-3d-avatar.jpg" alt="Lê Đức Nam Khánh - 3D Designer Persona" class="avatar-3d-img" id="avatar3DImg">
+                                <div class="avatar-glass-shine"></div>
+                            </div>
+
+                            <!-- Floating Orbiting Design Tokens & Badges -->
+                            <div class="avatar-float-badge badge-figma" id="badgeFigma">
+                                <i class="fab fa-figma"></i>
+                                <span data-i18n="badgeFigma">Figma Tokens</span>
+                            </div>
+                            <div class="avatar-float-badge badge-three" id="badgeThree">
+                                <i class="fas fa-cube"></i>
+                                <span data-i18n="badgeThree">3D Interactive</span>
+                            </div>
+                            <div class="avatar-float-badge badge-ux" id="badgeUx">
+                                <i class="fas fa-user-check"></i>
+                                <span data-i18n="badgeUx">User-Centered UX</span>
+                            </div>
+                        </div>
+
+                        <!-- Avatar Footer Info & Action -->
+                        <div class="avatar-stage-footer">
+                            <div class="avatar-status-pill">
+                                <span class="status-live-dot"></span>
+                                <span data-i18n="avatarLiveStatus">3D Model Interactive · Rê chuột để xoay</span>
+                            </div>
+                            <button type="button" class="btn-try-phone-inline" onclick="switchHeroStageMode('phone')">
+                                <span data-i18n="btnTryAppInline">Trải nghiệm 3D Phone</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- MODE 2: Real Interactive 3D Phone Mockup Wrapper -->
+                    <div class="phone-stage-wrapper" id="phoneStageWrapper">
+                        <div class="showcase-header">
+                            <span class="app-tag"><span class="pulse-dot"></span> <span data-i18n="phoneAppTag">Live Interactive App · FROGGY</span></span>
+                        </div>
+
+                        <!-- 3D Phone Chassis Stage -->
+                        <div class="phone-3d-stage" id="phoneStage">
                         <div class="phone-device" id="phoneDevice">
                             <!-- Side Hardware Buttons -->
                             <div class="phone-btn phone-btn-vol-up"></div>
@@ -470,6 +520,7 @@
                             <i class="fas fa-hand-pointer"></i> <span data-i18n="phoneHint">Bấm & gõ tương tác trực tiếp như điện thoại thật · Thử bấm "+35k Cafe" để cập nhật số dư!</span>
                         </div>
                     </div>
+                    </div> <!-- /#phoneStageWrapper -->
                 </div>
             </div>
         </section>

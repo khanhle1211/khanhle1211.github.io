@@ -125,42 +125,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // 4b. Hero 3D Anime Character Mouse Parallax
-    const heroSection = document.getElementById('home');
-    const heroAnimeWrap = document.getElementById('heroAnimeWrap');
-    if (heroSection && heroAnimeWrap) {
+    // 4b. Hero 3D Nam Khánh Avatar Mouse Parallax & Dynamic Motion
+    const avatarViewport = document.getElementById('avatarViewport');
+    const avatarCharFrame = document.getElementById('avatarCharFrame');
+    const badgeFigma = document.getElementById('badgeFigma');
+    const badgeThree = document.getElementById('badgeThree');
+    const badgeUx = document.getElementById('badgeUx');
+
+    if (avatarViewport && avatarCharFrame) {
         let mouseX = 0, mouseY = 0;
         let currentX = 0, currentY = 0;
         let isMoving = false;
 
-        heroSection.addEventListener('mousemove', (e) => {
-            const rect = heroSection.getBoundingClientRect();
-            mouseX = (e.clientX - rect.left) / rect.width - 0.5; // range: -0.5 to 0.5
+        avatarViewport.addEventListener('mousemove', (e) => {
+            const rect = avatarViewport.getBoundingClientRect();
+            mouseX = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
             mouseY = (e.clientY - rect.top) / rect.height - 0.5;
             if (!isMoving) {
                 isMoving = true;
-                requestAnimationFrame(updateHeroAnimeParallax);
+                requestAnimationFrame(updateAvatarParallax);
             }
         });
 
-        heroSection.addEventListener('mouseleave', () => {
+        avatarViewport.addEventListener('mouseleave', () => {
             mouseX = 0;
             mouseY = 0;
         });
 
-        function updateHeroAnimeParallax() {
-            currentX += (mouseX - currentX) * 0.06;
-            currentY += (mouseY - currentY) * 0.06;
+        function updateAvatarParallax() {
+            currentX += (mouseX - currentX) * 0.08;
+            currentY += (mouseY - currentY) * 0.08;
 
-            const moveX = currentX * 28;
-            const moveY = currentY * 20;
-            const rotY = currentX * 7;
-            const rotX = -currentY * 5;
+            const rotY = currentX * 22; // rotate Y up to ±11 deg
+            const rotX = -currentY * 18; // rotate X up to ±9 deg
+            const moveX = currentX * 16;
+            const moveY = currentY * 12;
 
-            heroAnimeWrap.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            avatarCharFrame.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(${moveX}px, ${moveY}px, 0)`;
+
+            // Subtle counter-parallax on floating badges for depth
+            if (badgeFigma) badgeFigma.style.transform = `translate3d(${currentX * -18}px, ${currentY * -12}px, 20px)`;
+            if (badgeThree) badgeThree.style.transform = `translate3d(${currentX * 20}px, ${currentY * 14}px, 25px)`;
+            if (badgeUx) badgeUx.style.transform = `translate3d(${currentX * -14}px, ${currentY * 16}px, 15px)`;
 
             if (Math.abs(mouseX - currentX) > 0.001 || Math.abs(mouseY - currentY) > 0.001) {
-                requestAnimationFrame(updateHeroAnimeParallax);
+                requestAnimationFrame(updateAvatarParallax);
             } else {
                 isMoving = false;
             }
@@ -257,6 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
         "heroBtnProjects": "Khám Phá Case Studies",
         "heroBtnFigma": "Mở Figma Design",
         "heroToolsLabel": "Chuyên môn & Công cụ:",
+        "heroTabAvatar": "⚡ 3D Avatar · Nam Khánh",
+        "heroTabPhone": "📱 FROGGY App (3D Phone)",
+        "avatarGreeting": "Hi! Tôi là Nam Khánh 👋 UX/UI Designer & Front-end Dev. Chào mừng bạn ghé thăm portfolio!",
+        "avatarLiveStatus": "3D Model Interactive · Rê chuột để xoay",
+        "btnTryAppInline": "Trải nghiệm 3D Phone",
+        "badgeFigma": "Figma Tokens",
+        "badgeThree": "3D Interactive",
+        "badgeUx": "User-Centered UX",
         "phoneAppTag": "Live Interactive App · FROGGY",
         "phoneHint": "Bấm & gõ tương tác trực tiếp như điện thoại thật · Thử bấm \"+35k Cafe\" để cập nhật số dư!",
         "csSectionTitle": "Dự Án UX/UI Tiêu Biểu",
@@ -329,6 +346,14 @@ document.addEventListener('DOMContentLoaded', () => {
         "heroBtnProjects": "Explore Case Studies",
         "heroBtnFigma": "Open Figma Design",
         "heroToolsLabel": "Expertise & Tools:",
+        "heroTabAvatar": "⚡ 3D Avatar · Nam Khanh",
+        "heroTabPhone": "📱 FROGGY App (3D Phone)",
+        "avatarGreeting": "Hi! I'm Nam Khanh 👋 UX/UI Designer & Front-end Dev. Welcome to my portfolio!",
+        "avatarLiveStatus": "3D Model Interactive · Hover to rotate",
+        "btnTryAppInline": "Try 3D Phone App",
+        "badgeFigma": "Figma Tokens",
+        "badgeThree": "3D Interactive",
+        "badgeUx": "User-Centered UX",
         "phoneAppTag": "Live Interactive App · FROGGY",
         "phoneHint": "Tap & type interactively like a real phone · Try tapping \"+35k Cafe\" to update balance!",
         "csSectionTitle": "Featured UX/UI Case Studies",
@@ -421,6 +446,83 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize language
     setLanguage(currentLang);
 });
+
+// ==========================================================================
+// DUAL-MODE 3D SHOWCASE LOGIC (3D Avatar & 3D Phone)
+// ==========================================================================
+
+// Global Function: Switch Hero Stage Mode (3D Avatar vs 3D Phone)
+window.switchHeroStageMode = function (mode) {
+    const btnAvatar = document.getElementById('modeBtnAvatar');
+    const btnPhone = document.getElementById('modeBtnPhone');
+    const avatarStage = document.getElementById('avatarStage');
+    const phoneStageWrapper = document.getElementById('phoneStageWrapper');
+
+    if (mode === 'avatar') {
+        if (btnAvatar) {
+            btnAvatar.classList.add('active');
+            btnAvatar.setAttribute('aria-selected', 'true');
+        }
+        if (btnPhone) {
+            btnPhone.classList.remove('active');
+            btnPhone.setAttribute('aria-selected', 'false');
+        }
+        if (avatarStage) avatarStage.classList.add('active');
+        if (phoneStageWrapper) phoneStageWrapper.classList.remove('active');
+    } else {
+        if (btnPhone) {
+            btnPhone.classList.add('active');
+            btnPhone.setAttribute('aria-selected', 'true');
+        }
+        if (btnAvatar) {
+            btnAvatar.classList.remove('active');
+            btnAvatar.setAttribute('aria-selected', 'false');
+        }
+        if (phoneStageWrapper) phoneStageWrapper.classList.add('active');
+        if (avatarStage) avatarStage.classList.remove('active');
+    }
+};
+
+// Interactive Avatar Character Click Gesture
+let avatarQuoteIndex = 0;
+window.onAvatarCharacterClick = function () {
+    const quotesVi = [
+        "Thiết kế lấy người dùng làm trọng tâm (User-Centered Design) là kim chỉ nam của tôi! ✨",
+        "Bạn có muốn trải nghiệm app FROGGY ở tab bên cạnh không? 📱",
+        "Design System chuẩn Figma Tokens giúp chuyển giao dev mượt mà 100%! 🚀",
+        "Cảm ơn bạn đã ghé thăm! Rất mong có cơ hội hợp tác cùng bạn 💼"
+    ];
+    const quotesEn = [
+        "User-Centered Design is my core compass! ✨",
+        "Would you like to try the live FROGGY prototype on the phone tab? 📱",
+        "Design System with Figma Tokens ensures 100% seamless dev handoff! 🚀",
+        "Thank you for stopping by! Looking forward to working together 💼"
+    ];
+
+    const isEn = document.documentElement.lang === 'en';
+    const quotes = isEn ? quotesEn : quotesVi;
+    avatarQuoteIndex = (avatarQuoteIndex + 1) % quotes.length;
+
+    const bubbleText = document.getElementById('avatarBubbleText');
+    const bubble = document.getElementById('avatarBubble');
+    if (bubbleText && bubble) {
+        bubble.style.transform = 'scale(1.05)';
+        bubbleText.textContent = quotes[avatarQuoteIndex];
+        setTimeout(() => {
+            bubble.style.transform = '';
+        }, 300);
+    }
+
+    const frame = document.getElementById('avatarCharFrame');
+    if (frame) {
+        frame.style.transition = 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        frame.style.transform = 'scale(0.96) translateY(-8px)';
+        setTimeout(() => {
+            frame.style.transition = '';
+            frame.style.transform = '';
+        }, 250);
+    }
+};
 
 // ==========================================================================
 // REAL INTERACTIVE 3D PHONE APP PROTOTYPE LOGIC
