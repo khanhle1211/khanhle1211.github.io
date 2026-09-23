@@ -43,7 +43,6 @@
 html, body {
     overflow-x: hidden;
     width: 100%;
-    min-width: 100vw;
     max-width: 100%;
     min-width: 100vw;
     scroll-behavior: smooth;
@@ -174,7 +173,6 @@ h1, h2, h3, h4, h5, h6 {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    min-width: 100vw;
     max-width: 1200px;
     z-index: 1000;
     display: flex;
@@ -407,7 +405,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-block {
     width: 100%;
-    min-width: 100vw;
 }
 
 /* ==========================================================================
@@ -467,7 +464,6 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: 3.5rem;
     width: 100%;
-    min-width: 100vw;
 }
 
 /* Glass Badge Pill */
@@ -632,7 +628,6 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
     position: relative;
     width: 100%;
-    min-width: 100vw;
 }
 
 /* Mode Switcher Tabs */
@@ -645,7 +640,6 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid rgba(255, 255, 255, 0.08);
     margin-bottom: 1.2rem;
     width: 100%;
-    min-width: 100vw;
     max-width: 440px;
 }
 
@@ -690,7 +684,6 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    min-width: 100vw;
     animation: fadeInStage 0.35s ease forwards;
     position: relative;
 }
@@ -705,7 +698,6 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    min-width: 100vw;
     animation: fadeInStage 0.35s ease forwards;
 }
 
@@ -761,7 +753,6 @@ h1, h2, h3, h4, h5, h6 {
 .avatar-3d-viewport {
     position: relative;
     width: 100%;
-    min-width: 100vw;
     max-width: 420px;
     display: flex;
     align-items: center;
@@ -788,7 +779,6 @@ h1, h2, h3, h4, h5, h6 {
 .avatar-character-frame {
     position: relative;
     width: 100%;
-    min-width: 100vw;
     max-width: 310px;
     aspect-ratio: 310 / 360;
     height: auto;
@@ -811,7 +801,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .avatar-3d-img {
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
@@ -884,7 +873,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Avatar Footer & Inline CTA */
 .avatar-stage-footer {
     width: 100%;
-    min-width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -976,7 +964,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .showcase-header {
     width: 100%;
-    min-width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1015,14 +1002,12 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-width: 100vw;
     padding: 0.5rem 0;
 }
 
 /* The 3D Phone Chassis */
 .phone-device {
     width: 100%;
-    min-width: 100vw;
     max-width: 320px;
     aspect-ratio: 320 / 692;
     height: auto;
@@ -1080,7 +1065,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Phone Screen Viewport (100% Full-Bleed Edge-to-Edge) */
 .phone-screen {
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     border-radius: 46px;
     background: #09090b;
@@ -1098,7 +1082,6 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     left: 0;
     width: 100%;
-    min-width: 100vw;
     height: 44px;
     display: flex;
     justify-content: space-between;
@@ -1189,7 +1172,6 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     inset: 0;
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1250,7 +1232,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .splash-frog-mascot {
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18));
@@ -1292,7 +1273,6 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 0.5rem;
     width: 100%;
-    min-width: 100vw;
     transition: var(--transition);
 }
 
@@ -1339,7 +1319,6 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     gap: 0.65rem;
     width: 100%;
-    min-width: 100vw;
 }
 
 .real-social-btn {
@@ -1348,7 +1327,6 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 0.75rem;
     width: 100%;
-    min-width: 100vw;
     padding: 0.72rem 1rem;
     border-radius: 14px;
     background: #ffffff;
@@ -1396,7 +1374,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     cursor: pointer;
     width: 100%;
-    min-width: 100vw;
     box-shadow: 0 8px 20px rgba(46, 125, 103, 0.3);
     display: flex;
     align-items: center;
@@ -1501,7 +1478,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .real-input-box input {
     width: 100%;
-    min-width: 100vw;
     padding: 0.72rem 0;
     border: none;
     background: transparent;
@@ -1828,7 +1804,6 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     left: 0;
     width: 100%;
-    min-width: 100vw;
     height: 48px;
     background: #ffffff;
     border-top: 1px solid #e2e8f0;
@@ -1879,7 +1854,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .tips-frog-mascot {
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.12));
@@ -1919,7 +1893,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .phone-dock {
     width: 100%;
-    min-width: 100vw;
     margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -2238,14 +2211,12 @@ h1, h2, h3, h4, h5, h6 {
 .case-preview-frame {
     position: relative;
     width: 100%;
-    min-width: 100vw;
     aspect-ratio: 16 / 10;
     background: #111;
 }
 
 .case-preview-img {
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     object-fit: cover;
     display: block;
@@ -2641,7 +2612,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-group input, .form-group textarea {
     width: 100%;
-    min-width: 100vw;
     padding: 0.9rem 1.1rem;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--card-border);
@@ -2815,7 +2785,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .hero-body {
         max-width: 100%;
-    min-width: 100vw;
     }
 
     .bento-grid.two-cols,
@@ -3024,7 +2993,6 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
     width: 100%;
-    min-width: 100vw;
     max-width: 1080px;
     max-height: 92vh;
     display: flex;
@@ -3263,7 +3231,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .cs-banner-img {
     width: 100%;
-    min-width: 100vw;
     height: auto;
     display: block;
 }
@@ -3286,7 +3253,6 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     inset: 0;
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     overflow: hidden;
 }
@@ -3384,7 +3350,6 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     inset: 0;
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     pointer-events: none;
 }
@@ -3439,7 +3404,6 @@ h1, h2, h3, h4, h5, h6 {
 .hazard-ping {
     position: absolute;
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     border-radius: 12px;
     background: rgba(239, 68, 68, 0.4);
@@ -4075,7 +4039,6 @@ h1, h2, h3, h4, h5, h6 {
 .swatch-color {
     height: 65px;
     width: 100%;
-    min-width: 100vw;
 }
 
 .swatch-info {
@@ -4166,7 +4129,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .gallery-img {
     width: 100%;
-    min-width: 100vw;
     border-radius: 10px;
     display: block;
     margin-bottom: 0.5rem;
@@ -4383,7 +4345,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .gallery-img-wrap {
     width: 100%;
-    min-width: 100vw;
     border-radius: 14px;
     overflow: hidden;
     background: #000;
@@ -4394,7 +4355,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .gallery-img {
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     object-fit: cover;
     display: block;
@@ -4715,7 +4675,6 @@ button.logo-pill {
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 28px;
     width: 100%;
-    min-width: 100vw;
     max-width: 580px;
     max-height: 90vh;
     overflow-y: auto;
@@ -4793,7 +4752,6 @@ button.logo-pill {
 
 .profile-card-avatar {
     width: 100%;
-    min-width: 100vw;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
