@@ -25,58 +25,13 @@
             </button>
         </div>
 
-        <!-- Island 2 (Center): Meniscus Liquid Dock Navigation Menu -->
-        <nav class="nav-island nav-island-center nav-pill-menu meniscus-dock" id="navMenu">
-            <!-- Dynamic SVG Liquid Plate with Meniscus Notch -->
-            <svg class="meniscus-svg" id="meniscusSvg" aria-hidden="true">
-                <defs>
-                    <linearGradient id="mnPlate" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="rgba(24, 24, 34, 0.88)" />
-                        <stop offset="100%" stop-color="rgba(14, 14, 21, 0.94)" />
-                    </linearGradient>
-                    <linearGradient id="mnRim" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="rgba(255, 255, 255, 0.15)" />
-                        <stop offset="50%" stop-color="rgba(255, 255, 255, 0.35)" />
-                        <stop offset="100%" stop-color="rgba(255, 255, 255, 0.15)" />
-                    </linearGradient>
-                    <filter id="mnGlow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.55)" />
-                    </filter>
-                </defs>
-                <path id="meniscusPath" class="meniscus-path" filter="url(#mnGlow)" />
-            </svg>
-
-            <!-- Floating Active Meniscus Bead -->
-            <div class="meniscus-bead" id="meniscusBead" title="Kéo thả hoặc click để chuyển tab">
-                <i class="fas fa-home bead-icon" id="beadIcon"></i>
-            </div>
-
-            <!-- Tab List (Clickable & Draggable Targets) -->
-            <ul class="nav-list meniscus-tab-list" id="meniscusTabList">
-                <li class="tab-item">
-                    <a href="#home" class="nav-link active" data-tab="home" data-color="#10b981" data-glow="rgba(16,185,129,0.5)" data-icon="fa-home">
-                        <i class="tab-icon fas fa-home"></i>
-                        <span class="tab-text" data-i18n="navHome">Trang chủ</span>
-                    </a>
-                </li>
-                <li class="tab-item">
-                    <a href="#projects" class="nav-link" data-tab="projects" data-color="#00f0ff" data-glow="rgba(0,240,255,0.5)" data-icon="fa-layer-group">
-                        <i class="tab-icon fas fa-layer-group"></i>
-                        <span class="tab-text" data-i18n="navProjects">Case Studies</span>
-                    </a>
-                </li>
-                <li class="tab-item">
-                    <a href="#credentials" class="nav-link" data-tab="credentials" data-color="#a855f7" data-glow="rgba(168,85,247,0.5)" data-icon="fa-graduation-cap">
-                        <i class="tab-icon fas fa-graduation-cap"></i>
-                        <span class="tab-text" data-i18n="navCredentials">Nền tảng & Kỹ năng</span>
-                    </a>
-                </li>
-                <li class="tab-item">
-                    <a href="#contact" class="nav-link" data-tab="contact" data-color="#f43f5e" data-glow="rgba(244,63,94,0.5)" data-icon="fa-paper-plane">
-                        <i class="tab-icon fas fa-paper-plane"></i>
-                        <span class="tab-text" data-i18n="navContact">Liên hệ</span>
-                    </a>
-                </li>
+        <!-- Island 2 (Center): Primary Navigation Menu -->
+        <nav class="nav-island nav-island-center nav-pill-menu" id="navMenu">
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active" data-i18n="navHome">Trang chủ</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="navProjects">Case Studies</a></li>
+                <li><a href="#credentials" class="nav-link" data-i18n="navCredentials">Nền tảng & Kỹ năng</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="navContact">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -167,7 +122,6 @@
                             <span data-i18n="heroTabAvatar">3D Avatar · Nam Khánh</span>
                         </button>
                         <button type="button" class="showcase-mode-btn" id="modeBtnPhone" onclick="switchHeroStageMode('phone')" role="tab" aria-selected="false">
-                            <span class="mode-icon"><i class="fas fa-mobile-alt"></i></span>
                             <span data-i18n="heroTabPhone">FROGGY App (3D Phone)</span>
                         </button>
                     </div>
