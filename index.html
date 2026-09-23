@@ -638,6 +638,9 @@
         <div class="modal-dialog">
             <!-- Modal Top Bar -->
             <div class="modal-header">
+                <div class="modal-header-brand">
+                    <span class="brand-tag"><i class="fas fa-folder-open"></i> UX/UI Case Study</span>
+                </div>
                 <div class="modal-project-switcher">
                     <button class="switcher-btn active" id="tabBtnFroggy" onclick="switchCaseStudyTab('froggy')">
                         🐸 FROGGY Mobile App
@@ -646,9 +649,12 @@
                         🛡️ SafeMap Mobile App
                     </button>
                 </div>
-                <button class="modal-close-btn" onclick="closeCaseStudy()" aria-label="Đóng Case Study">
-                    <i class="fas fa-times"></i>
-                </button>
+                <div class="modal-header-actions">
+                    <span class="esc-badge"><kbd>ESC</kbd> đóng</span>
+                    <button class="modal-close-btn" onclick="closeCaseStudy()" aria-label="Đóng Case Study" title="Đóng (ESC)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Modal Content Body -->
@@ -702,18 +708,23 @@
                         </div>
                     </div>
 
-                    <!-- Sticky Mini Subnav -->
-                    <nav class="cs-subnav">
-                        <a href="#fg-problem">01. Problem</a>
-                        <a href="#fg-research">02. Research</a>
-                        <a href="#fg-persona">03. Persona</a>
-                        <a href="#fg-flow">04. User Flow</a>
-                        <a href="#fg-wireframe">05. Wireframe</a>
-                        <a href="#fg-designsystem">06. Design System</a>
-                        <a href="#fg-screens">07. UI Screens</a>
-                        <a href="#fg-testing">08. Usability</a>
-                        <a href="#fg-contribution">09. Đóng góp</a>
-                    </nav>
+                    <!-- Table of Contents Section (Design Process Navigation) -->
+                    <div class="cs-toc-section">
+                        <div class="cs-toc-label">
+                            <i class="fas fa-compass"></i> Mục Lục Quy Trình Thiết Kế (Design Process & Deliverables)
+                        </div>
+                        <div class="cs-toc-grid">
+                            <a href="#fg-problem" class="cs-toc-item"><span class="toc-idx">01</span> Problem Statement</a>
+                            <a href="#fg-research" class="cs-toc-item"><span class="toc-idx">02</span> User Research</a>
+                            <a href="#fg-persona" class="cs-toc-item"><span class="toc-idx">03</span> User Persona</a>
+                            <a href="#fg-flow" class="cs-toc-item"><span class="toc-idx">04</span> 3-Tap User Flow</a>
+                            <a href="#fg-wireframe" class="cs-toc-item"><span class="toc-idx">05</span> Wireframe vs Hi-Fi</a>
+                            <a href="#fg-designsystem" class="cs-toc-item"><span class="toc-idx">06</span> Design System</a>
+                            <a href="#fg-screens" class="cs-toc-item"><span class="toc-idx">07</span> Hi-Fi UI Gallery</a>
+                            <a href="#fg-testing" class="cs-toc-item"><span class="toc-idx">08</span> Usability Testing</a>
+                            <a href="#fg-contribution" class="cs-toc-item"><span class="toc-idx">09</span> My Contribution</a>
+                        </div>
+                    </div>
 
                     <!-- 01. Problem -->
                     <section class="cs-section" id="fg-problem">
@@ -1255,17 +1266,21 @@
                         </div>
                     </div>
 
-                    <!-- Sticky Mini Subnav -->
-                    <nav class="cs-subnav">
-                        <a href="#sm-problem">01. Problem</a>
-                        <a href="#sm-research">02. Research</a>
-                        <a href="#sm-persona">03. Persona</a>
-                        <a href="#sm-flow">04. Safe Route Flow</a>
-                        <a href="#sm-designsystem">05. Design System</a>
-                        <a href="#sm-screens">06. UI Features</a>
-                        <a href="#sm-testing">07. Usability</a>
-                        <a href="#sm-contribution">08. Đóng góp</a>
-                    </nav>
+                    <!-- Table of Contents Section (Design Process Navigation) -->
+                    <div class="cs-toc-section">
+                        <div class="cs-toc-label">
+                            <i class="fas fa-compass"></i> Mục Lục Quy Trình Thiết Kế (Design Process & Deliverables)
+                        </div>
+                        <div class="cs-toc-grid">
+                            <a href="#sm-problem" class="cs-toc-item"><span class="toc-idx">01</span> Problem Statement</a>
+                            <a href="#sm-research" class="cs-toc-item"><span class="toc-idx">02</span> Field Research</a>
+                            <a href="#sm-persona" class="cs-toc-item"><span class="toc-idx">03</span> User Persona</a>
+                            <a href="#sm-flow" class="cs-toc-item"><span class="toc-idx">04</span> Safe Route Flow</a>
+                            <a href="#sm-designsystem" class="cs-toc-item"><span class="toc-idx">05</span> Design System</a>
+                            <a href="#sm-screens" class="cs-toc-item"><span class="toc-idx">06</span> Core UI Features</a>
+                            <a href="#sm-testing" class="cs-toc-item"><span class="toc-idx">07</span> Usability & Contribution</a>
+                        </div>
+                    </div>
 
                     <!-- 01. Problem -->
                     <section class="cs-section" id="sm-problem">
@@ -1575,6 +1590,11 @@
                 </article>
 
             </div>
+            <!-- Floating Back To Top button inside Modal -->
+            <button class="modal-back-top-btn" id="modalBackToTop" onclick="scrollModalToTop()" title="Về đầu trang Case Study" aria-label="Về đầu trang">
+                <i class="fas fa-arrow-up"></i>
+                <span>Đầu trang</span>
+            </button>
         </div>
     </div>
 

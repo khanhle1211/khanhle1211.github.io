@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    // Mini subnav internal smooth scrolling inside Case Study Modal
-    document.querySelectorAll('.cs-subnav a').forEach(link => {
+    // TOC smooth scrolling inside Case Study Modal
+    document.querySelectorAll('.cs-toc-item').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const hash = link.getAttribute('href');
@@ -261,8 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetEl = document.querySelector(hash);
             const scrollBody = document.getElementById('modalScrollBody');
             if (targetEl && scrollBody) {
-                const subnavHeight = 50;
-                const targetOffset = targetEl.offsetTop - subnavHeight;
+                const targetOffset = targetEl.offsetTop - 20;
                 scrollBody.scrollTo({
                     top: Math.max(0, targetOffset),
                     behavior: 'smooth'
@@ -271,6 +270,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Listen to modal scroll for Back-To-Top button visibility
+    const modalScrollBody = document.getElementById('modalScrollBody');
+    const modalBackTopBtn = document.getElementById('modalBackToTop');
+    if (modalScrollBody && modalBackTopBtn) {
+        modalScrollBody.addEventListener('scroll', () => {
+            if (modalScrollBody.scrollTop > 350) {
+                modalBackTopBtn.classList.add('visible');
+            } else {
+                modalBackTopBtn.classList.remove('visible');
+            }
+        });
+    }
+
     // Auto open if URL has hash #casestudy-froggy or #casestudy-safemap
     if (window.location.hash === '#case-study-froggy' || window.location.hash === '#casestudy-froggy') {
         openCaseStudy('froggy');
@@ -278,3 +290,11 @@ document.addEventListener('DOMContentLoaded', () => {
         openCaseStudy('safemap');
     }
 });
+
+// Global Function: Scroll to Top inside Modal
+window.scrollModalToTop = function () {
+    const scrollBody = document.getElementById('modalScrollBody');
+    if (scrollBody) {
+        scrollBody.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+};
