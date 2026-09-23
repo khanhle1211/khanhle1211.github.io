@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#eceef2">
+    <meta name="theme-color" content="#09090b">
     <title>Lê Đức Nam Khánh — UX/UI Designer · Front-end Developer</title>
     <meta name="description" content="Portfolio of Lê Đức Nam Khánh — UX/UI Designer & Front-end Developer based in Da Nang, Vietnam. Transforming complex systems into intuitive, elegant digital products.">
     <!-- Google Fonts: Instrument Serif + Outfit + Inter -->
@@ -53,8 +53,20 @@
     </header>
 
     <main>
-        <!-- ===== HERO SECTION ===== -->
+        <!-- ===== HERO SECTION (WITH DYNAMIC MOVING ANIME CHARACTER BACKGROUND) ===== -->
         <section id="home" class="hero section">
+            <!-- Dynamic Anime Background / Video Layer (Matching Reference Monitor) -->
+            <div class="hero-anime-backdrop" aria-hidden="true">
+                <video class="hero-anime-video" autoplay loop muted playsinline poster="assets/hero-anime-character.jpg">
+                    <source src="assets/hero-anime-video.mp4" type="video/mp4">
+                </video>
+                <div class="hero-anime-character-wrap" id="heroAnimeWrap">
+                    <img src="assets/hero-anime-character.jpg" alt="3D Stylized Anime Character" class="hero-anime-character-img" id="heroAnimeImg">
+                </div>
+                <!-- Dark Cyber Ambient Gradient & Vignette (Seamless Dark Transition) -->
+                <div class="hero-anime-vignette"></div>
+            </div>
+
             <div class="container hero-container">
                 <!-- Left: Editorial Typography & Intro -->
                 <div class="hero-content reveal">

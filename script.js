@@ -125,6 +125,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
+    // 4b. Hero 3D Anime Character Mouse Parallax
+    const heroSection = document.getElementById('home');
+    const heroAnimeWrap = document.getElementById('heroAnimeWrap');
+    if (heroSection && heroAnimeWrap) {
+        let mouseX = 0, mouseY = 0;
+        let currentX = 0, currentY = 0;
+        let isMoving = false;
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            mouseX = (e.clientX - rect.left) / rect.width - 0.5; // range: -0.5 to 0.5
+            mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+            if (!isMoving) {
+                isMoving = true;
+                requestAnimationFrame(updateHeroAnimeParallax);
+            }
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            mouseX = 0;
+            mouseY = 0;
+        });
+
+        function updateHeroAnimeParallax() {
+            currentX += (mouseX - currentX) * 0.06;
+            currentY += (mouseY - currentY) * 0.06;
+
+            const moveX = currentX * 28;
+            const moveY = currentY * 20;
+            const rotY = currentX * 7;
+            const rotX = -currentY * 5;
+
+            heroAnimeWrap.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+            if (Math.abs(mouseX - currentX) > 0.001 || Math.abs(mouseY - currentY) > 0.001) {
+                requestAnimationFrame(updateHeroAnimeParallax);
+            } else {
+                isMoving = false;
+            }
+        }
+    }
+
     // 5. 3D Phone Stage Mouse Parallax Tilt
     const phoneStage = document.getElementById('phoneStage');
     const phoneDevice = document.getElementById('phoneDevice');
