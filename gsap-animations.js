@@ -125,7 +125,7 @@ function initScrollyTelling() {
 }
 
 function initModalScrollyTelling() {
-    const modalScroller = document.querySelector('.modal-body');
+    const modalScroller = document.querySelector('.modal-scroll-body');
     if (!modalScroller) return;
 
     // We apply ScrollTrigger to all .cs-section inside the modal
