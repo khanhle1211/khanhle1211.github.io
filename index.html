@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=4.2.0">
+    <link rel="stylesheet" href="styles.css?v=4.3.0">
     <script>
         (function() {
             var lang = localStorage.getItem('nk_user_lang') || 'vi';
@@ -816,73 +816,31 @@
         </section>
 
         <!-- ===== 02. TECHNICAL FOUNDATION & CREDENTIALS (THU GỌN BENTO 2 CỘT) ===== -->
-        <section id="contact" class="contact section">
-            <div class="container">
-                <div class="bento-card glass-card contact-wrapper reveal">
-                    <div class="contact-left">
-                        <span class="section-tag" data-i18n="contactTag">03 / Liên hệ</span>
-                        <h2 data-i18n="contactTitle">Hãy Cùng Tạo Nên <br><span class="gradient-text font-serif italic">Sản Phẩm Đột Phá.</span></h2>
-                        <p data-i18n="contactDesc">Tôi đang tìm kiếm cơ hội hợp tác và gia nhập đội ngũ với vai trò <strong>UX/UI Designer</strong> hoặc <strong>Front-end Developer</strong>. Rất mong được trao đổi cùng bạn!</p>
-
-                        <div class="contact-methods">
-                            <a href="mailto:namkhanhle56@gmail.com" class="method">
-                                <div class="method-icon"><i class="fas fa-envelope"></i></div>
-                                <div>
-                                    <h4>Email</h4>
-                                    <p>namkhanhle56@gmail.com</p>
-                                </div>
-                            </a>
-                            <a href="tel:0702666921" class="method">
-                                <div class="method-icon"><i class="fas fa-phone"></i></div>
-                                <div>
-                                    <h4 data-i18n="contactPhoneLabel">Số điện thoại</h4>
-                                    <p>0702-666-921</p>
-                                </div>
-                            </a>
-                            <div class="method">
-                                <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
-                                <div>
-                                    <h4 data-i18n="contactLocationLabel">Địa chỉ</h4>
-                                    <p data-i18n="contactLocationVal">Hải Châu, TP. Đà Nẵng, Việt Nam</p>
-                                </div>
-                            </div>
+        <!-- ===== 03. CONTACT SECTION (SCROLLYTELLING FINALE) ===== -->
+        <section id="contact" class="contact section finale-scene">
+            <div class="container finale-container">
+                <div class="finale-content">
+                    <h2 class="finale-title">
+                        <span class="line" data-i18n="contactTitle1">LET'S BUILD</span><br>
+                        <span class="line font-serif italic text-gradient-hero" data-i18n="contactTitle2">SOMETHING</span><br>
+                        <span class="line" data-i18n="contactTitle3">GREAT.</span>
+                    </h2>
+                    
+                    <p class="finale-subtitle" data-i18n="contactDesc">Tôi đang tìm kiếm cơ hội hợp tác và gia nhập đội ngũ với vai trò UX/UI Designer hoặc Front-end Developer.</p>
+                    
+                    <div class="finale-actions">
+                        <a href="mailto:namkhanhle56@gmail.com" class="magnetic-btn primary-magnetic">
+                            <span data-i18n="contactEmailBtn">namkhanhle56@gmail.com</span>
+                        </a>
+                        <div class="finale-socials">
+                            <a href="https://github.com/khanhle1211" target="_blank" class="magnetic-btn icon-magnetic"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com" target="_blank" class="magnetic-btn icon-magnetic"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="tel:0702666921" class="magnetic-btn icon-magnetic"><i class="fas fa-phone"></i></a>
                         </div>
-
-                        <!-- Social Quick Buttons in Contact -->
-                        <div class="contact-social-pills">
-                            <a href="https://github.com/khanhle1211" target="_blank" rel="noopener noreferrer" class="social-chip">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="social-chip">
-                                <i class="fab fa-linkedin-in"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="contact-right">
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label data-i18n="formNameLabel">Họ và Tên</label>
-                                <input type="text" name="Họ và Tên" placeholder="Nguyễn Văn A" data-i18n-placeholder="formNamePlaceholder" required>
-                            </div>
-                            <div class="form-group">
-                                <label data-i18n="formEmailLabel">Email liên hệ</label>
-                                <input type="email" name="Email" placeholder="your@email.com" data-i18n-placeholder="formEmailPlaceholder" required>
-                            </div>
-                            <div class="form-group">
-                                <label data-i18n="formMsgLabel">Lời nhắn / Nội dung trao đổi</label>
-                                <textarea name="Lời nhắn" rows="4" placeholder="Nội dung cần trao đổi công việc hoặc cơ hội hợp tác..." data-i18n-placeholder="formMsgPlaceholder" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">
-                                <span data-i18n="formBtnSend">Gửi Tin Nhắn</span> <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
-
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container footer-container">

@@ -98,7 +98,7 @@ function initScrollyTelling() {
     }
 
     // Magnetic Buttons
-    const magnets = document.querySelectorAll('.method, .btn-primary, .real-social-btn');
+    const magnets = document.querySelectorAll('.method, .btn-primary, .real-social-btn, .magnetic-btn');
     magnets.forEach(magnet => {
         magnet.addEventListener('mousemove', (e) => {
             const rect = magnet.getBoundingClientRect();
