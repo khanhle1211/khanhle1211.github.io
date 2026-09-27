@@ -1,6 +1,5 @@
 // GSAP Animations & Scrollytelling Setup
 
-// Check if user prefers reduced motion
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!prefersReducedMotion && typeof gsap !== 'undefined') {
@@ -8,6 +7,7 @@ if (!prefersReducedMotion && typeof gsap !== 'undefined') {
 
     document.addEventListener("DOMContentLoaded", () => {
         initScrollyTelling();
+        initModalScrollyTelling();
     });
 }
 
@@ -63,9 +63,7 @@ function initScrollyTelling() {
     );
 
     // 2. Projects Sticky Showcase
-    // (A simple reveal for now, complex pinning requires DOM changes)
     const projectCards = document.querySelectorAll('.case-study-card');
-    
     projectCards.forEach((card, index) => {
         gsap.fromTo(card, 
             { opacity: 0, y: 100 },
@@ -81,6 +79,23 @@ function initScrollyTelling() {
             }
         );
     });
+
+    // Contact Scene
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+        gsap.fromTo(contactSection, 
+            { opacity: 0, scale: 0.95 }, 
+            {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: contactSection,
+                    start: "top 80%",
+                }
+            }
+        );
+    }
 
     // Magnetic Buttons
     const magnets = document.querySelectorAll('.method, .btn-primary, .real-social-btn');
@@ -107,4 +122,47 @@ function initScrollyTelling() {
             });
         });
     });
+}
+
+function initModalScrollyTelling() {
+    const modalScroller = document.querySelector('.modal-body');
+    if (!modalScroller) return;
+
+    // We apply ScrollTrigger to all .cs-section inside the modal
+    const csSections = document.querySelectorAll('.cs-section');
+    
+    csSections.forEach(section => {
+        gsap.fromTo(section, 
+            { opacity: 0, y: 60 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: section,
+                    scroller: modalScroller,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+    });
+
+    // Special Animation for SafeMap SVG (Mock)
+    const safemapSVG = document.querySelector('#safemap-svg-route');
+    if (safemapSVG) {
+        gsap.fromTo(safemapSVG, 
+            { strokeDashoffset: 1000 },
+            {
+                strokeDashoffset: 0,
+                duration: 2,
+                scrollTrigger: {
+                    trigger: safemapSVG,
+                    scroller: modalScroller,
+                    start: "top 70%",
+                }
+            }
+        );
+    }
 }

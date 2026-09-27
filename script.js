@@ -708,6 +708,10 @@ window.openCaseStudy = function (projectId) {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    
+    if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 100);
+    }
 
     switchCaseStudyTab(projectId || 'froggy');
 
