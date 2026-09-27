@@ -2214,81 +2214,35 @@
                         <div class="cs-text-block">
                             <p>3 màn hình tính năng trực quan được thiết kế để thao tác nhanh và an toàn trong điều kiện trời mưa hoặc lái xe ban đêm:</p>
                             
-                            <div class="sm-screens-showcase-grid">
-                                <div class="sm-feature-card">
-                                    <div class="feature-mockup-frame">
-                                        <div class="mockup-header-bar">
-                                            <span class="mock-badge green"><i class="fas fa-shield-alt"></i> Safe Route Mode</span>
-                                            <span class="mock-badge red"><i class="fas fa-times-circle"></i> Tránh ngập</span>
-                                        </div>
-                                        <div class="mockup-screen-view mode-nav">
-                                            <div class="mock-route-choice active">
-                                                <div class="mock-route-top">
-                                                    <span class="route-name">Tuyến An Toàn (Đề xuất)</span>
-                                                    <span class="route-time">14 min</span>
-                                                </div>
-                                                <div class="mock-route-sub">Qua Nguyễn Văn Linh · Đèn sáng 100% · Không ngập</div>
-                                            </div>
-                                            <div class="mock-route-choice danger">
-                                                <div class="mock-route-top">
-                                                    <span class="route-name">Tuyến Ngắn Nhất (Cảnh báo)</span>
-                                                    <span class="route-time">10 min</span>
-                                                </div>
-                                                <div class="mock-route-sub">Qua Hàm Nghi · ⚠️ Ngập 40cm lúc 21:15</div>
-                                            </div>
-                                        </div>
+                            <div class="screens-gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                                <div class="gallery-screen-item">
+                                    <div class="gallery-img-wrap" style="height: auto; aspect-ratio: 9/16;">
+                                        <img src="assets/safemap/nav.jpg" alt="01. Safe Route Navigation" class="gallery-img" style="object-fit: cover;" loading="lazy">
                                     </div>
-                                    <div class="feature-card-info">
-                                        <h5>01. So Sánh Tuyến Đường An Toàn (Dual-Route Engine)</h5>
-                                        <p>Cho phép người dùng thấy rõ lý do hệ thống chọn đường vòng (xa hơn 1.2km) thay vì để họ vô tình lao vào vùng ngập.</p>
+                                    <div class="gallery-screen-meta">
+                                        <h5>01. Safe Route Navigation</h5>
+                                        <p>Giao diện Dual-Route Engine so sánh trực quan tuyến an toàn và tuyến ngắn nhất.</p>
                                     </div>
                                 </div>
-
-                                <div class="sm-feature-card">
-                                    <div class="feature-mockup-frame">
-                                        <div class="mockup-header-bar">
-                                            <span class="mock-badge amber"><i class="fas fa-bullhorn"></i> Báo Cáo Sự Cố 2 Chạm</span>
-                                        </div>
-                                        <div class="mockup-screen-view mode-report">
-                                            <div class="report-quick-grid">
-                                                <div class="report-chip active"><i class="fas fa-water"></i> Ngập nước sâu</div>
-                                                <div class="report-chip"><i class="fas fa-lightbulb-slash"></i> Mất đèn đường</div>
-                                                <div class="report-chip"><i class="fas fa-tree"></i> Cây đổ / Vật cản</div>
-                                                <div class="report-chip"><i class="fas fa-car-crash"></i> Tai nạn / Kẹt xe</div>
-                                            </div>
-                                            <div class="report-confirm-btn"><i class="fas fa-check"></i> Xác nhận gửi báo cáo (4s)</div>
-                                        </div>
+                                <div class="gallery-screen-item">
+                                    <div class="gallery-img-wrap" style="height: auto; aspect-ratio: 9/16;">
+                                        <img src="assets/safemap/report.jpg" alt="02. 2-Tap Incident Pin" class="gallery-img" style="object-fit: cover;" loading="lazy">
                                     </div>
-                                    <div class="feature-card-info">
-                                        <h5>02. Ghim Cảnh Báo Cộng Đồng (Crowdsourced Hazard Pin)</h5>
-                                        <p>Tối ưu thao tác 2 chạm trên icon lớn, giúp tài xế xe máy gửi cảnh báo an toàn mà không cần gõ bàn phím.</p>
+                                    <div class="gallery-screen-meta">
+                                        <h5>02. 2-Tap Incident Pin</h5>
+                                        <p>Ghim cảnh báo cộng đồng siêu tốc bằng 2 chạm với các nút to rõ ràng vào ban đêm.</p>
                                     </div>
                                 </div>
-
-                                <div class="sm-feature-card">
-                                    <div class="feature-mockup-frame">
-                                        <div class="mockup-header-bar">
-                                            <span class="mock-badge red"><i class="fas fa-life-ring"></i> Trung Tâm Khẩn Cấp SOS</span>
-                                        </div>
-                                        <div class="mockup-screen-view mode-sos">
-                                            <div class="sos-circle-trigger">
-                                                <div class="sos-pulse-ring"></div>
-                                                <span>GIỮ 2S</span>
-                                            </div>
-                                            <div class="sos-helper-text">
-                                                Tự động gửi định vị GPS & gọi 3 số khẩn cấp
-                                            </div>
-                                        </div>
+                                <div class="gallery-screen-item">
+                                    <div class="gallery-img-wrap" style="height: auto; aspect-ratio: 9/16;">
+                                        <img src="assets/safemap/sos.jpg" alt="03. Emergency SOS" class="gallery-img" style="object-fit: cover;" loading="lazy">
                                     </div>
-                                    <div class="feature-card-info">
-                                        <h5>03. Nút Cứu Hộ Khẩn Cấp 1 Chạm (Emergency SOS)</h5>
-                                        <p>Cơ chế nhấn giữ 2 giây chống bấm nhầm, tự động truyền phát tọa độ GPS đến người thân khi gặp sự cố ban đêm.</p>
+                                    <div class="gallery-screen-meta">
+                                        <h5>03. Emergency SOS</h5>
+                                        <p>Nút khẩn cấp 1 chạm giữ 2 giây để gửi ngay vị trí GPS cho người thân và đội cứu hộ.</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-
                     <!-- 07. Usability & Contribution -->
                     <section class="cs-section" id="sm-testing">
                         <div class="cs-section-header">
@@ -2659,81 +2613,35 @@
                         <div class="cs-text-block">
                             <p>3 intuitive feature interfaces optimized for rapid, safe interactions in rainy weather or night driving:</p>
                             
-                            <div class="sm-screens-showcase-grid">
-                                <div class="sm-feature-card">
-                                    <div class="feature-mockup-frame">
-                                        <div class="mockup-header-bar">
-                                            <span class="mock-badge green"><i class="fas fa-shield-alt"></i> Safe Route Mode</span>
-                                            <span class="mock-badge red"><i class="fas fa-times-circle"></i> Avoid Flooding</span>
-                                        </div>
-                                        <div class="mockup-screen-view mode-nav">
-                                            <div class="mock-route-choice active">
-                                                <div class="mock-route-top">
-                                                    <span class="route-name">Safe Route (Recommended)</span>
-                                                    <span class="route-time">14 min</span>
-                                                </div>
-                                                <div class="mock-route-sub">Via Nguyen Van Linh · 100% Street lights · 0 Flooding</div>
-                                            </div>
-                                            <div class="mock-route-choice danger">
-                                                <div class="mock-route-top">
-                                                    <span class="route-name">Fast Route (Warning)</span>
-                                                    <span class="route-time">10 min</span>
-                                                </div>
-                                                <div class="mock-route-sub">Via Ham Nghi · ⚠️ Flooded 40cm at 21:15</div>
-                                            </div>
-                                        </div>
+                            <div class="screens-gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                                <div class="gallery-screen-item">
+                                    <div class="gallery-img-wrap" style="height: auto; aspect-ratio: 9/16;">
+                                        <img src="assets/safemap/nav.jpg" alt="01. Safe Route Navigation" class="gallery-img" style="object-fit: cover;" loading="lazy">
                                     </div>
-                                    <div class="feature-card-info">
-                                        <h5>01. Dual-Route Comparison Engine</h5>
-                                        <p>Enables riders to see why the system detours (+1.2km) to protect them from entering deep water hazards.</p>
+                                    <div class="gallery-screen-meta">
+                                        <h5>01. Safe Route Navigation</h5>
+                                        <p>Dual-Route Engine interface comparing the safe route vs the shortest route visually.</p>
                                     </div>
                                 </div>
-
-                                <div class="sm-feature-card">
-                                    <div class="feature-mockup-frame">
-                                        <div class="mockup-header-bar">
-                                            <span class="mock-badge amber"><i class="fas fa-bullhorn"></i> 2-Tap Incident Pin</span>
-                                        </div>
-                                        <div class="mockup-screen-view mode-report">
-                                            <div class="report-quick-grid">
-                                                <div class="report-chip active"><i class="fas fa-water"></i> Deep Flooding</div>
-                                                <div class="report-chip"><i class="fas fa-lightbulb-slash"></i> Outage / No Light</div>
-                                                <div class="report-chip"><i class="fas fa-tree"></i> Fallen Tree / Debris</div>
-                                                <div class="report-chip"><i class="fas fa-car-crash"></i> Accident / Gridlock</div>
-                                            </div>
-                                            <div class="report-confirm-btn"><i class="fas fa-check"></i> Confirm &amp; Broadcast (4s)</div>
-                                        </div>
+                                <div class="gallery-screen-item">
+                                    <div class="gallery-img-wrap" style="height: auto; aspect-ratio: 9/16;">
+                                        <img src="assets/safemap/report.jpg" alt="02. 2-Tap Incident Pin" class="gallery-img" style="object-fit: cover;" loading="lazy">
                                     </div>
-                                    <div class="feature-card-info">
-                                        <h5>02. Crowdsourced Hazard Pin</h5>
-                                        <p>Optimized 2-tap gesture on oversized targets so motorcyclists can flag risks without taking off gloves.</p>
+                                    <div class="gallery-screen-meta">
+                                        <h5>02. 2-Tap Incident Pin</h5>
+                                        <p>Lightning-fast crowdsourced hazard pinning with 2 taps using large buttons for night driving.</p>
                                     </div>
                                 </div>
-
-                                <div class="sm-feature-card">
-                                    <div class="feature-mockup-frame">
-                                        <div class="mockup-header-bar">
-                                            <span class="mock-badge red"><i class="fas fa-life-ring"></i> Emergency SOS Center</span>
-                                        </div>
-                                        <div class="mockup-screen-view mode-sos">
-                                            <div class="sos-circle-trigger">
-                                                <div class="sos-pulse-ring"></div>
-                                                <span>HOLD 2S</span>
-                                            </div>
-                                            <div class="sos-helper-text">
-                                                Auto-broadcasts GPS location &amp; dials 3 emergency contacts
-                                            </div>
-                                        </div>
+                                <div class="gallery-screen-item">
+                                    <div class="gallery-img-wrap" style="height: auto; aspect-ratio: 9/16;">
+                                        <img src="assets/safemap/sos.jpg" alt="03. Emergency SOS" class="gallery-img" style="object-fit: cover;" loading="lazy">
                                     </div>
-                                    <div class="feature-card-info">
-                                        <h5>03. One-Touch Emergency SOS</h5>
-                                        <p>2-second hold-to-activate lock prevents accidental triggers while relaying live coordinates during night emergencies.</p>
+                                    <div class="gallery-screen-meta">
+                                        <h5>03. Emergency SOS</h5>
+                                        <p>One-touch emergency button (hold 2 seconds) to send GPS coordinates to rescue teams.</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-
                     <!-- 07. Usability & Contribution -->
                     <section class="cs-section">
                         <div class="cs-section-header">
