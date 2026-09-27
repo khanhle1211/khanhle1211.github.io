@@ -745,11 +745,9 @@ window.switchCaseStudyTab = function (projectId) {
     const scrollBody = document.getElementById('modalScrollBody');
     if (scrollBody) scrollBody.scrollTop = 0;
     
-    // Emergency fix: force all sections to be visible, bypass GSAP bugs
-    document.querySelectorAll('.cs-section, .cs-hero').forEach(sec => {
-        sec.style.opacity = '1';
-        sec.style.transform = 'none';
-    });
+    if (typeof window.refreshModalScrollyTelling === 'function') {
+        setTimeout(() => window.refreshModalScrollyTelling(projectId || 'froggy'), 100);
+    }
 };
 
 // Modal Backdrop Click & ESC Key Listeners

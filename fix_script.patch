@@ -1,0 +1,15 @@
+--- script.js
++++ script.js
+@@ -748,9 +748,9 @@
+ 
+     const scrollBody = document.getElementById('modalScrollBody');
+     if (scrollBody) scrollBody.scrollTop = 0;
+-    
+-    if (typeof window.refreshModalScrollyTelling === 'function') {
+-        setTimeout(() => window.refreshModalScrollyTelling(projectId || 'froggy'), 100);
+-    }
++    
++    // if (typeof window.refreshModalScrollyTelling === 'function') {
++    //    setTimeout(() => window.refreshModalScrollyTelling(projectId || 'froggy'), 100);
++    // }
+ };

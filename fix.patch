@@ -1,0 +1,9 @@
+--- gsap-animations.js
++++ gsap-animations.js
+@@ -165,6 +165,8 @@
+             }
+         );
+     }
++
++    ScrollTrigger.refresh();
+ }

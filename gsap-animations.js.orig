@@ -182,7 +182,4 @@ window.refreshModalScrollyTelling = function(projectId) {
             }
         );
     }
-    
-    // Force recalculation immediately after creating triggers
-    ScrollTrigger.refresh();
 }
