@@ -748,6 +748,9 @@ window.switchCaseStudyTab = function (projectId) {
 
     const scrollBody = document.getElementById('modalScrollBody');
     if (scrollBody) scrollBody.scrollTop = 0;
+    if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 100);
+    }
 };
 
 // Modal Backdrop Click & ESC Key Listeners
