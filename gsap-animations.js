@@ -15,32 +15,38 @@ function initScrollyTelling() {
     // 1. Hero -> Credentials (About) Transition
     const heroSection = document.querySelector('#home');
     const heroContent = document.querySelector('.hero-content');
-    const hero3dStage = document.querySelector('.hero-3d-stage');
+    const showcaseContainer = document.querySelector('.phone-showcase-container');
     const credentialsSection = document.querySelector('#credentials');
     
     // Hero Parallax & Fade
-    gsap.to(heroContent, {
-        y: -150,
-        opacity: 0,
-        scrollTrigger: {
-            trigger: heroSection,
-            start: "top top",
-            end: "bottom center",
-            scrub: 1
+    gsap.fromTo(heroContent, 
+        { y: 0, opacity: 1 },
+        {
+            y: -150,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: heroSection,
+                start: "top top",
+                end: "bottom center",
+                scrub: 1
+            }
         }
-    });
+    );
 
-    gsap.to(hero3dStage, {
-        scale: 0.8,
-        xPercent: -20,
-        y: 100,
-        scrollTrigger: {
-            trigger: heroSection,
-            start: "top top",
-            end: "bottom center",
-            scrub: 1
+    gsap.fromTo(showcaseContainer, 
+        { scale: 1, xPercent: 0, y: 0 },
+        {
+            scale: 0.8,
+            xPercent: -20,
+            y: 100,
+            scrollTrigger: {
+                trigger: heroSection,
+                start: "top top",
+                end: "bottom center",
+                scrub: 1
+            }
         }
-    });
+    );
 
     gsap.fromTo(credentialsSection,
         { opacity: 0, x: 100 },
