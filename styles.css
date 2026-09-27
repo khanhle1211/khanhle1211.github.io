@@ -1181,7 +1181,7 @@ h1, h2, h3, h4, h5, h6 {
     background: #ffffff;
     color: #0f172a;
     box-sizing: border-box;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', var(--font-sans);
     scrollbar-width: none;
 }
 
