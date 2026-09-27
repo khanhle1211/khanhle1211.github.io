@@ -1,0 +1,96 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844' width='390' height='844' style='background:#0B1120; font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;'>
+  <defs>
+    <linearGradient id='btnGrad' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#3B82F6'/>
+      <stop offset='100%' stop-color='#60A5FA'/>
+    </linearGradient>
+  </defs>
+
+  <!-- TOP BAR & DYNAMIC ISLAND -->
+  <rect x='130' y='10' width='130' height='30' rx='15' fill='#000'/>
+  <text x='35' y='30' fill='#FFF' font-size='12' font-weight='600'>21:32</text>
+  <g transform='translate(330, 20)'>
+    <rect x='0' y='2' width='20' height='10' rx='2.5' fill='none' stroke='#FFF' stroke-width='1'/>
+    <rect x='2' y='4' width='13' height='6' rx='1' fill='#FFF'/>
+  </g>
+
+  <!-- HEADER -->
+  <g transform='translate(20, 60)'>
+    <circle cx='18' cy='18' r='18' fill='#1E293B'/>
+    <text x='18' y='23' fill='#FFF' font-size='16' text-anchor='middle'>✕</text>
+    <text x='175' y='24' fill='#FFF' font-size='16' font-weight='700' text-anchor='middle'>Ghim Báo Cáo 2 Chạm</text>
+    <rect x='305' y='4' width='45' height='26' rx='8' fill='#1E293B'/>
+    <text x='327' y='21' fill='#94A3B8' font-size='11' font-weight='600' text-anchor='middle'>Lịch sử</text>
+  </g>
+
+  <!-- CURRENT LOCATION CARD -->
+  <g transform='translate(20, 115)'>
+    <rect width='350' height='68' rx='16' fill='#1E293B' stroke='rgba(255,255,255,0.08)' stroke-width='1'/>
+    <circle cx='30' cy='34' r='16' fill='#3B82F6' fill-opacity='0.2'/>
+    <text x='30' y='39' fill='#60A5FA' font-size='14' text-anchor='middle'>📍</text>
+    <text x='58' y='28' fill='#94A3B8' font-size='9.5' font-weight='700' letter-spacing='0.5'>ĐỊNH VỊ GPS TỰ ĐỘNG</text>
+    <text x='58' y='48' fill='#F1F5F9' font-size='12' font-weight='600'>124 Nguyễn Tri Phương, Thanh Khê</text>
+  </g>
+
+  <!-- SECTION TITLE -->
+  <text x='24' y='215' fill='#94A3B8' font-size='11' font-weight='700' letter-spacing='1'>CHỌN LOẠI SỰ CỐ (CHẠM 1)</text>
+
+  <!-- 4 INCIDENT BUTTONS (2x2 GRID) -->
+  <!-- 1. Water Flood (Selected) -->
+  <g transform='translate(20, 230)'>
+    <rect width='168' height='140' rx='18' fill='#1E3A8A' fill-opacity='0.35' stroke='#3B82F6' stroke-width='2'/>
+    <rect x='125' y='12' width='30' height='18' rx='9' fill='#3B82F6'/>
+    <text x='140' y='24' fill='#FFF' font-size='11' font-weight='800' text-anchor='middle'>✓</text>
+    <circle cx='46' cy='46' r='24' fill='#3B82F6' fill-opacity='0.25'/>
+    <text x='46' y='53' font-size='24' text-anchor='middle'>🌊</text>
+    <text x='16' y='96' fill='#FFF' font-size='14' font-weight='700'>Ngập Nước Sâu</text>
+    <text x='16' y='116' fill='#93C5FD' font-size='10.5'>Mực nước &gt; 30cm</text>
+  </g>
+
+  <!-- 2. No Streetlight -->
+  <g transform='translate(202, 230)'>
+    <rect width='168' height='140' rx='18' fill='#1E293B' stroke='rgba(255,255,255,0.08)' stroke-width='1'/>
+    <circle cx='46' cy='46' r='24' fill='#475569' fill-opacity='0.3'/>
+    <text x='46' y='53' font-size='24' text-anchor='middle'>💡</text>
+    <text x='16' y='96' fill='#E2E8F0' font-size='14' font-weight='700'>Mất Đèn Đường</text>
+    <text x='16' y='116' fill='#94A3B8' font-size='10.5'>Khu vực tối nguy hiểm</text>
+  </g>
+
+  <!-- 3. Fallen Tree -->
+  <g transform='translate(20, 385)'>
+    <rect width='168' height='140' rx='18' fill='#1E293B' stroke='rgba(255,255,255,0.08)' stroke-width='1'/>
+    <circle cx='46' cy='46' r='24' fill='#065F46' fill-opacity='0.3'/>
+    <text x='46' y='53' font-size='24' text-anchor='middle'>🌲</text>
+    <text x='16' y='96' fill='#E2E8F0' font-size='14' font-weight='700'>Cây Gãy Đổ</text>
+    <text x='16' y='116' fill='#94A3B8' font-size='10.5'>Cản trở làn xe máy</text>
+  </g>
+
+  <!-- 4. Accident -->
+  <g transform='translate(202, 385)'>
+    <rect width='168' height='140' rx='18' fill='#1E293B' stroke='rgba(255,255,255,0.08)' stroke-width='1'/>
+    <circle cx='46' cy='46' r='24' fill='#7F1D1D' fill-opacity='0.3'/>
+    <text x='46' y='53' font-size='24' text-anchor='middle'>⚠️</text>
+    <text x='16' y='96' fill='#E2E8F0' font-size='14' font-weight='700'>Va Chạm Xe</text>
+    <text x='16' y='116' fill='#94A3B8' font-size='10.5'>Ùn tắc giao thông</text>
+  </g>
+
+  <!-- SEVERITY SELECTOR -->
+  <g transform='translate(20, 545)'>
+    <text x='4' y='18' fill='#94A3B8' font-size='11' font-weight='700' letter-spacing='1'>MỨC ĐỘ ẢNH HƯỞNG</text>
+    <g transform='translate(0, 30)'>
+      <rect x='0' y='0' width='110' height='36' rx='10' fill='#1E293B' stroke='rgba(255,255,255,0.1)'/>
+      <text x='55' y='22' fill='#CBD5E1' font-size='11' font-weight='600' text-anchor='middle'>Dưới 20cm</text>
+      <rect x='120' y='0' width='110' height='36' rx='10' fill='#3B82F6'/>
+      <text x='175' y='22' fill='#FFF' font-size='11' font-weight='700' text-anchor='middle'>20 - 40cm</text>
+      <rect x='240' y='0' width='110' height='36' rx='10' fill='#1E293B' stroke='rgba(255,255,255,0.1)'/>
+      <text x='295' y='22' fill='#CBD5E1' font-size='11' font-weight='600' text-anchor='middle'>Trên 40cm ⛔</text>
+    </g>
+  </g>
+
+  <!-- CONFIRM BUTTON (TAP 2) -->
+  <g transform='translate(20, 670)'>
+    <rect width='350' height='54' rx='16' fill='url(#btnGrad)'/>
+    <text x='175' y='32' fill='#FFF' font-size='14' font-weight='800' text-anchor='middle'>GỬI CẢNH BÁO CHO CỘNG ĐỒNG (CHẠM 2)</text>
+    <text x='175' y='72' fill='#64748B' font-size='10.5' text-anchor='middle'>⏱️ Tự động phát sóng đến người đi đường trong bán kính 2km</text>
+  </g>
+</svg>

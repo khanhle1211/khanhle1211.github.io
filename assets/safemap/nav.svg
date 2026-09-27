@@ -1,0 +1,119 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844' width='390' height='844' style='background:#0B1120; font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;'>
+  <defs>
+    <linearGradient id='safeGrad' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#10B981'/>
+      <stop offset='100%' stop-color='#34D399'/>
+    </linearGradient>
+    <linearGradient id='dangerGrad' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#EF4444'/>
+      <stop offset='100%' stop-color='#F87171'/>
+    </linearGradient>
+    <filter id='glowSafe' x='-20%' y='-20%' width='140%' height='140%'>
+      <feGaussianBlur stdDeviation='4' result='blur'/>
+      <feComposite in='SourceGraphic' in2='blur' operator='over'/>
+    </filter>
+    <filter id='cardShadow' x='-10%' y='-5%' width='120%' height='115%'>
+      <feDropShadow dx='0' dy='-8' stdDeviation='16' flood-color='#000000' flood-opacity='0.6'/>
+    </filter>
+  </defs>
+
+  <!-- MAP VECTOR GRAPHICS (ĐÀ NẴNG) -->
+  <!-- Water: Sông Hàn -->
+  <path d='M260,0 C270,180 290,320 280,480 C270,620 250,750 240,844 L390,844 L390,0 Z' fill='#0F2847'/>
+  <text x='325' y='260' fill='#1E4976' font-size='11' font-weight='700' letter-spacing='3' transform='rotate(80 325 260)'>SÔNG HÀN</text>
+
+  <!-- Bridges -->
+  <rect x='245' y='180' width='45' height='7' rx='2' fill='#334155' transform='rotate(-5 267 183)'/>
+  <text x='295' y='186' fill='#64748B' font-size='8' font-weight='600'>Cầu Sông Hàn</text>
+  <rect x='230' y='360' width='55' height='9' rx='3' fill='#F59E0B' opacity='0.7' transform='rotate(-8 257 364)'/>
+  <text x='290' y='366' fill='#F59E0B' font-size='8' font-weight='700'>Cầu Rồng</text>
+
+  <!-- Minor Roads -->
+  <path d='M-20,90 L265,90 M-20,150 L250,150 M-20,230 L250,230 M-20,310 L240,310 M-20,420 L245,420' stroke='#1E293B' stroke-width='3' fill='none'/>
+  <path d='M50,0 L50,550 M120,0 L120,550 M190,0 L190,550 M250,0 L250,550' stroke='#1E293B' stroke-width='3' fill='none'/>
+
+  <!-- Road: Hàm Nghi (Danger Route) -->
+  <path d='M60,420 L60,230 L160,230' stroke='#EF4444' stroke-width='6' stroke-dasharray='6,4' fill='none' opacity='0.85'/>
+  <circle cx='110' cy='230' r='24' fill='#EF4444' fill-opacity='0.25'/>
+  <circle cx='110' cy='230' r='12' fill='#EF4444'/>
+  <text x='110' y='234' fill='#FFF' font-size='10' font-weight='800' text-anchor='middle'>!</text>
+  <!-- Hazard popup -->
+  <rect x='65' y='190' width='90' height='22' rx='6' fill='#1E293B' stroke='#EF4444' stroke-width='1.5'/>
+  <text x='110' y='204' fill='#FCA5A5' font-size='8.5' font-weight='700' text-anchor='middle'>⚠️ Ngập 40cm (Hàm Nghi)</text>
+
+  <!-- Road: Nguyễn Văn Linh (Safe Route) -->
+  <path d='M60,420 L190,420 L190,140 L240,140' stroke='url(#safeGrad)' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none' filter='url(#glowSafe)'/>
+
+  <!-- Start Point (GPS) -->
+  <circle cx='60' cy='420' r='14' fill='#3B82F6' fill-opacity='0.3'/>
+  <circle cx='60' cy='420' r='7' fill='#3B82F6' stroke='#FFF' stroke-width='2'/>
+
+  <!-- Destination Pin -->
+  <g transform='translate(235, 115)'>
+    <path d='M10,0 C4.5,0 0,4.5 0,10 C0,17 10,26 10,26 C10,26 20,17 20,10 C20,4.5 15.5,0 10,0 Z' fill='#10B981'/>
+    <circle cx='10' cy='10' r='4' fill='#FFF'/>
+    <rect x='-55' y='-20' width='130' height='18' rx='4' fill='#0F172A' stroke='#10B981' stroke-width='1'/>
+    <text x='10' y='-8' fill='#E2E8F0' font-size='8' font-weight='700' text-anchor='middle'>ĐH Greenwich Đà Nẵng</text>
+  </g>
+
+  <!-- TOP BAR & DYNAMIC ISLAND -->
+  <rect x='130' y='10' width='130' height='30' rx='15' fill='#000'/>
+  <!-- Time & Status -->
+  <text x='35' y='30' fill='#FFF' font-size='12' font-weight='600'>21:30</text>
+  <g transform='translate(330, 20)'>
+    <rect x='0' y='2' width='20' height='10' rx='2.5' fill='none' stroke='#FFF' stroke-width='1'/>
+    <rect x='2' y='4' width='13' height='6' rx='1' fill='#FFF'/>
+  </g>
+
+  <!-- SEARCH HEADER CARD -->
+  <g transform='translate(16, 52)'>
+    <rect width='358' height='46' rx='14' fill='#0F172ACC' stroke='rgba(255,255,255,0.1)' stroke-width='1'/>
+    <circle cx='24' cy='23' r='12' fill='#1E293B'/>
+    <path d='M20,23 L26,19 L26,27 Z' fill='#94A3B8'/>
+    <text x='48' y='27' fill='#E2E8F0' font-size='12' font-weight='600'>ĐH Greenwich (658 Ngô Quyền)</text>
+    <rect x='292' y='13' width='54' height='20' rx='10' fill='#10B981' fill-opacity='0.15'/>
+    <text x='319' y='26' fill='#34D399' font-size='9' font-weight='700' text-anchor='middle'>SAFE GPS</text>
+  </g>
+
+  <!-- BOTTOM ROUTE SELECTION SHEET -->
+  <g transform='translate(0, 480)' filter='url(#cardShadow)'>
+    <path d='M0,24 C0,10.7 10.7,0 24,0 L366,0 C379.3,0 390,10.7 390,24 L390,364 L0,364 Z' fill='#0F172A' stroke='rgba(255,255,255,0.08)' stroke-width='1'/>
+    <rect x='175' y='8' width='40' height='4' rx='2' fill='#475569'/>
+
+    <text x='24' y='38' fill='#94A3B8' font-size='10' font-weight='700' letter-spacing='1'>CHỌN LỘ TRÌNH THỜI GIAN THỰC</text>
+
+    <!-- OPTION 1: SAFE ROUTE (ACTIVE) -->
+    <g transform='translate(18, 50)'>
+      <rect width='354' height='90' rx='14' fill='#064E3B' fill-opacity='0.3' stroke='#10B981' stroke-width='1.5'/>
+      <rect x='14' y='12' width='74' height='18' rx='6' fill='#10B981'/>
+      <text x='51' y='24' fill='#FFF' font-size='8.5' font-weight='800' text-anchor='middle'>✓ KHUYÊN DÙNG</text>
+      
+      <text x='96' y='25' fill='#34D399' font-size='12' font-weight='700'>Tuyến An Toàn (Safe Route)</text>
+      
+      <text x='340' y='32' fill='#10B981' font-size='20' font-weight='800' text-anchor='end'>14 <tspan font-size='11' font-weight='600'>phút</tspan></text>
+      
+      <text x='14' y='52' fill='#E2E8F0' font-size='11' font-weight='600'>Qua Nguyễn Văn Linh → Cầu Rồng</text>
+      <text x='14' y='72' fill='#A7F3D0' font-size='9.5'>💡 Đèn đường 100% · 0 điểm ngập · Đường rộng 6 làn</text>
+    </g>
+
+    <!-- OPTION 2: FASTEST ROUTE (WARNING) -->
+    <g transform='translate(18, 150)'>
+      <rect width='354' height='78' rx='14' fill='#1E293B' fill-opacity='0.6' stroke='rgba(239,68,68,0.4)' stroke-width='1'/>
+      <rect x='14' y='12' width='66' height='18' rx='6' fill='#EF4444' fill-opacity='0.2'/>
+      <text x='47' y='24' fill='#F87171' font-size='8.5' font-weight='700' text-anchor='middle'>⚠️ CẢNH BÁO</text>
+      
+      <text x='88' y='25' fill='#94A3B8' font-size='11' font-weight='600'>Tuyến Ngắn Nhất (Fast Route)</text>
+      
+      <text x='340' y='30' fill='#94A3B8' font-size='16' font-weight='700' text-anchor='end'>10 <tspan font-size='10'>phút</tspan></text>
+      
+      <text x='14' y='50' fill='#CBD5E1' font-size='10.5'>Qua Hàm Nghi (Ngắn hơn 1.1 km)</text>
+      <text x='14' y='67' fill='#FCA5A5' font-size='9'>⛔ Đoạn ngập 40cm lúc 21:15 · Dễ chết máy xe ga</text>
+    </g>
+
+    <!-- ACTION BUTTON -->
+    <g transform='translate(18, 240)'>
+      <rect width='354' height='50' rx='14' fill='url(#safeGrad)'/>
+      <text x='177' y='30' fill='#022C22' font-size='14' font-weight='800' text-anchor='middle'>BẮT ĐẦU ĐIỀU HƯỚNG AN TOÀN</text>
+    </g>
+  </g>
+</svg>

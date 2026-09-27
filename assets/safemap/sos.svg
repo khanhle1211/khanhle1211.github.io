@@ -1,0 +1,79 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844' width='390' height='844' style='background:#06080F; font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;'>
+  <defs>
+    <radialGradient id='sosPulseGrad' cx='50%' cy='50%' r='50%'>
+      <stop offset='0%' stop-color='#EF4444' stop-opacity='0.6'/>
+      <stop offset='60%' stop-color='#EF4444' stop-opacity='0.15'/>
+      <stop offset='100%' stop-color='#EF4444' stop-opacity='0'/>
+    </radialGradient>
+    <linearGradient id='sosBtnGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#F87171'/>
+      <stop offset='40%' stop-color='#EF4444'/>
+      <stop offset='100%' stop-color='#991B1B'/>
+    </linearGradient>
+    <filter id='sosGlow' x='-30%' y='-30%' width='160%' height='160%'>
+      <feGaussianBlur stdDeviation='16' result='blur'/>
+      <feComposite in='SourceGraphic' in2='blur' operator='over'/>
+    </filter>
+  </defs>
+
+  <!-- TOP BAR & DYNAMIC ISLAND -->
+  <rect x='130' y='10' width='130' height='30' rx='15' fill='#000'/>
+  <text x='35' y='30' fill='#FFF' font-size='12' font-weight='600'>21:35</text>
+  <g transform='translate(330, 20)'>
+    <rect x='0' y='2' width='20' height='10' rx='2.5' fill='none' stroke='#FFF' stroke-width='1'/>
+    <rect x='2' y='4' width='13' height='6' rx='1' fill='#FFF'/>
+  </g>
+
+  <!-- HEADER -->
+  <g transform='translate(20, 60)'>
+    <circle cx='18' cy='18' r='18' fill='#1E293B'/>
+    <text x='18' y='23' fill='#FFF' font-size='16' text-anchor='middle'>✕</text>
+    <text x='175' y='24' fill='#EF4444' font-size='15' font-weight='800' letter-spacing='2' text-anchor='middle'>🚨 TRUNG TÂM KHẨN CẤP SOS</text>
+  </g>
+
+  <text x='195' y='125' fill='#94A3B8' font-size='12' text-anchor='middle'>Nhấn giữ 2 giây để kích hoạt hỗ trợ</text>
+
+  <!-- RADAR PULSE WAVES -->
+  <circle cx='195' cy='310' r='170' fill='url(#sosPulseGrad)'/>
+  <circle cx='195' cy='310' r='130' fill='none' stroke='#EF4444' stroke-width='1' stroke-dasharray='4,4' opacity='0.4'/>
+  <circle cx='195' cy='310' r='100' fill='none' stroke='#EF4444' stroke-width='1.5' opacity='0.6'/>
+
+  <!-- MASSIVE SOS BUTTON -->
+  <g filter='url(#sosGlow)'>
+    <circle cx='195' cy='310' r='75' fill='url(#sosBtnGrad)' stroke='#FECACA' stroke-width='3'/>
+  </g>
+  <text x='195' y='312' fill='#FFF' font-size='38' font-weight='900' letter-spacing='3' text-anchor='middle'>SOS</text>
+  <text x='195' y='338' fill='#FEE2E2' font-size='10.5' font-weight='800' letter-spacing='1.5' text-anchor='middle'>GIỮ 2 GIÂY</text>
+
+  <!-- GPS POSITION STRIP -->
+  <g transform='translate(24, 460)'>
+    <rect width='342' height='56' rx='14' fill='#111827' stroke='rgba(239,68,68,0.3)' stroke-width='1'/>
+    <circle cx='24' cy='28' r='12' fill='#EF4444' fill-opacity='0.2'/>
+    <text x='24' y='33' fill='#EF4444' font-size='12' text-anchor='middle'>📍</text>
+    <text x='48' y='24' fill='#94A3B8' font-size='9' font-weight='700'>TOẠ ĐỘ GPS HIỆN TẠI (ĐÀ NẴNG)</text>
+    <text x='48' y='42' fill='#F87171' font-size='11.5' font-weight='700'>16.0544° N, 108.2022° E (Sai số ±3m)</text>
+  </g>
+
+  <!-- 3 AUTOMATED ACTIONS WHEN TRIGGERED -->
+  <g transform='translate(24, 535)'>
+    <text x='4' y='15' fill='#94A3B8' font-size='10.5' font-weight='700' letter-spacing='1'>HỆ THỐNG SẼ TỰ ĐỘNG THỰC HIỆN:</text>
+    
+    <g transform='translate(0, 28)'>
+      <rect width='342' height='46' rx='12' fill='#1E293B' stroke='rgba(255,255,255,0.06)'/>
+      <text x='16' y='28' font-size='16'>📞</text>
+      <text x='44' y='27' fill='#E2E8F0' font-size='11.5' font-weight='600'>Gọi ngay 3 số liên hệ khẩn cấp gia đình</text>
+    </g>
+
+    <g transform='translate(0, 82)'>
+      <rect width='342' height='46' rx='12' fill='#1E293B' stroke='rgba(255,255,255,0.06)'/>
+      <text x='16' y='28' font-size='16'>💬</text>
+      <text x='44' y='27' fill='#E2E8F0' font-size='11.5' font-weight='600'>Gửi SMS kèm link Google Maps tọa độ GPS</text>
+    </g>
+
+    <g transform='translate(0, 136)'>
+      <rect width='342' height='46' rx='12' fill='#1E293B' stroke='rgba(255,255,255,0.06)'/>
+      <text x='16' y='28' font-size='16'>📢</text>
+      <text x='44' y='27' fill='#E2E8F0' font-size='11.5' font-weight='600'>Bật còi báo động âm lượng tối đa trên máy</text>
+    </g>
+  </g>
+</svg>
