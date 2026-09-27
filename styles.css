@@ -3129,7 +3129,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .case-study-content.active {
     display: block;
-    animation: fadeInModal 0.4s ease forwards;
 }
 
 @keyframes fadeInModal {

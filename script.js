@@ -745,10 +745,17 @@ window.switchCaseStudyTab = function (projectId) {
     const scrollBody = document.getElementById('modalScrollBody');
     if (scrollBody) scrollBody.scrollTop = 0;
     
-    // Emergency fix: force all sections to be visible, bypass GSAP bugs
-    document.querySelectorAll('.cs-section, .cs-hero').forEach(sec => {
+    // Emergency fix: force all sections and content to be visible, bypass GSAP bugs
+    document.querySelectorAll('.cs-section, .cs-hero, .case-study-content, .lang-vi, .lang-en').forEach(sec => {
         sec.style.opacity = '1';
+        sec.style.visibility = 'visible';
         sec.style.transform = 'none';
+        
+        // Also clear any GSAP inline styles just in case
+        if (sec._gsap) {
+            sec.style.removeProperty('opacity');
+            sec.style.removeProperty('transform');
+        }
     });
 };
 
