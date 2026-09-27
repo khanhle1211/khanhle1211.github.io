@@ -7,7 +7,6 @@ if (!prefersReducedMotion && typeof gsap !== 'undefined') {
 
     document.addEventListener("DOMContentLoaded", () => {
         initScrollyTelling();
-        initModalScrollyTelling();
     });
 }
 
@@ -124,12 +123,32 @@ function initScrollyTelling() {
     });
 }
 
-function initModalScrollyTelling() {
+window.refreshModalScrollyTelling = function(projectId) {
+    if (typeof ScrollTrigger === 'undefined') return;
+    
     const modalScroller = document.querySelector('.modal-scroll-body');
     if (!modalScroller) return;
 
-    // We apply ScrollTrigger to all .cs-section inside the modal
-    const csSections = document.querySelectorAll('.cs-section');
+    // Kill existing modal scroll triggers to prevent bugs
+    ScrollTrigger.getAll().forEach(t => {
+        if (t.vars.scroller === modalScroller) {
+            t.kill();
+        }
+    });
+
+    // Reset styles on ALL sections so they don't get stuck hidden
+    document.querySelectorAll('.cs-section').forEach(sec => {
+        gsap.set(sec, { clearProps: "opacity,y" });
+    });
+
+    const safemapSVG = document.querySelector('#safemap-svg-route');
+    if (safemapSVG) gsap.set(safemapSVG, { clearProps: "strokeDashoffset" });
+
+    // Only apply to the active tab's sections
+    const activeContainer = document.getElementById(projectId === 'safemap' ? 'tabContentSafemap' : 'tabContentFroggy');
+    if (!activeContainer) return;
+
+    const csSections = activeContainer.querySelectorAll('.cs-section');
     
     csSections.forEach(section => {
         gsap.fromTo(section, 
@@ -149,9 +168,7 @@ function initModalScrollyTelling() {
         );
     });
 
-    // Special Animation for SafeMap SVG (Mock)
-    const safemapSVG = document.querySelector('#safemap-svg-route');
-    if (safemapSVG) {
+    if (projectId === 'safemap' && safemapSVG) {
         gsap.fromTo(safemapSVG, 
             { strokeDashoffset: 1000 },
             {

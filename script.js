@@ -708,10 +708,6 @@ window.openCaseStudy = function (projectId) {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    
-    if (typeof ScrollTrigger !== 'undefined') {
-        setTimeout(() => ScrollTrigger.refresh(), 100);
-    }
 
     switchCaseStudyTab(projectId || 'froggy');
 
@@ -748,8 +744,9 @@ window.switchCaseStudyTab = function (projectId) {
 
     const scrollBody = document.getElementById('modalScrollBody');
     if (scrollBody) scrollBody.scrollTop = 0;
-    if (typeof ScrollTrigger !== 'undefined') {
-        setTimeout(() => ScrollTrigger.refresh(), 100);
+    
+    if (typeof window.refreshModalScrollyTelling === 'function') {
+        setTimeout(() => window.refreshModalScrollyTelling(projectId || 'froggy'), 100);
     }
 };
 
